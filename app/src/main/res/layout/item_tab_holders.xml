@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_40sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/_10sdp"
+    android:paddingEnd="@dimen/_10sdp"
+    android:paddingTop="@dimen/_10sdp">
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cb_tabHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"/>
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_tabHolderImage"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_toEndOf="@+id/cb_tabHolder"
+        android:src="@drawable/logo"
+        app:shapeAppearanceOverlay="@style/CircularImageView" />
+
+    <LinearLayout
+        android:id="@+id/ll_tabHolderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/iv_tabHolderImage"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/tv_tabHolderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sujit Ghadge"
+            android:fontFamily="@font/glacialindifferencebold"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_tabHolderMobNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8888852555"
+            android:fontFamily="@font/glacialindifferenceregular"
+            android:textColor="@color/green_700"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_call"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:src="@drawable/ic_call_grey_48"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_40sdp"/>
+
+    <ImageView
+        android:id="@+id/iv_message"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:src="@drawable/ic_sms_grey_48"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

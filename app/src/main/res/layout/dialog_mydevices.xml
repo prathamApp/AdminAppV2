@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_200sdp"
+        app:cardBackgroundColor="@color/White"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/lbl_deviceDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Device Details"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15sdp"
+                android:textAlignment="center"
+                android:layout_marginBottom="@dimen/_20sdp"/>
+
+            <TextView
+                android:id="@+id/lbl_deviceId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DeviceID : "
+                android:textStyle="bold"
+                android:layout_below="@+id/lbl_deviceDetail" />
+
+            <TextView
+                android:id="@+id/tv_deviceId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9f9c9v"
+                android:layout_below="@id/lbl_deviceDetail"
+                android:layout_toRightOf="@+id/lbl_deviceId"/>
+
+            <TextView
+                android:id="@+id/lbl_serialNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serial No : "
+                android:textStyle="bold"
+                android:layout_below="@+id/lbl_deviceId"/>
+            <TextView
+                android:id="@+id/tv_serialNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9f9c9v"
+                android:layout_toRightOf="@+id/lbl_serialNo"
+                android:layout_below="@id/lbl_deviceId"/>
+
+            <TextView
+                android:id="@+id/lbl_prathamId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pratham Id : "
+                android:textStyle="bold"
+                android:layout_below="@+id/lbl_serialNo"/>
+            <TextView
+                android:id="@+id/tv_prathamId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9f9c9v"
+                android:layout_toRightOf="@+id/lbl_prathamId"
+                android:layout_below="@id/lbl_serialNo"/>
+
+            <TextView
+                android:id="@+id/lbl_tabModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab Model : "
+                android:textStyle="bold"
+                android:layout_below="@id/lbl_prathamId"/>
+            <TextView
+                android:id="@+id/tv_tabModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9f9c9v"
+                android:layout_toRightOf="@+id/lbl_tabModel"
+                android:layout_below="@id/lbl_prathamId"/>
+
+            <TextView
+                android:id="@+id/lbl_qrId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QrId : "
+                android:textStyle="bold"
+                android:layout_below="@+id/lbl_tabModel"/>
+            <TextView
+                android:id="@+id/tv_qrId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9f9c9v"
+                android:layout_toRightOf="@+id/lbl_qrId"
+                android:layout_below="@id/lbl_tabModel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dialog_btn_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_8sdp"
+                android:gravity="center"
+                android:minWidth="@dimen/_120sdp"
+                android:minHeight="@dimen/_35sdp"
+                android:text="@string/Okay"
+                app:cornerRadius="@dimen/_20sdp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

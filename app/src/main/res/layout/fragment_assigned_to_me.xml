@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.assignedToMe.AssignedToMeFragment"
+    android:background="@color/screen_background">
+
+    <ImageView
+        android:id="@+id/iv_backButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back_48"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"/>
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/ll_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Assigned To Me"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_2sdp"/>
+
+    <TextView
+        android:id="@+id/tv_totalTabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tablet(s) : 0"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:layout_below="@+id/ll_label"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/_10sdp"/>
+
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:padding="@dimen/_5sdp"
+        android:drawableLeft="@drawable/ic_search_grey_24dp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:hint="Search"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:background="@drawable/rectangular_search_bg"
+        android:layout_below="@+id/tv_totalTabs"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_below="@+id/et_search"/>
+
+</RelativeLayout>

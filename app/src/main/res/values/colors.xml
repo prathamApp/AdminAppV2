@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="rowBackground">#fadabf</color>
+
+    <color name="solid_background">#00749E</color>
+    <color name="text_hint">#909090</color>
+    <color name="button">#2E96BB</color>
+    <color name="album_title">#4c4c4c</color>
+    <color name="green">#00ff00</color>
+    <color name="Yellow">#FFE500</color>
+    <color name="White">#fff</color>
+    <color name="black">#000000</color>
+    <color name="CyanWater">#09b6b3</color>
+    <color name="red">#ff0000</color>
+
+    <color name="deeppurple_100">#d1c4e9</color>
+    <color name="transparent">#00111111</color>
+
+    <color name="yellow">#FFEB3B</color>
+
+    <!-- Grey -->
+    <color name="grey_50">#FAFAFA</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#212121</color>
+    <!-- Grey -->
+
+    <!-- Deep Purple -->
+    <color name="dark_purple_50">#EDE7F6</color>
+    <color name="dark_purple_100">#D1C4E9</color>
+    <color name="dark_purple_200">#B39DDB</color>
+    <color name="dark_purple_300">#9575CD</color>
+    <color name="dark_purple_400">#7E57C2</color>
+    <color name="dark_purple_500">#673AB7</color>
+    <color name="dark_purple_600">#5E35B1</color>
+    <color name="dark_purple_700">#512DA8</color>
+    <color name="dark_purple_800">#4527A0</color>
+    <color name="dark_purple_900">#311B92</color>
+    <color name="dark_purple_A100">#B388FF</color>
+    <color name="dark_purple_A200">#7C4DFF</color>
+    <color name="dark_purple_A400">#651FFF</color>
+    <color name="dark_purple_A700">#6200EA</color>
+    <!-- Deep Purple -->
+
+    <color name="search_bar">#e7ecf6</color>
+    <color name="button_grey">#e5e5f0</color>
+    <color name="button_purple">#b4a5f4</color>
+    <color name="screen_background">#f5f7fb</color>
+    <color name="red_400">#EF5350</color>
+
+    <color name="pink_200">#F48FB1</color>
+    <color name="pink_700">#C2185B</color>
+
+    <color name="blue_200">#90CAF9</color>
+    <color name="blue_700">#303F9F</color>
+
+    <color name="green_200">#C8E6C9</color>
+    <color name="green_700">#388E3C</color>
+
+    <color name="orange_200">#FFCC80</color>
+    <color name="orange_700">#F57C00</color>
+
+
+</resources>

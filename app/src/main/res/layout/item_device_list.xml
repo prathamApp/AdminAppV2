@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_30sdp"
+    android:background="@color/cardview_shadow_end_color"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:elevation="14dp"
+    android:id="@+id/cv_tablet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tabSerialID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:drawableStartCompat="@drawable/tablet"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/glacialindifferenceregular"
+            android:text="nglsknglsnglsnglsngl"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

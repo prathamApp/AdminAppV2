@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    tools:context=".ui.home.reportLost.ReportlostFormFragment">
+
+    <ImageView
+        android:id="@+id/iv_backButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back_48"/>
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Details of Incident"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_label"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/glacialindifferenceitalic"
+        android:text="(Please Fill Appropriate Incident Details.)" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_note">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_50sdp">
+
+            <LinearLayout
+                android:id="@+id/ll_contactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_contactNumber"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_contactNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/glacialindifferenceregular"
+                    android:hint="Contact Number*"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:maxLength="10"
+                    android:digits="0123456789"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_lastSeenDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/roundedcornerbtn"
+                android:drawablePadding="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="Last Seen Date"
+                android:fontFamily="@font/glacialindifferenceregular"
+                android:textColor="@color/grey_700"
+                app:drawableStartCompat="@drawable/ic_date_calender_24"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ll_serialNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_contactNumber"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Serial Number  :  "
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferencebold"/>
+
+            <TextView
+                android:id="@+id/tv_serialNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_contactNumber"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_toEndOf="@+id/ll_serialNo"
+                android:text="Serial Number"
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferenceregular"/>
+
+            <TextView
+                android:id="@+id/ll_brandModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_serialNo"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Brand/Model  :  "
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferencebold"/>
+
+            <TextView
+                android:id="@+id/tv_brandModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_serialNo"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_toEndOf="@+id/ll_brandModel"
+                android:text="Brand"
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferenceregular"/>
+
+
+            <TextView
+                android:id="@+id/tv_lastSeenWith"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_brandModel"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Last Seen With :"
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferencebold"/>
+
+            <LinearLayout
+                android:id="@+id/ll_lastSeen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_lastSeenWith">
+
+                <RadioGroup
+                    android:id="@+id/rg_lastSeen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_crl"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="CRL"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_blockLeader"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Block Leader"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_group"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Group"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_other"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Other"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_reportingPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_lastSeen"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Person Reporting :"
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferencebold"/>
+
+            <LinearLayout
+                android:id="@+id/ll_reportingPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_reportingPerson">
+
+                <RadioGroup
+                    android:id="@+id/rg_reportingPerson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_rp_crl"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="CRL"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_rp_blockLeader"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Block Leader"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_rp_group"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Group"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_rp_other"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Other"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_800"
+                android:layout_below="@id/ll_reportingPerson"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <TextView
+                android:id="@+id/tv_accessoriesMissing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_reportingPerson"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/glacialindifferencebold"
+                android:text="Accessories Missing Report"
+                android:textColor="@color/dark_purple_400"
+                android:textSize="@dimen/_15sdp" />
+
+            <LinearLayout
+                android:id="@+id/ll_charger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_accessoriesMissing"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_charger"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Charger :"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/glacialindifferencebold"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_charger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_charger_missing"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="Missing"/>
+
+                    <RadioButton
+                        android:id="@+id/rb_charger_available"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Available" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_charger"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_cover"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Leather Cover :"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/glacialindifferencebold"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_cover_missing"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="Missing" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cover_available"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Available" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_sdCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_cover"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_sdCard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="SD Card :"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/glacialindifferencebold"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_sdCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_sdCard_missing"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="Missing" />
+
+                    <RadioButton
+                        android:id="@+id/rb_sdCard_available"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Available" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_additionalRemark"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_sdCard"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_additionalRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/glacialindifferenceregular"
+                    android:hint="Additional Details" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/grey_800"
+                android:layout_below="@id/textInputLayout_additionalRemark"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"/>
+
+            <TextView
+                android:id="@+id/tv_incidentVerification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textInputLayout_additionalRemark"
+                android:layout_marginTop="@dimen/_28sdp"
+                android:fontFamily="@font/glacialindifferencebold"
+                android:text="Incident Verification"
+                android:textColor="@color/dark_purple_400"
+                android:textSize="@dimen/_15sdp" />
+
+            <LinearLayout
+                android:id="@+id/ll_policeComplaint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_incidentVerification"
+                android:layout_marginEnd="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tv_policeComplaint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Police Complaint Lodged :"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/glacialindifferencebold"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_policeComplaint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_police_yes"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/rb_police_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="No" />
+                </RadioGroup>
+
+                <ImageView
+                    android:id="@+id/iv_openCamera"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_camera_purple_24"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_incidentVerifiedAt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_policeComplaint"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Incident Verified At :"
+                android:textColor="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/glacialindifferencebold"/>
+
+            <LinearLayout
+                android:id="@+id/ll_incident"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_incidentVerifiedAt"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/rg_incidentVerifiedAtOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RadioButton
+                        android:id="@+id/rb_atComunityLevel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text=" Community Level" />
+
+                    <RadioButton
+                        android:id="@+id/rb_atBlockLevel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text=" Block Level" />
+
+                    <RadioButton
+                        android:id="@+id/rb_atStateLevel"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text=" State Level" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/rg_incidentVerifiedAtTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RadioButton
+                        android:id="@+id/rb_atProgramLevel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text=" Program Level" />
+
+                    <RadioButton
+                        android:id="@+id/rb_atCentralTeam"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text=" Central Team" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_enqUndertaken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_incident"
+                android:weightSum="2"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tv_enqUndertaken"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Enquiry UnderTaken :"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/glacialindifferencebold"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_enqUndertaken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_enqUndertaken_yes"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/rb_enqUndertaken_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="No" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_enqConcluded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_enqUndertaken"
+                android:weightSum="2"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tv_enqConcluded"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Enquiry Concluded :"
+                    android:layout_weight="1"
+                    android:textColor="@color/grey_800"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/glacialindifferencebold"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_enqConcluded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_enqConcluded_yes"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="false"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/rb_enqConcluded_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="No" />
+                </RadioGroup>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_reportLost"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:text="Report Lost"
+        android:textColor="@color/White"/>
+</RelativeLayout>

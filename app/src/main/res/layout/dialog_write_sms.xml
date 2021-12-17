@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/dialog_writeSms"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="@dimen/_150sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_corner_whitebg">
+
+    <EditText
+        android:id="@+id/et_writeSms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write SMS..."
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:layout_below="@+id/lbl_requestTablet"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@color/transparent"
+        android:inputType="textMultiLine"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:shadowRadius="5"
+            android:elevation="@dimen/_10sdp"
+            android:text="Cancel"
+            android:textColor="@color/White"
+            android:fontFamily="@font/glacialindifferencebold"
+            app:cornerRadius="@dimen/_25sdp"
+            app:elevation="@dimen/_10sdp"
+            app:backgroundTint="@color/red_400"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/_20sdp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialog_btn_send"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:shadowRadius="5"
+            android:elevation="@dimen/_10sdp"
+            android:text="SEND"
+            android:textColor="@color/grey_800"
+            android:fontFamily="@font/glacialindifferencebold"
+            app:cornerRadius="@dimen/_25sdp"
+            app:elevation="@dimen/_10sdp"
+            app:backgroundTint="@color/button_purple"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

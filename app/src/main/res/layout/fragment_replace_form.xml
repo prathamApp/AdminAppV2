@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    tools:context=".ui.home.replaceTablet.ReplaceFormFragment">
+
+    <ImageView
+        android:id="@+id/iv_backButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back_48"/>
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Damage Details"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_label"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/glacialindifferenceitalic"
+        android:text="(Please Select Appropriate Damage Details.)"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_contactNumber"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_note"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contactNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/glacialindifferenceregular"
+            android:hint="Contact Number*"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:maxLength="10"
+            android:digits="0123456789"
+            android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_label1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputLayout_contactNumber"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Physical Damage"
+        android:textColor="@color/dark_purple_400"
+        android:textSize="@dimen/_15sdp" />
+
+    <LinearLayout
+        android:id="@+id/ll_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_label1"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_screenDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Screen Damage"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_one"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_bodyDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Body Damage"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_two"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_microphoneDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Microphone Damage"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_three"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_cameraDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Camera Damage"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_five"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_four"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_speakerDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Speaker Damage"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/grey_800"
+        android:layout_below="@id/ll_five"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_8sdp"/>
+
+    <TextView
+        android:id="@+id/tv_label2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_five"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Internal Damage"
+        android:textColor="@color/dark_purple_400"
+        android:textSize="@dimen/_15sdp" />
+
+    <LinearLayout
+        android:id="@+id/ll_six"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_label2"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_batteryDamage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Battery Damage"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_seven"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_six"
+        android:gravity="left"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <CheckBox
+            android:id="@+id/cb_unableToOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:text="Unable to switch On Tab"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/grey_800"
+            android:textAlignment="viewEnd"
+            android:layoutDirection="rtl"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_otherDetail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_seven"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/otherDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/glacialindifferenceregular"
+            android:hint="Other Details"
+            android:drawableEnd="@drawable/ic_mic_grey_24"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_below="@id/textInputLayout_otherDetail"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_replace_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:text="Replace Tablet"
+        android:textColor="@color/White"/>
+
+</RelativeLayout>

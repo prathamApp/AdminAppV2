@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_homeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    tools:context=".ui.home.HomeFragment"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Home"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:weightSum="3">
+
+    <LinearLayout
+        android:id="@+id/replaceTab"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_weight="1"
+        android:weightSum="2">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/replace_tablet"
+            android:layout_weight="1.6"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/textview_bottom_rounded"
+            android:fontFamily="@font/glacialindifferencebold"
+            android:padding="@dimen/_5sdp"
+            android:text="Replace Tablet"
+            android:textAlignment="center"
+            android:textColor="@color/grey_800"
+            android:textSize="@dimen/_10sdp"
+            android:layout_weight="0.4"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reportLost"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_weight="1"
+        android:weightSum="2">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/report_lost"
+            android:layout_weight="1.6"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/textview_bottom_rounded"
+            android:fontFamily="@font/glacialindifferencebold"
+            android:padding="@dimen/_5sdp"
+            android:shadowRadius="5"
+            android:text="Report Lost"
+            android:textAlignment="center"
+            android:textColor="@color/grey_800"
+            android:textSize="@dimen/_10sdp"
+            android:layout_weight="0.4"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/assigned_to_me"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_border"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_weight="1"
+        android:weightSum="2">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/assigned_to_me"
+            android:layout_weight="1.6"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/textview_bottom_rounded"
+            android:fontFamily="@font/glacialindifferencebold"
+            android:padding="@dimen/_5sdp"
+            android:shadowRadius="5"
+            android:text="@string/assigned_to_me"
+            android:textAlignment="center"
+            android:textColor="@color/grey_800"
+            android:textSize="@dimen/_10sdp"
+            android:layout_weight="0.4"/>
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_parentLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.assignedToMe.AssignedToMeFragment"
+    android:background="@color/screen_background"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/iv_backButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back_48"/>
+
+    <TextView
+        android:id="@+id/ll_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Replace Tablet"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:padding="@dimen/_5sdp"
+        android:drawableLeft="@drawable/ic_search_grey_24dp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:hint="Search"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:background="@drawable/rectangular_search_bg"
+        android:layout_below="@+id/ll_label"/>
+
+    <ImageView
+        android:id="@+id/iv_filter"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_filter_list_24"
+        android:layout_below="@id/ll_label"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_2sdp"/>
+<!--    <Spinner
+        android:id="@+id/spinner_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:drawSelectorOnTop="true"
+        android:gravity="center_vertical"
+        android:popupElevation="@dimen/_10sdp"
+        android:background="@drawable/spinner_background_grey"
+        android:layout_below="@+id/ll_label"
+        android:layout_toRightOf="@+id/btn_replace_tab"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_alignParentEnd="true"/>-->
+
+    <TextView
+        android:id="@+id/tv_reportingPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_below="@+id/et_search"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:text="Viplow Shivare"
+        android:textStyle="bold"
+        android:textSize="@dimen/_10sdp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_tabStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_reportingPersonName"
+        android:text="vnskvbsk srzs gvksrgf "
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:background="@drawable/rounded_border_1dp"
+        android:layout_centerInParent="true"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_replaceTab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_2sdp"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_below="@+id/tv_tabStatus"/>
+
+</RelativeLayout>
