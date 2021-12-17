@@ -60,6 +60,7 @@ import static com.pratham.admin.util.APIs.village;
 @EFragment(R.layout.fragment_block_leader_home)
 public class BlockLeaderHomeFragment extends Fragment implements NetworkCallListnerSelectProgram, ConnectionReceiverListener, NetworkCallListener {
 
+    
     @ViewById(R.id.spinner_program)
     Spinner spinner_program;
 
