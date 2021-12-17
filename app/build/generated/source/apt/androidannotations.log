@@ -1,0 +1,4 @@
+12:12:32.969 [Daemon worker Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component AddNewGroup_ is not registered in the AndroidManifest.xml file.
+12:12:32.970 [Daemon worker Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
+12:12:32.970 [Daemon worker Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
+12:12:32.970 [Daemon worker Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.
