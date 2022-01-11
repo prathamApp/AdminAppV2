@@ -2554,6 +2554,7 @@ drawable catcho_ic_done
 drawable catcho_ic_send
 drawable circlepink
 drawable custom_border
+drawable custom_spinner_whitebg
 drawable delete
 drawable delete_forever_black_24dp
 drawable design_fab_background
@@ -2571,14 +2572,19 @@ drawable ic_arrow_back_48
 drawable ic_arrow_back_black_24dp
 drawable ic_arrow_forward_black_24dp
 drawable ic_assessment_black_24dp
+drawable ic_barcode_scanner
+drawable ic_barcode_scanner_24
+drawable ic_baseline_public_24
 drawable ic_baseline_settings_grey_24
 drawable ic_call_grey_48
 drawable ic_camera_purple_24
+drawable ic_checked_black
 drawable ic_clock_black_24dp
 drawable ic_close_black_24dp
 drawable ic_collect
 drawable ic_dashboard_black_24dp
 drawable ic_date_calender_24
+drawable ic_email_20
 drawable ic_end_time_black_24dp
 drawable ic_error_outline_black_24dp
 drawable ic_filter_list_24
@@ -2595,6 +2601,7 @@ drawable ic_notifications_black_24dp
 drawable ic_notifications_grey_24
 drawable ic_notifications_none_black_24dp
 drawable ic_notifications_pink_24dp
+drawable ic_people_24
 drawable ic_person_black_24dp
 drawable ic_pos
 drawable ic_pull
@@ -2603,6 +2610,7 @@ drawable ic_qr_code_black
 drawable ic_qr_code_red
 drawable ic_refresh_black_24dp
 drawable ic_replace
+drawable ic_round_refresh_48
 drawable ic_search_grey_24dp
 drawable ic_sms_grey_48
 drawable ic_start_time_black_24dp
@@ -2689,6 +2697,7 @@ drawable rounded_border_1dp
 drawable rounded_corner_grey
 drawable rounded_corner_whitebg
 drawable rounded_dash
+drawable rounded_filled
 drawable rounded_for_desputed_tab
 drawable rounded_tv_for_assigned_tab
 drawable rounded_tv_for_damaged_tab
@@ -2848,6 +2857,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id automatic
+id barcode_frame
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -2878,7 +2888,9 @@ id btn_ScanQRCode
 id btn_SelectAll
 id btn_Submit
 id btn_TimeRangePicker
+id btn_addToInventory
 id btn_allocate
+id btn_assignTab
 id btn_assignTablet
 id btn_cancel
 id btn_clearData
@@ -2887,12 +2899,14 @@ id btn_confirm
 id btn_dispatch
 id btn_exit
 id btn_go
+id btn_goVendor
 id btn_login
 id btn_move_to_left
 id btn_move_to_right
 id btn_pullData
 id btn_pushData
 id btn_refresh
+id btn_refreshvendor
 id btn_registerReport
 id btn_replaceTab
 id btn_replace_tab
@@ -2900,6 +2914,7 @@ id btn_reportLost
 id btn_returnTablet
 id btn_save
 id btn_saveData
+id btn_sendTablets
 id btn_swap_and_push
 id buttonPanel
 id cache_measures
@@ -2928,7 +2943,6 @@ id cb_replaceTab
 id cb_screenDamage
 id cb_select
 id cb_speakerDamage
-id cb_tabHolder
 id cb_unableToOn
 id center
 id center_horizontal
@@ -3035,7 +3049,9 @@ id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id et_additionalRemark
+id et_brand
 id et_contactNumber
+id et_model
 id et_requestTablet
 id et_search
 id et_writeSms
@@ -3092,6 +3108,7 @@ id image_devicelist
 id image_replaceTab
 id info
 id infocontent
+id inventory
 id invisible
 id inward
 id isDamaged
@@ -3101,13 +3118,16 @@ id item_touch_helper_previous_elevation
 id iv_backButton
 id iv_call
 id iv_circle
+id iv_crl_selected
 id iv_delete
 id iv_filter
 id iv_lower_view
 id iv_message
 id iv_openCamera
 id iv_options
+id iv_refresh
 id iv_tabHolderImage
+id iv_tab_selected
 id iv_upper_view
 id jumpToEnd
 id jumpToStart
@@ -3146,6 +3166,7 @@ id ll_enqUndertaken
 id ll_five
 id ll_four
 id ll_goBtn
+id ll_goBtnVendor
 id ll_incident
 id ll_label
 id ll_lastSeen
@@ -3166,6 +3187,7 @@ id ll_three
 id ll_two
 id loginScreen
 id lottie_layer_name
+id lv_newTabs
 id ly_orderstatus_time
 id ly_root
 id ly_status
@@ -3386,6 +3408,7 @@ id rightToLeft
 id right_icon
 id right_side
 id right_to_left
+id rl_btn
 id rl_crlDetails
 id rl_homeLayout
 id rl_homeOption
@@ -3394,6 +3417,7 @@ id rl_parentLayout
 id rl_spinnerParent
 id rl_spinnerParentTwo
 id rl_statusParent
+id rl_tabCountView
 id rl_tabStatus
 id rl_tabStatusTwo
 id roleCrl
@@ -3403,6 +3427,7 @@ id row_index_key
 id rv_replaceTab
 id rv_reportLost
 id rv_tabHolder
+id rv_tabList
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3532,6 +3557,7 @@ id tabMode
 id tabSerialID
 id tabStartTime
 id tab_status
+id tabholders
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -3553,7 +3579,9 @@ id text
 id text2
 id textEnd
 id textInputLayout_additionalRemark
+id textInputLayout_brand
 id textInputLayout_contactNumber
+id textInputLayout_model
 id textInputLayout_otherDetail
 id textInputLayout_password
 id textInputLayout_userName
@@ -3610,6 +3638,7 @@ id tv_Topics
 id tv_WordProblem
 id tv_YounthCount
 id tv_accessoriesMissing
+id tv_addNewTablet
 id tv_appInfo
 id tv_assigned_tab
 id tv_assigned_tab_label
@@ -3618,7 +3647,6 @@ id tv_changeLog
 id tv_charger
 id tv_cover
 id tv_crlEmail
-id tv_crlMob
 id tv_crlName
 id tv_crlUsername
 id tv_damaged_tab
@@ -3640,10 +3668,11 @@ id tv_lastSeenWith
 id tv_lbl_noOfTab
 id tv_lost_tab
 id tv_lost_tab_label
+id tv_noDataFound
 id tv_note
 id tv_policeComplaint
 id tv_prathamId
-id tv_programName
+id tv_programNameAndBlock
 id tv_progrm
 id tv_qrId
 id tv_reportingPerson
@@ -3836,6 +3865,7 @@ layout dialog_mydevices
 layout dialog_request_tablet
 layout dialog_write_sms
 layout dp_example
+layout fragment_add_new_tablet
 layout fragment_assign
 layout fragment_assigned_to_me
 layout fragment_block_leader_home
@@ -4209,6 +4239,7 @@ string noCrlAvailable
 string noInterntCon
 string noNewDataPush
 string noNotificationFound
+string no_data_found
 string nocoursesavailable
 string noofparents
 string notifications
@@ -5120,6 +5151,7 @@ style Widget_Spinner_DropDown
 style Widget_Support_CoordinatorLayout
 style devicelist
 style spinner_style
+style spinner_style_new
 style swapbtnright
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity

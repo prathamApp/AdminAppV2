@@ -7,6 +7,16 @@
     tools:context=".ui.blockLeader.tabHolders.TabHolderFragment"
     android:background="@color/screen_background">
 
+<!--    <ImageView
+        android:id="@+id/iv_refresh"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_round_refresh_48"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:visibility="gone"/>-->
+
     <TextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
@@ -84,7 +94,7 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:layout_weight="1"
             android:background="@drawable/gradient_spinner_selectprogram"
-            android:entries="@array/spinner_block"/>
+            android:entries="@array/block"/>
 
         <Spinner
             android:id="@+id/spinner_tabHolder"
@@ -92,8 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/_30sdp"
             android:layout_weight="1"
-            android:background="@drawable/gradient_spinner_selectprogram"
-            android:entries="@array/spinner_tabHolder"/>
+            android:background="@drawable/gradient_spinner_selectprogram"/>
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -141,6 +150,16 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_below="@+id/btn_allocate"/>
 
-
+    <TextView
+        android:id="@+id/tv_noDataFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_allocate"
+        android:text="@string/no_data_found"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_20sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:gravity="center"
+        android:visibility="gone"/>
 
 </RelativeLayout>

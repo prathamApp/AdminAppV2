@@ -12,6 +12,7 @@ import java.util.Map;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import com.pratham.admin.R;
 import org.androidannotations.api.bean.BeanHolder;
@@ -90,6 +91,18 @@ public final class InventoryFragment_
         this.rv_tabHolders = hasViews.internalFindViewById(R.id.rv_tabHolder);
         this.tv_totalTablets = hasViews.internalFindViewById(R.id.tv_totalTabCount);
         this.spinner_tabStatus = hasViews.internalFindViewById(R.id.spinner_tabStatus);
+        View view_btn_assignTab = hasViews.internalFindViewById(R.id.btn_assignTab);
+
+        if (view_btn_assignTab!= null) {
+            view_btn_assignTab.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    InventoryFragment_.this.assignTablet();
+                }
+            }
+            );
+        }
         init();
     }
 

@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="30" />
 
     <supports-screens
         android:anyDensity="true"
@@ -109,6 +109,7 @@
         -->
         <activity
             android:name="com.pratham.admin.ui.login.LoginActivity_"
+            android:parentActivityName="com.pratham.admin.util.BaseActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>

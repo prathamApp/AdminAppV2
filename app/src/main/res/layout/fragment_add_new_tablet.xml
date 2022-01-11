@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    tools:context=".ui.blockLeader.home.AddNewTablet.AddNewTabletFragment">
+
+    <ImageView
+        android:id="@+id/iv_backButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back_48" />
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Add New Tablet"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_refresh"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_round_refresh_48"
+        android:layout_alignParentEnd="true"/>
+
+
+    <FrameLayout
+        android:id="@+id/barcode_frame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_below="@+id/tv_label" />
+
+    <RelativeLayout
+        android:id="@+id/rl_spinnerParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barcode_frame"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        android:visibility="gone"
+        android:background="@drawable/rounded_filled">
+
+        <LinearLayout
+            android:id="@+id/ll_spinnerOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp">
+
+            <Spinner
+                android:id="@+id/spinner_donor"
+                style="@style/spinner_style_new"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_spinner_whitebg"
+                android:layout_marginEnd="@dimen/_5sdp"/>
+
+            <Spinner
+                android:id="@+id/spinner_vendor"
+                style="@style/spinner_style_new"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_spinner_whitebg"
+                android:layout_marginEnd="@dimen/_5sdp"/>
+
+            <Spinner
+                android:id="@+id/spinner_yearOfPurchase"
+                style="@style/spinner_style_new"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_spinner_whitebg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_brandModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_spinnerOne"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_brand"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/glacialindifferenceregular"
+                    android:hint="Brand"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:background="@color/White"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_model"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/glacialindifferenceregular"
+                    android:hint="Model"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:background="@color/White"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+        <!--        <LinearLayout
+                    android:id="@+id/ll_spinnerTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_spinnerOne"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Spinner
+                        android:id="@+id/spinner_yearOfPurchase"
+                        style="@style/spinner_style"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_spinner_selectprogram" />
+
+                    <Spinner
+                        android:id="@+id/spinner_programm"
+                        style="@style/spinner_style"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gradient_spinner_selectprogram" />
+                </LinearLayout>-->
+    </RelativeLayout>
+
+    <!--        <TextView
+                android:id="@+id/tv_serialNo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/roundedcornerbtn"
+                android:text="Serial No."
+                android:fontFamily="@font/glacialindifferenceregular"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_7sdp"/>-->
+    <ListView
+        android:id="@+id/lv_newTabs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_addToInventory"
+        android:layout_below="@+id/rl_spinnerParent"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/rounded_border"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_addToInventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:text="Add To Inventory"
+        android:textAlignment="center"
+        android:textColor="@color/White" />
+
+<!--
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_addTablets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:text="ADD"
+        android:textAlignment="center"
+        android:textColor="@color/White" />
+-->
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_sendTablets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/button_purple"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:text="SUBMIT"
+        android:textAlignment="center"
+        android:textColor="@color/White"
+        android:visibility="gone"/>
+</RelativeLayout>

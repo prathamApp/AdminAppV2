@@ -20,9 +20,9 @@ import java.lang.Override;
 public class CoachInformationForm_ViewBinding implements Unbinder {
   private CoachInformationForm target;
 
-  private View view7f0a0080;
+  private View view7f0a0081;
 
-  private View view7f0a008b;
+  private View view7f0a008c;
 
   @UiThread
   public CoachInformationForm_ViewBinding(CoachInformationForm target) {
@@ -46,7 +46,7 @@ public class CoachInformationForm_ViewBinding implements Unbinder {
     target.sp_Groups = Utils.findRequiredViewAsType(source, R.id.sp_Groups, "field 'sp_Groups'", MultiSpinner.class);
     view = Utils.findRequiredView(source, R.id.btn_DatePicker, "field 'btn_DatePicker' and method 'startDatePicker'");
     target.btn_DatePicker = Utils.castView(view, R.id.btn_DatePicker, "field 'btn_DatePicker'", Button.class);
-    view7f0a0080 = view;
+    view7f0a0081 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class CoachInformationForm_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_Submit, "field 'btn_Submit' and method 'submitData'");
     target.btn_Submit = Utils.castView(view, R.id.btn_Submit, "field 'btn_Submit'", Button.class);
-    view7f0a008b = view;
+    view7f0a008c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -84,9 +84,9 @@ public class CoachInformationForm_ViewBinding implements Unbinder {
     target.btn_DatePicker = null;
     target.btn_Submit = null;
 
-    view7f0a0080.setOnClickListener(null);
-    view7f0a0080 = null;
-    view7f0a008b.setOnClickListener(null);
-    view7f0a008b = null;
+    view7f0a0081.setOnClickListener(null);
+    view7f0a0081 = null;
+    view7f0a008c.setOnClickListener(null);
+    view7f0a008c = null;
   }
 }

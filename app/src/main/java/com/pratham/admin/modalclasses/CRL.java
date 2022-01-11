@@ -1,13 +1,17 @@
 package com.pratham.admin.modalclasses;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
 @Entity
-public class CRL {
+public class CRL implements Comparable, Parcelable {
     @NonNull
     @PrimaryKey
     @SerializedName("CRLId")
@@ -43,6 +47,43 @@ public class CRL {
     @SerializedName("ReportingPersonName")
     String ReportingPersonName;
 
+    @Ignore
+    private boolean isSelected = false;
+
+    public CRL(){
+    }
+
+    private CRL(Parcel in) {
+        CRLId = in.readString();
+        RoleId = in.readString();
+        RoleName = in.readString();
+        ProgramId = in.readString();
+        ProgramName = in.readString();
+        State = in.readString();
+        FirstName = in.readString();
+        LastName = in.readString();
+        Mobile = in.readString();
+        Email = in.readString();
+        Block = in.readString();
+        District = in.readString();
+        UserName = in.readString();
+        Password = in.readString();
+        ReportingPersonId = in.readString();
+        ReportingPersonName = in.readString();
+        isSelected = in.readByte() != 0;
+    }
+
+    public static final Creator<CRL> CREATOR = new Creator<CRL>() {
+        @Override
+        public CRL createFromParcel(Parcel in) {
+            return new CRL(in);
+        }
+
+        @Override
+        public CRL[] newArray(int size) {
+            return new CRL[size];
+        }
+    };
 
     @NonNull
     public String getCRLId() {
@@ -164,4 +205,31 @@ public class CRL {
     public String getReportingPersonName() { return ReportingPersonName; }
 
     public void setReportingPersonName(String reportingPersonName) { ReportingPersonName = reportingPersonName; }
+
+    public boolean isSelected() { return isSelected; }
+
+    public void setSelected(boolean selected) { isSelected = selected; }
+
+    @Override
+    public int compareTo(Object o) {
+        CRL compare = (CRL) o;
+        if (compare.getCRLId().equals(this.CRLId) && compare.isSelected() == this.isSelected)
+            return 0;
+        else return 1;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(CRLId);
+        dest.writeString(FirstName);
+        dest.writeString(Block);
+        dest.writeString(Email);
+        dest.writeString(UserName);
+        dest.writeString(ProgramName);
+    }
 }

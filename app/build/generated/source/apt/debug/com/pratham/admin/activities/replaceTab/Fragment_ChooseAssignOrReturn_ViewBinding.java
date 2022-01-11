@@ -14,7 +14,7 @@ import java.lang.Override;
 public class Fragment_ChooseAssignOrReturn_ViewBinding implements Unbinder {
   private Fragment_ChooseAssignOrReturn target;
 
-  private View view7f0a00d8;
+  private View view7f0a00dd;
 
   private View view7f0a0062;
 
@@ -25,7 +25,7 @@ public class Fragment_ChooseAssignOrReturn_ViewBinding implements Unbinder {
 
     View view;
     view = Utils.findRequiredView(source, R.id.collect, "method 'onCollectClick'");
-    view7f0a00d8 = view;
+    view7f0a00dd = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -49,8 +49,8 @@ public class Fragment_ChooseAssignOrReturn_ViewBinding implements Unbinder {
     target = null;
 
 
-    view7f0a00d8.setOnClickListener(null);
-    view7f0a00d8 = null;
+    view7f0a00dd.setOnClickListener(null);
+    view7f0a00dd = null;
     view7f0a0062.setOnClickListener(null);
     view7f0a0062 = null;
   }

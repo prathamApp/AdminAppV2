@@ -18,13 +18,13 @@ import java.lang.Override;
 public class ECESampleAssessment_ViewBinding implements Unbinder {
   private ECESampleAssessment target;
 
-  private View view7f0a0080;
+  private View view7f0a0081;
+
+  private View view7f0a008d;
 
   private View view7f0a008c;
 
-  private View view7f0a008b;
-
-  private View view7f0a007f;
+  private View view7f0a0080;
 
   @UiThread
   public ECESampleAssessment_ViewBinding(ECESampleAssessment target) {
@@ -46,7 +46,7 @@ public class ECESampleAssessment_ViewBinding implements Unbinder {
     target.tv_LastName = Utils.findRequiredViewAsType(source, R.id.tv_LastName, "field 'tv_LastName'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btn_DatePicker, "field 'btn_DatePicker' and method 'visitDatePicker'");
     target.btn_DatePicker = Utils.castView(view, R.id.btn_DatePicker, "field 'btn_DatePicker'", Button.class);
-    view7f0a0080 = view;
+    view7f0a0081 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class ECESampleAssessment_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_TimeRangePicker, "field 'btn_TimeRangePicker' and method 'TimeRangePicker'");
     target.btn_TimeRangePicker = Utils.castView(view, R.id.btn_TimeRangePicker, "field 'btn_TimeRangePicker'", Button.class);
-    view7f0a008c = view;
+    view7f0a008d = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -76,7 +76,7 @@ public class ECESampleAssessment_ViewBinding implements Unbinder {
     target.sp_OQ14 = Utils.findRequiredViewAsType(source, R.id.sp_OQ14, "field 'sp_OQ14'", MaterialSpinner.class);
     view = Utils.findRequiredView(source, R.id.btn_Submit, "field 'btn_Submit' and method 'save'");
     target.btn_Submit = Utils.castView(view, R.id.btn_Submit, "field 'btn_Submit'", Button.class);
-    view7f0a008b = view;
+    view7f0a008c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -85,7 +85,7 @@ public class ECESampleAssessment_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_Clear, "field 'btn_Clear' and method 'reset'");
     target.btn_Clear = Utils.castView(view, R.id.btn_Clear, "field 'btn_Clear'", Button.class);
-    view7f0a007f = view;
+    view7f0a0080 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -126,13 +126,13 @@ public class ECESampleAssessment_ViewBinding implements Unbinder {
     target.btn_Submit = null;
     target.btn_Clear = null;
 
-    view7f0a0080.setOnClickListener(null);
-    view7f0a0080 = null;
+    view7f0a0081.setOnClickListener(null);
+    view7f0a0081 = null;
+    view7f0a008d.setOnClickListener(null);
+    view7f0a008d = null;
     view7f0a008c.setOnClickListener(null);
     view7f0a008c = null;
-    view7f0a008b.setOnClickListener(null);
-    view7f0a008b = null;
-    view7f0a007f.setOnClickListener(null);
-    view7f0a007f = null;
+    view7f0a0080.setOnClickListener(null);
+    view7f0a0080 = null;
   }
 }

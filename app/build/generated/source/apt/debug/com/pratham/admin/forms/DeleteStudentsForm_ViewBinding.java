@@ -17,7 +17,7 @@ import java.lang.Override;
 public class DeleteStudentsForm_ViewBinding implements Unbinder {
   private DeleteStudentsForm target;
 
-  private View view7f0a008b;
+  private View view7f0a008c;
 
   @UiThread
   public DeleteStudentsForm_ViewBinding(DeleteStudentsForm target) {
@@ -34,7 +34,7 @@ public class DeleteStudentsForm_ViewBinding implements Unbinder {
     target.sp_Students = Utils.findRequiredViewAsType(source, R.id.sp_Students, "field 'sp_Students'", MultiSpinner.class);
     view = Utils.findRequiredView(source, R.id.btn_Submit, "field 'btn_Submit' and method 'submitForm'");
     target.btn_Submit = Utils.castView(view, R.id.btn_Submit, "field 'btn_Submit'", Button.class);
-    view7f0a008b = view;
+    view7f0a008c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -55,7 +55,7 @@ public class DeleteStudentsForm_ViewBinding implements Unbinder {
     target.sp_Students = null;
     target.btn_Submit = null;
 
-    view7f0a008b.setOnClickListener(null);
-    view7f0a008b = null;
+    view7f0a008c.setOnClickListener(null);
+    view7f0a008c = null;
   }
 }

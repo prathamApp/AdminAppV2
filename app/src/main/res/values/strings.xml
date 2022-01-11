@@ -329,21 +329,21 @@
 
     <string-array name="india_states">
         <item>State</item>
-        <item>Andhra Pradesh(AP)</item>
-        <item>Arunachal Pradesh(AR)</item>
-        <item>Assam(AS)</item>
-        <item>Bihar(BR)</item>
-        <item>Chhattisgarh(CG)</item>
-        <item>Goa(GO)</item>
-        <item>Gujarat(GJ)</item>
-        <item>Haryana(HR)</item>
-        <item>Himachal Pradesh(HP)</item>
-        <item>Jammu and kashmir(JK)</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chhattisgarh</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and kashmir</item>
         <item>Jharkhand(JH)</item>
         <item>Karnataka(KN)</item>
         <item>Kerala(KL)</item>
         <item>Madhya Pradesh(MP)</item>
-        <item>Maharashtra(MH)</item>
+        <item>Maharashtra</item>
         <item>Manipur(MN)</item>
         <item>Meghalaya(MG)</item>
         <item>Mizoram(MZ)</item>
@@ -665,6 +665,7 @@
     <string name="request_failed">Failed to Send Request!</string>
     <string name="replace_request_sent_success">Replace Request Sent Successfully...</string>
     <string name="report_lost">Reported Successfully...</string>
+    <string name="no_data_found">No Data Found!</string>
 
     <string-array name="tab_status">
         <item>Tab Status</item>

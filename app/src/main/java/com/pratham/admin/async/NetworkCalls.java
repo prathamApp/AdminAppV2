@@ -39,7 +39,7 @@ public class NetworkCalls {
     }
 
 
-    //push data(json) to url      used in Activity_QRScan,AssignTabletMD
+    //push data(json) to url used in Activity_QRScan, AssignTablet
     public void postRequest(final NetworkCallListener networkCallListener, String url, String msg, String json, final String header) {
 /*        dialog = new ProgressDialog(mContext);
         dialog.setTitle(msg);
@@ -109,7 +109,7 @@ public class NetworkCalls {
         AndroidNetworking.get(url).setPriority(Priority.MEDIUM).build().getAsJSONArray(new JSONArrayRequestListener() {
             @Override
             public void onResponse(JSONArray response) {
-                Utility.dismissLoadingDialog();
+                //Utility.dismissLoadingDialog();
                 networkCallListener.onResponse(response.toString(), header);
             }
 
@@ -123,7 +123,7 @@ public class NetworkCalls {
 
     //for new requests with context to show loading dialog
     public void getRequestJsonObject(final NetworkCallListener networkCallListener, String url, String msg, final String header, Context context) {
-        //Utility.showLoadingDialog(context);
+        Utility.showLoadingDialog(context);
         AndroidNetworking.get(url).setPriority(Priority.MEDIUM).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject response) {

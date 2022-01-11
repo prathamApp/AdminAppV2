@@ -87,17 +87,21 @@ public class Utility {
 
     //custom loading dialog with lottie
     public static void showLoadingDialog(Context context) {
-        if (dialogNew == null) {
-            dialogNew = new Dialog(context);
-            dialogNew.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialogNew.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
-            dialogNew.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialogNew.setCancelable(true);
-            dialogNew.setCanceledOnTouchOutside(false);
-            dialogNew.setContentView(R.layout.dialog_loading);
+        try {
+            if (dialogNew == null) {
+                dialogNew = new Dialog(context);
+                dialogNew.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialogNew.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                dialogNew.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialogNew.setCancelable(true);
+                dialogNew.setCanceledOnTouchOutside(false);
+                dialogNew.setContentView(R.layout.dialog_loading);
+            }
+            dialogNew.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        dialogNew.show();
     }
 
     public static void dismissLoadingDialog() {

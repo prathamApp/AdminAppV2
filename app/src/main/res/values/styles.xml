@@ -43,6 +43,12 @@
         <item name="android:popupBackground">#DFFFFFFF</item>
     </style>
 
+    <style name="spinner_style_new">
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="android:popupBackground">#DFFFFFFF</item>
+    </style>
+
     <style name="swapbtnright">
         <item name="android:background">@drawable/roundedcornerbtn</item>
     </style>

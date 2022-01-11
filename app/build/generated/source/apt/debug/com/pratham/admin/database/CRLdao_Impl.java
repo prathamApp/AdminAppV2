@@ -964,6 +964,173 @@ public final class CRLdao_Impl implements CRLdao {
     }
   }
 
+  @Override
+  public List<CRL> getCRLsByBlockAndRole(final String blockName, final String roleName,
+      final String rptId) {
+    final String _sql = "SELECT * FROM CRL where Block=? AND RoleName=? AND ReportingPersonId=?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 3);
+    int _argIndex = 1;
+    if (blockName == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, blockName);
+    }
+    _argIndex = 2;
+    if (roleName == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, roleName);
+    }
+    _argIndex = 3;
+    if (rptId == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, rptId);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfCRLId = CursorUtil.getColumnIndexOrThrow(_cursor, "CRLId");
+      final int _cursorIndexOfRoleId = CursorUtil.getColumnIndexOrThrow(_cursor, "RoleId");
+      final int _cursorIndexOfRoleName = CursorUtil.getColumnIndexOrThrow(_cursor, "RoleName");
+      final int _cursorIndexOfProgramId = CursorUtil.getColumnIndexOrThrow(_cursor, "ProgramId");
+      final int _cursorIndexOfProgramName = CursorUtil.getColumnIndexOrThrow(_cursor, "ProgramName");
+      final int _cursorIndexOfState = CursorUtil.getColumnIndexOrThrow(_cursor, "State");
+      final int _cursorIndexOfFirstName = CursorUtil.getColumnIndexOrThrow(_cursor, "FirstName");
+      final int _cursorIndexOfLastName = CursorUtil.getColumnIndexOrThrow(_cursor, "LastName");
+      final int _cursorIndexOfMobile = CursorUtil.getColumnIndexOrThrow(_cursor, "Mobile");
+      final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "Email");
+      final int _cursorIndexOfBlock = CursorUtil.getColumnIndexOrThrow(_cursor, "Block");
+      final int _cursorIndexOfDistrict = CursorUtil.getColumnIndexOrThrow(_cursor, "District");
+      final int _cursorIndexOfUserName = CursorUtil.getColumnIndexOrThrow(_cursor, "UserName");
+      final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "Password");
+      final int _cursorIndexOfReportingPersonId = CursorUtil.getColumnIndexOrThrow(_cursor, "ReportingPersonId");
+      final int _cursorIndexOfReportingPersonName = CursorUtil.getColumnIndexOrThrow(_cursor, "ReportingPersonName");
+      final List<CRL> _result = new ArrayList<CRL>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final CRL _item;
+        _item = new CRL();
+        final String _tmpCRLId;
+        if (_cursor.isNull(_cursorIndexOfCRLId)) {
+          _tmpCRLId = null;
+        } else {
+          _tmpCRLId = _cursor.getString(_cursorIndexOfCRLId);
+        }
+        _item.setCRLId(_tmpCRLId);
+        final String _tmpRoleId;
+        if (_cursor.isNull(_cursorIndexOfRoleId)) {
+          _tmpRoleId = null;
+        } else {
+          _tmpRoleId = _cursor.getString(_cursorIndexOfRoleId);
+        }
+        _item.setRoleId(_tmpRoleId);
+        final String _tmpRoleName;
+        if (_cursor.isNull(_cursorIndexOfRoleName)) {
+          _tmpRoleName = null;
+        } else {
+          _tmpRoleName = _cursor.getString(_cursorIndexOfRoleName);
+        }
+        _item.setRoleName(_tmpRoleName);
+        final String _tmpProgramId;
+        if (_cursor.isNull(_cursorIndexOfProgramId)) {
+          _tmpProgramId = null;
+        } else {
+          _tmpProgramId = _cursor.getString(_cursorIndexOfProgramId);
+        }
+        _item.setProgramId(_tmpProgramId);
+        final String _tmpProgramName;
+        if (_cursor.isNull(_cursorIndexOfProgramName)) {
+          _tmpProgramName = null;
+        } else {
+          _tmpProgramName = _cursor.getString(_cursorIndexOfProgramName);
+        }
+        _item.setProgramName(_tmpProgramName);
+        final String _tmpState;
+        if (_cursor.isNull(_cursorIndexOfState)) {
+          _tmpState = null;
+        } else {
+          _tmpState = _cursor.getString(_cursorIndexOfState);
+        }
+        _item.setState(_tmpState);
+        final String _tmpFirstName;
+        if (_cursor.isNull(_cursorIndexOfFirstName)) {
+          _tmpFirstName = null;
+        } else {
+          _tmpFirstName = _cursor.getString(_cursorIndexOfFirstName);
+        }
+        _item.setFirstName(_tmpFirstName);
+        final String _tmpLastName;
+        if (_cursor.isNull(_cursorIndexOfLastName)) {
+          _tmpLastName = null;
+        } else {
+          _tmpLastName = _cursor.getString(_cursorIndexOfLastName);
+        }
+        _item.setLastName(_tmpLastName);
+        final String _tmpMobile;
+        if (_cursor.isNull(_cursorIndexOfMobile)) {
+          _tmpMobile = null;
+        } else {
+          _tmpMobile = _cursor.getString(_cursorIndexOfMobile);
+        }
+        _item.setMobile(_tmpMobile);
+        final String _tmpEmail;
+        if (_cursor.isNull(_cursorIndexOfEmail)) {
+          _tmpEmail = null;
+        } else {
+          _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
+        }
+        _item.setEmail(_tmpEmail);
+        final String _tmpBlock;
+        if (_cursor.isNull(_cursorIndexOfBlock)) {
+          _tmpBlock = null;
+        } else {
+          _tmpBlock = _cursor.getString(_cursorIndexOfBlock);
+        }
+        _item.setBlock(_tmpBlock);
+        final String _tmpDistrict;
+        if (_cursor.isNull(_cursorIndexOfDistrict)) {
+          _tmpDistrict = null;
+        } else {
+          _tmpDistrict = _cursor.getString(_cursorIndexOfDistrict);
+        }
+        _item.setDistrict(_tmpDistrict);
+        final String _tmpUserName;
+        if (_cursor.isNull(_cursorIndexOfUserName)) {
+          _tmpUserName = null;
+        } else {
+          _tmpUserName = _cursor.getString(_cursorIndexOfUserName);
+        }
+        _item.setUserName(_tmpUserName);
+        final String _tmpPassword;
+        if (_cursor.isNull(_cursorIndexOfPassword)) {
+          _tmpPassword = null;
+        } else {
+          _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
+        }
+        _item.setPassword(_tmpPassword);
+        final String _tmpReportingPersonId;
+        if (_cursor.isNull(_cursorIndexOfReportingPersonId)) {
+          _tmpReportingPersonId = null;
+        } else {
+          _tmpReportingPersonId = _cursor.getString(_cursorIndexOfReportingPersonId);
+        }
+        _item.setReportingPersonId(_tmpReportingPersonId);
+        final String _tmpReportingPersonName;
+        if (_cursor.isNull(_cursorIndexOfReportingPersonName)) {
+          _tmpReportingPersonName = null;
+        } else {
+          _tmpReportingPersonName = _cursor.getString(_cursorIndexOfReportingPersonName);
+        }
+        _item.setReportingPersonName(_tmpReportingPersonName);
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
   public static List<Class<?>> getRequiredConverters() {
     return Collections.emptyList();
   }

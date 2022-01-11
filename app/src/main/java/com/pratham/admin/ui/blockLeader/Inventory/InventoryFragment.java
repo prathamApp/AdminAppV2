@@ -24,33 +24,46 @@ import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
 import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
+import com.pratham.admin.database.AppDatabase;
 import com.pratham.admin.interfaces.DevicePrathamIdLisner;
 import com.pratham.admin.interfaces.NetworkCallListener;
+import com.pratham.admin.modalclasses.API_Response;
 import com.pratham.admin.modalclasses.DeviseList;
+import com.pratham.admin.modalclasses.MetaData;
+import com.pratham.admin.modalclasses.Model_AssignTab;
 import com.pratham.admin.ui.home.assignedToMe.AssignedToMeFragment;
 import com.pratham.admin.ui.home.assignedToMe.DeviceListAdapter;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceTabItemClick;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceTabListAdapter;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
+import com.pratham.admin.util.PA_Constants;
+import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.pratham.admin.util.APIs.assignTabletAPI;
+import static com.pratham.admin.util.APIs.reportLostAPI;
+
 @EFragment(R.layout.fragment_inventory)
-public class InventoryFragment extends Fragment implements NetworkCallListener, ReplaceTabItemClick {
+public class InventoryFragment extends Fragment implements NetworkCallListener, InventoryTabItemClick {
 
     @ViewById(R.id.et_search)
     EditText searchTab;
@@ -66,12 +79,19 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     boolean internetIsAvailable = false;
     List<DeviseList> deviceList;
+    List<DeviseList> assignTabList;
     Context context;
     JSONArray response;
 
-    ReplaceTabListAdapter deviceAdapter;
+    InventoryTabListAdapter deviceAdapter;
 
     ArrayAdapter adapterTabStatus;
+
+    String assigneePersonId, assigneePersonName;
+    String selectedTabJson="";
+    String metaDataJSON;
+
+    Gson gson = new Gson();
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -79,6 +99,13 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     @AfterViews
     public void init(){
+        try {
+            assigneePersonId = requireArguments().getString("assigneeId");
+            assigneePersonName = requireArguments().getString("assigneeName");
+            Log.e("dddddddddddd",assigneePersonId);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         myDeviceList();
         //spinner adapters
         adapterTabStatus = ArrayAdapter.createFromResource(getActivity(), R.array.tab_status, R.layout.support_simple_spinner_dropdown_item);
@@ -102,6 +129,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
                 filter(editable.toString());
             }
         });
+        assignTabList = new ArrayList<DeviseList>();
     }
 
     public void initializeAdapter(JSONArray response) {
@@ -111,7 +139,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         this.context = context;
         deviceList = gson.fromJson(response.toString(), devicesList);
         try {
-            deviceAdapter = new ReplaceTabListAdapter(getActivity(), deviceList, InventoryFragment.this);
+            deviceAdapter = new InventoryTabListAdapter(getActivity(), deviceList, InventoryFragment.this);
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false);
             rv_tabHolders.setLayoutManager(layoutManager);
             rv_tabHolders.setAdapter(deviceAdapter);
@@ -150,7 +178,9 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         //todo check internret connection
         checkConnection();
         if (internetIsAvailable) {
-            String url = APIs.DeviceList + "6501";//FastSave.getInstance().getString("CRLid", "no_crl");
+            //String url = APIs.DeviceList + "6501";
+            String url = APIs.DeviceList + FastSave.getInstance().getString("CRLid", "no_crl");
+            Log.e("url : ",url);
             //String url = APIs.DeviceList + FastSave.getInstance().getString("CRLid", "no_crl");
             loadDevises(url);
         } else {
@@ -182,6 +212,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         if (header.equals("loading_devises")) {
             response = null;
             try {
+                Utility.dismissLoadingDialog();
                 response = new JSONArray(response1);
                 if (response.length() > 0) {
 //                    MyDeviceList myDeviceList = new MyDeviceList(context, response);
@@ -203,18 +234,92 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } else if (header.equalsIgnoreCase("AssignTablet")) {
+            Log.e("responseAssignTablet : ", response1);
+/*            Gson gson = new Gson();
+            API_Response apiResponse;
+            Type json = new TypeToken<API_Response>() {
+            }.getType();
+            apiResponse = gson.fromJson(response1, json);*/
+            Toast.makeText(getActivity(), "Tablet Assigned.", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onError(ANError anError, String header) {
         if (header.equals("loading_devises")) {
+            Utility.dismissLoadingDialog();
             Toast.makeText(requireActivity(), R.string.chkInternet, Toast.LENGTH_SHORT).show();
+        } else if (header.equalsIgnoreCase("AssignTablet")) {
+            Utility.dismissLoadingDialog();
+            Log.e("error :", String.valueOf(anError.getErrorCode()));
+            Log.e("error :", anError.getErrorBody());
         }
     }
 
     @Override
     public void onTabItemClicked(int position, DeviseList deviseList) {
+        for (DeviseList device : deviceList) {
+            if (device.getDeviceid().equalsIgnoreCase(deviseList.getDeviceid())) {
+                if (device.isSelected()) {
+                    device.setSelected(false);
+                    assignTabList.remove(device);
+                }
+                else {
+                    device.setSelected(true);
+                    assignTabList.add(device);
+                }
+                deviseList = device;
+                break;
+            }
+        }
+        deviceAdapter.notifyItemChanged(position, deviseList);
+        Log.e("ssssssssssss : ",String.valueOf(assignTabList.size()));
 
+        Gson gson = new Gson();
+        Type devicesList = new TypeToken<ArrayList<DeviseList>>() {
+        }.getType();
+        selectedTabJson = gson.toJson(assignTabList,devicesList);
+        Log.e("ssssssssssss : ",selectedTabJson);
+    }
+
+    @Click(R.id.btn_assignTab)
+    public void assignTablet(){
+        addMetaDataToJson();
+
+        try {
+            Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
+                    FastSave.getInstance().getString("CRLid", "no_crl"),
+                    FastSave.getInstance().getString("CRLname", "no_crl"),
+                    assigneePersonId,
+                    assigneePersonName,
+                    new Utility().GetCurrentDateNew(),
+                    assignTabList,
+                    metaDataJSON);
+
+            String json = gson.toJson(model_assignTab);
+            Log.e("json : ", json);
+
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+            }
+        } catch (Exception e){
+            Utility.dismissLoadingDialog();
+            e.printStackTrace();
+        }
+    }
+
+    private void addMetaDataToJson() {
+        try {
+            JSONObject metaDataObject = new JSONObject();
+            List<MetaData> metaDataList = AppDatabase.getDatabaseInstance(getActivity()).getMetaDataDao().getAllMetaData();
+            for (MetaData metadata : metaDataList) {
+                metaDataObject.put(metadata.getKeys(), metadata.getValue());
+            }
+            metaDataJSON = metaDataObject.toString();
+            Log.e("meta data : ", metaDataJSON);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -206,6 +206,7 @@ public class ReplaceTabletFragment extends Fragment implements NetworkCallListen
             response = null;
             try {
                 response = new JSONArray(response1);
+                Utility.dismissLoadingDialog();
                 if (response.length() > 0) {
 //                    MyDeviceList myDeviceList = new MyDeviceList(context, response);
 //                    myDeviceList.show();

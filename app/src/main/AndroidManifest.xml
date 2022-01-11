@@ -95,6 +95,7 @@
         <activity
             android:name=".ui.login.LoginActivity_"
             android:screenOrientation="sensorPortrait"
+            android:parentActivityName=".util.BaseActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

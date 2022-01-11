@@ -68,7 +68,8 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.My
                         Log.e(":::", prathamID + " : " + qrID);
                         devicePrathamIdLisner.setDeviceDetail(prathamID, qrID, deviceID, serNo, tabModel);
                     } else {
-                        Toast.makeText(context, "Pratham id or Qr id is null", Toast.LENGTH_SHORT).show();
+                        devicePrathamIdLisner.setDeviceDetail("-", "-", deviceID, serNo, tabModel);
+//                        Toast.makeText(context, "Pratham id or Qr id is null", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

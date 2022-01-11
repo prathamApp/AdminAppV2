@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_30sdp"
+    android:layout_height="@dimen/_35sdp"
     android:background="@color/cardview_shadow_end_color"
     android:layout_marginBottom="4dp"
     android:layout_marginTop="4dp"
@@ -11,22 +11,31 @@
     android:elevation="14dp"
     android:id="@+id/cv_tablet">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:gravity="center">
+        android:padding="@dimen/_4sdp">
 
         <TextView
             android:id="@+id/tabSerialID"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:drawableStartCompat="@drawable/tablet"
-            android:drawablePadding="@dimen/_10sdp"
+            android:drawablePadding="@dimen/_5sdp"
             android:fontFamily="@font/glacialindifferenceregular"
             android:text="nglsknglsnglsnglsngl"
             android:gravity="center_vertical"/>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_tab_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/_5sdp"
+            app:srcCompat="@drawable/ic_checked_black"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

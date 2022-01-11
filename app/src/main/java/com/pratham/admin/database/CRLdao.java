@@ -47,4 +47,7 @@ public interface CRLdao {
 
     @Query("SELECT * from CRL where ReportingPersonId=:reportingPersonId")
     public List<CRL> getCRLsByReportingPerson(String reportingPersonId);
+
+    @Query("SELECT * FROM CRL where Block=:blockName AND RoleName=:roleName AND ReportingPersonId=:rptId")
+    public List<CRL> getCRLsByBlockAndRole(String blockName, String roleName, String rptId);
 }

@@ -7,27 +7,31 @@
     android:paddingEnd="@dimen/_10sdp"
     android:paddingTop="@dimen/_10sdp">
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cb_tabHolder"
+    <ImageView
+        android:id="@+id/iv_crl_selected"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_checked_black" />
     
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_tabHolderImage"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_toEndOf="@+id/cb_tabHolder"
+        android:layout_toEndOf="@+id/iv_crl_selected"
         android:src="@drawable/logo"
         app:shapeAppearanceOverlay="@style/CircularImageView" />
 
     <LinearLayout
         android:id="@+id/ll_tabHolderDetail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@+id/iv_tabHolderImage"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:layout_toStartOf="@+id/iv_call"
         android:layout_marginStart="@dimen/_10sdp">
 
         <TextView

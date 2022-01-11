@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.pratham.admin"
         vectorDrawables.useSupportLibrary = true
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -114,5 +114,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
 
+    //a library to play with device wifi function
+    implementation 'com.isupatches:wisefy:3.0.1'
 
 }

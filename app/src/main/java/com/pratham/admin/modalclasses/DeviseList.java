@@ -10,11 +10,11 @@ public class DeviseList {
     String Pratham_ID;
     String QR_ID;
     String WiFiMacAddress;
+
+    String programId;
     transient boolean isChecked = false;
 
-    public boolean isChecked() { return isChecked; }
-
-    public void setChecked(boolean checked) { isChecked = checked; }
+    transient boolean isSelected = false;
 
     public String getUserid() {
         return userid;
@@ -87,4 +87,16 @@ public class DeviseList {
     public void setWiFiMacAddress(String wiFiMacAddress) {
         WiFiMacAddress = wiFiMacAddress;
     }
+
+    public boolean isSelected() { return isSelected; }
+
+    public void setSelected(boolean selected) { isSelected = selected; }
+
+    public boolean isChecked() { return isChecked; }
+
+    public void setChecked(boolean checked) { isChecked = checked; }
+
+    public String getProgramId() { return programId; }
+
+    public void setProgramId(String programId) { this.programId = programId; }
 }

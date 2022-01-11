@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.androidnetworking.AndroidNetworking;
 //import com.facebook.stetho.Stetho;
+import com.isupatches.wisefy.WiseFy;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.ConnectionReceiverListener;
 import com.pratham.admin.util.ConnectionReceiver;
@@ -14,6 +15,7 @@ import com.pratham.admin.util.LocaleManager;
 
 public class ApplicationController extends Application {
     private static ApplicationController INSTANCE;
+    public static WiseFy wiseF;
 
     public ApplicationController() {
         INSTANCE = this;
@@ -26,6 +28,7 @@ public class ApplicationController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        wiseF = new WiseFy.Brains(getApplicationContext()).logging(true).getSmarts();
         AndroidNetworking.initialize(getApplicationContext());
         FastSave.init(getApplicationContext());
         INSTANCE = this;

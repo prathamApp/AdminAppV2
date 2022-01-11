@@ -393,6 +393,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
     private void loadCRL(String json, String spID) {
         CRLList.clear();
+        Log.d("prathamC", json);
 
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<CRL>>() {
@@ -828,6 +829,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
     @Override
     public void onResponce(String response, String header, String type, String program) {
+        Log.e("json : ",response);
         if (header.equals("loadAPI")) {
             String json = response;
             // Toast.makeText(SelectProgram.this, json, Toast.LENGTH_LONG).show();

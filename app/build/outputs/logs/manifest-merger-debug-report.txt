@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
-INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
-INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
-INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
+INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
+INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
+INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
 MERGED from [androidx.navigation:navigation-ui-ktx:2.2.2] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\7a0da5c7a8cdcf10027417383bb9a5ad\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-ui:2.2.2] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\2eccf5dfa249306da9f176fd0aad75d7\AndroidManifest.xml:17:1-24:12
 MERGED from [net.alhazmy13.catcho:library:1.1.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\518b970b189ae0b68a47a6f221c8a432\AndroidManifest.xml:2:1-19:12
@@ -20,6 +20,7 @@ MERGED from [androidx.navigation:navigation-runtime-ktx:2.2.2] C:\Users\pratham\
 MERGED from [androidx.fragment:fragment-ktx:1.2.4] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\bd069951760222616e4f4f37aac8f6e2\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity-ktx:1.1.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\5fda259dce6fc306525a79a7511b31ff\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\ccbc30c620aabb124990d4c8ba6288b2\AndroidManifest.xml:17:1-24:12
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:2:1-20:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\3414ac316627d8297356a9d89785c720\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\40dff619cdbad42464f68f506319e6bd\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.2.2] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\f257f0575e76fc790d8b4946314d5af6\AndroidManifest.xml:17:1-24:12
@@ -76,22 +77,22 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\pratham\.gradle\caches\transfo
 MERGED from [com.google.android.play:core:1.10.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\11083cc2a186fa8d96fcedddb0225b74\AndroidManifest.xml:2:1-23:12
 MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\9c14d1d42bdbd1b2a7605729dc8a2bbb\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\32e4ee14a68de569ba8412a5f4d62308\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
-INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
-INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
+INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
+INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
+INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
 	package
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:4:5-32
 		INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
 		INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-223:12
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:1-224:12
 		INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:2:11-69
@@ -129,6 +130,8 @@ ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:20:5-
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:21:9-57
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:24:5-81
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:11:5-81
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:11:5-81
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:24:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
@@ -159,10 +162,14 @@ MERGED from [net.alhazmy13.catcho:library:1.1.0] C:\Users\pratham\.gradle\caches
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:30:22-64
 uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:31:5-76
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:15:5-76
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:15:5-76
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:31:22-73
 uses-permission#android.permission.CHANGE_WIFI_STATE
 ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:32:5-76
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:16:5-76
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:16:5-76
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:32:22-73
 uses-permission#android.permission.CHANGE_WIFI_MULTICAST_STATE
@@ -171,6 +178,8 @@ ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:33:5-
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:33:22-83
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:34:5-79
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:12:5-79
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:12:5-79
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:34:22-76
 uses-permission#android.permission.BLUETOOTH
@@ -198,7 +207,7 @@ ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:40:5-
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:40:22-64
 application
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:43:5-221:19
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:43:5-222:19
 MERGED from [net.alhazmy13.catcho:library:1.1.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\518b970b189ae0b68a47a6f221c8a432\AndroidManifest.xml:13:5-17:19
 MERGED from [net.alhazmy13.catcho:library:1.1.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\518b970b189ae0b68a47a6f221c8a432\AndroidManifest.xml:13:5-17:19
 MERGED from [com.google.android.material:material:1.4.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e2772f4177fbbdb46d9e386e1777ce03\AndroidManifest.xml:22:5-20
@@ -209,6 +218,8 @@ MERGED from [com.kyleduo.blurpopupwindow:blurpopupwindow:1.0.9] C:\Users\pratham
 MERGED from [com.kyleduo.blurpopupwindow:blurpopupwindow:1.0.9] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\6e180a94055b72c075d18d5c2351e5f3\AndroidManifest.xml:11:5-12:19
 MERGED from [com.airbnb.android:lottie:3.2.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\6a493dcac0db9dacdb72f9ebf15a360a\AndroidManifest.xml:9:5-20
 MERGED from [com.airbnb.android:lottie:3.2.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\6a493dcac0db9dacdb72f9ebf15a360a\AndroidManifest.xml:9:5-20
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:18:5-20
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:18:5-20
 MERGED from [androidx.room:room-runtime:2.3.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\a21467e670cd0aeac5429566e26432ed\AndroidManifest.xml:24:5-29:19
 MERGED from [androidx.room:room-runtime:2.3.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\a21467e670cd0aeac5429566e26432ed\AndroidManifest.xml:24:5-29:19
 MERGED from [me.dm7.barcodescanner:zxing:1.9.8] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\2c81e00979dff32d7ccd37a78b0482b1\AndroidManifest.xml:11:5-20
@@ -266,63 +277,65 @@ ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:76:9-
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:77:13-46
 activity#com.pratham.admin.ui.login.LoginActivity_
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:95:9-104:20
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:95:9-105:20
 	android:screenOrientation
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:97:13-55
+	android:parentActivityName
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:98:13-60
 	android:windowSoftInputMode
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:98:13-54
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:99:13-54
 	android:name
 		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:96:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:99:13-103:29
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:100:13-104:29
 action#android.intent.action.MAIN
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:100:17-69
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:101:17-69
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:100:25-66
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:101:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:102:17-77
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:103:17-77
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:102:27-74
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:103:27-74
 activity#com.pratham.admin.ui.login.SelectProgram_
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:128:9-131:58
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:129:9-132:58
 	android:screenOrientation
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:131:13-55
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:132:13-55
 	android:label
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:130:13-50
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:131:13-50
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:129:13-52
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:130:13-52
 activity#com.pratham.admin.activities.CatchoTransparentActivity
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:202:9-204:59
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:203:9-205:59
 	android:screenOrientation
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:204:13-56
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:205:13-56
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:203:13-65
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:204:13-65
 activity#com.pratham.admin.custom.ProcessPhoenix
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:205:9-208:75
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:206:9-209:75
 	android:process
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:207:13-39
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:208:13-39
 	android:theme
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:208:13-72
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:209:13-72
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:206:13-50
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:207:13-50
 receiver#com.pratham.admin.util.ConnectionReceiver
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:210:9-216:20
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:211:9-217:20
 	android:enabled
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:212:13-35
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:213:13-35
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:211:13-52
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:212:13-52
 intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:213:13-215:29
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:214:13-216:29
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:214:17-79
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:215:17-79
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:214:25-76
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:215:25-76
 service#com.pratham.admin.Service.MyService
-ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:218:9-220:38
+ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:219:9-221:38
 	android:enabled
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:220:13-35
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:221:13-35
 	android:name
-		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:219:13-46
+		ADDED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml:220:13-46
 uses-sdk
 INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Android Projects\AdminAppV2\app\src\main\AndroidManifest.xml
@@ -359,6 +372,8 @@ MERGED from [androidx.activity:activity-ktx:1.1.0] C:\Users\pratham\.gradle\cach
 MERGED from [androidx.activity:activity-ktx:1.1.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\5fda259dce6fc306525a79a7511b31ff\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\ccbc30c620aabb124990d4c8ba6288b2\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\ccbc30c620aabb124990d4c8ba6288b2\AndroidManifest.xml:20:5-22:41
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:7:5-9:41
+MERGED from [com.isupatches:wisefy:3.0.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\e8bf1a71b9182e84bc4f27015e44b734\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\3414ac316627d8297356a9d89785c720\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\3414ac316627d8297356a9d89785c720\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.2.0] C:\Users\pratham\.gradle\caches\transforms-2\files-2.1\40dff619cdbad42464f68f506319e6bd\AndroidManifest.xml:20:5-22:41

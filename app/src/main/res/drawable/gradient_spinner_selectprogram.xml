@@ -8,12 +8,12 @@
                 <shape>
                     <stroke android:width="@dimen/_1sdp" android:color="@color/colorPrimary" />
                     <corners android:radius="@dimen/_20sdp" />
-                    <padding android:bottom="@dimen/_3sdp" android:left="@dimen/_10sdp" android:right="@dimen/_3sdp" android:top="@dimen/_1sdp" />
+                    <padding android:bottom="@dimen/_3sdp" android:left="@dimen/_10sdp" android:right="@dimen/_1sdp" android:top="@dimen/_1sdp" />
                 </shape>
             </item>
 
             <item android:right="@dimen/_20sdp">
-                <bitmap android:gravity="right" android:src="@drawable/arrowdown" />
+                <bitmap android:gravity="end" android:src="@drawable/arrowdown"/>
             </item>
         </layer-list>
     </item>

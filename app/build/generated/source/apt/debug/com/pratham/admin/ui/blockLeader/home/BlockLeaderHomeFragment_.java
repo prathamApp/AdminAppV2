@@ -56,18 +56,30 @@ public final class BlockLeaderHomeFragment_
         super.onDestroyView();
         contentView_ = null;
         spinner_program = null;
+        spinner_programm = null;
         spinner_state = null;
         spinner_block = null;
+        spinner_vendor = null;
+        spinner_donor = null;
+        spinner_yearOfpurchase = null;
         tv_desputedCount = null;
         tv_assignedCount = null;
         tv_unassignedCount = null;
         tv_totalNoOfTabs = null;
+        tv_lostTabCount = null;
+        tv_damagedTabCount = null;
+        tv_workingTabCount = null;
         switchMaterial = null;
         rl_tabStatusTwo = null;
         rl_tabStatus = null;
         ll_spinner = null;
         rl_spinnerParent = null;
         rl_spinnerParentTwo = null;
+        ll_goBtn = null;
+        ll_goBtnVendor = null;
+        tv_addNewTablet = null;
+        rl_btn = null;
+        rl_tabCountView = null;
     }
 
     private void init_(Bundle savedInstanceState) {
@@ -97,20 +109,34 @@ public final class BlockLeaderHomeFragment_
     @Override
     public void onViewChanged(HasViews hasViews) {
         this.spinner_program = hasViews.internalFindViewById(R.id.spinner_program);
+        this.spinner_programm = hasViews.internalFindViewById(R.id.spinner_programm);
         this.spinner_state = hasViews.internalFindViewById(R.id.spinner_state);
         this.spinner_block = hasViews.internalFindViewById(R.id.spinner_block);
+        this.spinner_vendor = hasViews.internalFindViewById(R.id.spinner_vendor);
+        this.spinner_donor = hasViews.internalFindViewById(R.id.spinner_donor);
+        this.spinner_yearOfpurchase = hasViews.internalFindViewById(R.id.spinner_yearOfPurchase);
         this.tv_desputedCount = hasViews.internalFindViewById(R.id.tv_desputed_tab);
         this.tv_assignedCount = hasViews.internalFindViewById(R.id.tv_assigned_tab);
         this.tv_unassignedCount = hasViews.internalFindViewById(R.id.tv_unassigned_tab);
         this.tv_totalNoOfTabs = hasViews.internalFindViewById(R.id.tv_totalNoOfTabs);
+        this.tv_lostTabCount = hasViews.internalFindViewById(R.id.tv_lost_tab);
+        this.tv_damagedTabCount = hasViews.internalFindViewById(R.id.tv_damaged_tab);
+        this.tv_workingTabCount = hasViews.internalFindViewById(R.id.tv_working_tab);
         this.switchMaterial = hasViews.internalFindViewById(R.id.switch_vendor);
         this.rl_tabStatusTwo = hasViews.internalFindViewById(R.id.rl_tabStatusTwo);
         this.rl_tabStatus = hasViews.internalFindViewById(R.id.rl_tabStatus);
         this.ll_spinner = hasViews.internalFindViewById(R.id.ll_spinner);
         this.rl_spinnerParent = hasViews.internalFindViewById(R.id.rl_spinnerParent);
         this.rl_spinnerParentTwo = hasViews.internalFindViewById(R.id.rl_spinnerParentTwo);
+        this.ll_goBtn = hasViews.internalFindViewById(R.id.ll_goBtn);
+        this.ll_goBtnVendor = hasViews.internalFindViewById(R.id.ll_goBtnVendor);
+        this.tv_addNewTablet = hasViews.internalFindViewById(R.id.tv_addNewTablet);
+        this.rl_btn = hasViews.internalFindViewById(R.id.rl_btn);
+        this.rl_tabCountView = hasViews.internalFindViewById(R.id.rl_tabCountView);
         View view_btn_go = hasViews.internalFindViewById(R.id.btn_go);
+        View view_btn_goVendor = hasViews.internalFindViewById(R.id.btn_goVendor);
         View view_btn_refresh = hasViews.internalFindViewById(R.id.btn_refresh);
+        View view_btn_refreshvendor = hasViews.internalFindViewById(R.id.btn_refreshvendor);
 
         if (view_btn_go!= null) {
             view_btn_go.setOnClickListener(new OnClickListener() {
@@ -122,12 +148,42 @@ public final class BlockLeaderHomeFragment_
             }
             );
         }
+        if (view_btn_goVendor!= null) {
+            view_btn_goVendor.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    BlockLeaderHomeFragment_.this.loadCountVendorWise();
+                }
+            }
+            );
+        }
         if (view_btn_refresh!= null) {
             view_btn_refresh.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     BlockLeaderHomeFragment_.this.refreshTabCount();
+                }
+            }
+            );
+        }
+        if (view_btn_refreshvendor!= null) {
+            view_btn_refreshvendor.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    BlockLeaderHomeFragment_.this.refreshTabCountVendor();
+                }
+            }
+            );
+        }
+        if (this.tv_addNewTablet!= null) {
+            this.tv_addNewTablet.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    BlockLeaderHomeFragment_.this.addNewTablet();
                 }
             }
             );

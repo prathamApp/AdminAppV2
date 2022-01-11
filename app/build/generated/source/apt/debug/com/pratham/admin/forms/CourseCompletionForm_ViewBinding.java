@@ -20,11 +20,11 @@ import java.lang.Override;
 public class CourseCompletionForm_ViewBinding implements Unbinder {
   private CourseCompletionForm target;
 
-  private View view7f0a0080;
-
   private View view7f0a0081;
 
-  private View view7f0a008b;
+  private View view7f0a0082;
+
+  private View view7f0a008c;
 
   @UiThread
   public CourseCompletionForm_ViewBinding(CourseCompletionForm target) {
@@ -43,7 +43,7 @@ public class CourseCompletionForm_ViewBinding implements Unbinder {
     target.edt_ParentCount = Utils.findRequiredViewAsType(source, R.id.edt_ParentCount, "field 'edt_ParentCount'", EditText.class);
     view = Utils.findRequiredView(source, R.id.btn_DatePicker, "field 'btn_DatePicker' and method 'startDatePicker'");
     target.btn_DatePicker = Utils.castView(view, R.id.btn_DatePicker, "field 'btn_DatePicker'", Button.class);
-    view7f0a0080 = view;
+    view7f0a0081 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class CourseCompletionForm_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_DatePickerTwo, "field 'btn_DatePickerTwo' and method 'endDatePicker'");
     target.btn_DatePickerTwo = Utils.castView(view, R.id.btn_DatePickerTwo, "field 'btn_DatePickerTwo'", Button.class);
-    view7f0a0081 = view;
+    view7f0a0082 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -61,7 +61,7 @@ public class CourseCompletionForm_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_Submit, "field 'btn_Submit' and method 'submitForm'");
     target.btn_Submit = Utils.castView(view, R.id.btn_Submit, "field 'btn_Submit'", Button.class);
-    view7f0a008b = view;
+    view7f0a008c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -88,11 +88,11 @@ public class CourseCompletionForm_ViewBinding implements Unbinder {
     target.btn_Submit = null;
     target.tv_Course_Warning = null;
 
-    view7f0a0080.setOnClickListener(null);
-    view7f0a0080 = null;
     view7f0a0081.setOnClickListener(null);
     view7f0a0081 = null;
-    view7f0a008b.setOnClickListener(null);
-    view7f0a008b = null;
+    view7f0a0082.setOnClickListener(null);
+    view7f0a0082 = null;
+    view7f0a008c.setOnClickListener(null);
+    view7f0a008c = null;
   }
 }

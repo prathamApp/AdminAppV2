@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class TabHoldersAdapter extends RecyclerView.Adapter<TabHoldersAdapter.My
 
     public TabHoldersAdapter(Context context, List crlList, TabHolderListItemListener tabHolderListItemListener) {
         this.crlList = crlList;
-        this.context=context;
+        this.context = context;
         this.tabHolderListItemListener = tabHolderListItemListener;
     }
 
@@ -46,10 +47,15 @@ public class TabHoldersAdapter extends RecyclerView.Adapter<TabHoldersAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-      //  if(deviseList.get(position).getPratham_ID()!=null)
+        //  if(deviseList.get(position).getPratham_ID()!=null)
         holder.tv_name.setText(crlList.get(position).getFirstName());
         holder.tv_mob.setText(crlList.get(position).getMobile());
-       // if(deviseList.get(position).getQR_ID()!=null)
+        // if(deviseList.get(position).getQR_ID()!=null)
+        if (crlList.get(position).isSelected())
+            holder.iv_crlSelected.setVisibility(View.VISIBLE);
+        else
+            holder.iv_crlSelected.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -57,11 +63,18 @@ public class TabHoldersAdapter extends RecyclerView.Adapter<TabHoldersAdapter.My
         return crlList.size();
     }
 
+    public List<CRL> getCrlList() {
+        return crlList;
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name;
         TextView tv_mob;
         ImageView iv_call;
         ImageView iv_sms;
+        ImageView iv_crlSelected;
+        ImageView iv_tabHolderImage;
+        LinearLayout ll_tabHolderDetail;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -69,12 +82,15 @@ public class TabHoldersAdapter extends RecyclerView.Adapter<TabHoldersAdapter.My
             tv_mob = itemView.findViewById(R.id.tv_tabHolderMobNo);
             iv_call = itemView.findViewById(R.id.iv_call);
             iv_sms = itemView.findViewById(R.id.iv_message);
+            iv_crlSelected = itemView.findViewById(R.id.iv_crl_selected);
+            iv_tabHolderImage = itemView.findViewById(R.id.iv_tabHolderImage);
+            ll_tabHolderDetail = itemView.findViewById(R.id.ll_tabHolderDetail);
 
             iv_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel: "+crlList.get(getAdapterPosition()).getMobile()));
+                    callIntent.setData(Uri.parse("tel: " + crlList.get(getAdapterPosition()).getMobile()));
                     if (ActivityCompat.checkSelfPermission(context,
                             Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) { //todo check
                         //ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE},1);
@@ -85,7 +101,15 @@ public class TabHoldersAdapter extends RecyclerView.Adapter<TabHoldersAdapter.My
 
             iv_sms.setOnClickListener(v ->
                     tabHolderListItemListener.sendSms(crlList.get(getAdapterPosition()).getMobile())
-                    );
+            );
+
+            ll_tabHolderDetail.setOnClickListener(v ->
+                    tabHolderListItemListener.tabHolderItemClicked(itemView, crlList.get(getAdapterPosition()), getAdapterPosition())
+            );
+
+            iv_tabHolderImage.setOnClickListener(v ->
+                    tabHolderListItemListener.tabHolderDetails(crlList.get(getAdapterPosition()))
+            );
 
             /*
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +133,8 @@ public class TabHoldersAdapter extends RecyclerView.Adapter<TabHoldersAdapter.My
         }
     }
 
-/*    public void filterList(ArrayList<DeviseList> filterdNames) {
-        this.deviseList=filterdNames;
+    public void filterList(ArrayList<CRL> filterdNames) {
+        this.crlList = filterdNames;
         notifyDataSetChanged();
-    }*/
+    }
 }

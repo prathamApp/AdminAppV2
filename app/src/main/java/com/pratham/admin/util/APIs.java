@@ -13,6 +13,11 @@ public class APIs {
     public static final String SERVER_VILLAGE = "&villageid=";
     public static final String SERVER_STATECODE = "&statecode=";
     public static final String SERVER_PROGRAMID = "&programid=";
+    public static final String SERVER_STATENAME = "&statename=";
+    public static final String SERVER_BLOCKNAME = "&blockname=";
+    public static final String SERVER_DONORNAME = "&donorname=";
+    public static final String SERVER_YOP = "&yearofpurchase=";
+    public static final String SERVER_ROLE = "&roleid=";
 
     public static final String pullVillagesServerURL = "http://www.hlearning.openiscool.org/api/village/get?programId=";
     public static final String pullGroupsServerURL = "http://www.devtab.openiscool.org/api/Group?programid=";
@@ -197,5 +202,37 @@ public class APIs {
     public static final String tabletCountByBlockNameAPI="http://swap.prathamcms.org/api/BlockCount?userid=";
 
     //Image Push
-    public static  final String pushImageToServer = "http://swap.prathamcms.org/API/PushFiles/ReportLostpushFiles";
+    public static final String pushImageToServer = "http://swap.prathamcms.org/API/PushFiles/ReportLostpushFiles";
+
+    //API used to fetch all the vendor from the server
+    public static final String vendorAPI = "http://swap.prathamcms.org/api/Vendor/GetVendorList";
+
+    //API used to fetch all the donors from the server
+    public static final String donorAPI = "http://swap.prathamcms.org/api/Donor/GetDonor";
+
+    //API used to fetch year of purchase from the server
+    public static final String yearOfPurchaseAPI = "http://swap.prathamcms.org/api/Year/GetYear";
+
+    //API used to fetch tablet count by passing program, state and blockname(Assigned, Unassigned and Disputed)
+    public static final String tabletCountByProgramState = "http://swap.prathamcms.org/api/vendor/GetVendorCount?userid=";
+
+    //API used to fetch tablet count by passing donor, vendor, yop and program(Lost, Damaged and Working)
+    public static final String tabletCountByDonorVendor = "http://swap.prathamcms.org/api/vendor/GetVendorDonorProgYearCount?userid=";
+
+    //API used to fetch total tablet count(Lost, Damaged and Working)
+    public static final String totalDamagedTabletCount = "http://swap.prathamcms.org/api/StoreCount/GetStoreCount";
+
+    //API to fetch all users(CRL, BL, DL, Employee, etc)
+    public static final String getAllUsers = "http://swap.prathamcms.org/api/StoreManager/GetUserList";
+
+//    http://swap.prathamcms.org/api/StoreManager/GetUserListByProgStateBlockRole?progid=1&roleid=6&statename=Maharashtra&blockname=Khultabad
+
+    //API to fetch users by program, state, role, blockname
+    public static final String getUsersByFields = "http://swap.prathamcms.org/api/StoreManager/GetUserListByProgStateBlockRole?programid=";
+
+    //API to fetch role
+    public static final String getRole = "http://swap.prathamcms.org/api/Role/GetRole";
+
+    //API to Assign Tablet(Json will be pushed to server)
+    public static final String assignTabletAPI = "http://swap.prathamcms.org/API/AdminAppV2pushFiles/pushFiles";
 }

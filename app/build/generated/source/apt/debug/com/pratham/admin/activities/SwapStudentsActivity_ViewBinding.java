@@ -20,11 +20,11 @@ import java.lang.Override;
 public class SwapStudentsActivity_ViewBinding implements Unbinder {
   private SwapStudentsActivity target;
 
-  private View view7f0a00a3;
+  private View view7f0a00a9;
 
-  private View view7f0a0097;
+  private View view7f0a009b;
 
-  private View view7f0a0098;
+  private View view7f0a009c;
 
   @UiThread
   public SwapStudentsActivity_ViewBinding(SwapStudentsActivity target) {
@@ -49,7 +49,7 @@ public class SwapStudentsActivity_ViewBinding implements Unbinder {
     target.villageName = Utils.findRequiredViewAsType(source, R.id.tv_selVillage, "field 'villageName'", TextView.class);
     view = Utils.findRequiredView(source, R.id.btn_swap_and_push, "field 'btn_swap_and_push' and method 'pushToDB'");
     target.btn_swap_and_push = Utils.castView(view, R.id.btn_swap_and_push, "field 'btn_swap_and_push'", Button.class);
-    view7f0a00a3 = view;
+    view7f0a00a9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -57,7 +57,7 @@ public class SwapStudentsActivity_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_move_to_left, "method 'moveLeft'");
-    view7f0a0097 = view;
+    view7f0a009b = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,7 +65,7 @@ public class SwapStudentsActivity_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.btn_move_to_right, "method 'moveRight'");
-    view7f0a0098 = view;
+    view7f0a009c = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -94,11 +94,11 @@ public class SwapStudentsActivity_ViewBinding implements Unbinder {
     target.villageName = null;
     target.btn_swap_and_push = null;
 
-    view7f0a00a3.setOnClickListener(null);
-    view7f0a00a3 = null;
-    view7f0a0097.setOnClickListener(null);
-    view7f0a0097 = null;
-    view7f0a0098.setOnClickListener(null);
-    view7f0a0098 = null;
+    view7f0a00a9.setOnClickListener(null);
+    view7f0a00a9 = null;
+    view7f0a009b.setOnClickListener(null);
+    view7f0a009b = null;
+    view7f0a009c.setOnClickListener(null);
+    view7f0a009c = null;
   }
 }

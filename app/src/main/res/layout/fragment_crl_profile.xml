@@ -32,42 +32,45 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal">
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
 
                 <TextView
                     android:id="@+id/tv_crlName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_50sdp"
-                    android:text="Sujit"/>
+                    android:text="Sujit"
+                    android:fontFamily="@font/glacialindifferencebold"
+                    android:textSize="@dimen/_15sdp"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/tv_programNameAndBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_crlName"
+                    android:text="Sujit"
+                    android:fontFamily="@font/glacialindifferenceregular"
+                    android:textAlignment="center"/>
 
                 <TextView
                     android:id="@+id/tv_crlUsername"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_crlName"
-                    android:text="Sujit" />
-
-                <TextView
-                    android:id="@+id/tv_programName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_crlUsername"
-                    android:text="Sujit" />
-
-                <TextView
-                    android:id="@+id/tv_crlMob"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_programName"
-                    android:text="Sujit" />
+                    android:layout_below="@+id/tv_programNameAndBlock"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Sujit"
+                    android:fontFamily="@font/glacialindifferencebold"
+                    android:textAlignment="center"/>
 
                 <TextView
                     android:id="@+id/tv_crlEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_crlMob"
-                    android:text="Sujit" />
+                    android:layout_below="@+id/tv_crlUsername"
+                    android:text="Sujit"
+                    android:fontFamily="@font/glacialindifferencebold"
+                    android:textAlignment="center"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -100,7 +103,7 @@
         android:layout_below="@id/rl_crlDetails"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tabHolder"
+        android:id="@+id/rv_tabList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_tabletsList"

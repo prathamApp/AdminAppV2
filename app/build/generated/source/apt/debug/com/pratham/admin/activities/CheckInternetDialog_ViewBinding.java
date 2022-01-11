@@ -15,7 +15,7 @@ import java.lang.Override;
 public class CheckInternetDialog_ViewBinding implements Unbinder {
   private CheckInternetDialog target;
 
-  private View view7f0a0094;
+  private View view7f0a0097;
 
   @UiThread
   public CheckInternetDialog_ViewBinding(CheckInternetDialog target) {
@@ -29,7 +29,7 @@ public class CheckInternetDialog_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.btn_exit, "field 'exit' and method 'onExit'");
     target.exit = Utils.castView(view, R.id.btn_exit, "field 'exit'", Button.class);
-    view7f0a0094 = view;
+    view7f0a0097 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -47,7 +47,7 @@ public class CheckInternetDialog_ViewBinding implements Unbinder {
 
     target.exit = null;
 
-    view7f0a0094.setOnClickListener(null);
-    view7f0a0094 = null;
+    view7f0a0097.setOnClickListener(null);
+    view7f0a0097 = null;
   }
 }

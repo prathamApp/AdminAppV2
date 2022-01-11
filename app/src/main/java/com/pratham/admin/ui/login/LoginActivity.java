@@ -309,11 +309,18 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         password.setText("pratham");*/
 //        userName.setText("pravinthorat");
 //        password.setText("pratham123");
-/*        userName.setText("adminappblock");//test user
+
+/*                userName.setText("adminappblock");//test user
         password.setText("pratham123");*/
 
-        userName.setText("sanchar");//test user
-        password.setText("sanchar@123");
+/*        userName.setText("amolmoghe");
+        password.setText("pratham@123");*/
+
+/*        userName.setText("sanchar");//test vendor
+        password.setText("sanchar@123");*/
+
+        userName.setText("dl_store6628");//test storemanager
+        password.setText("Pratham@123");
 
 
 //        userName.setText("");
@@ -470,8 +477,8 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
                 // Prepare Data
                 Gson gson = new Gson();
                 MetaData metaData = new MetaData();
-                metaData.setKeys("pushDataTime");
-                metaData.setValue(new Utility().GetCurrentDateTime(false));
+/*                metaData.setKeys("pushDataTime");
+                metaData.setValue(new Utility().GetCurrentDateTime(false));*/
                 metaDataList = AppDatabase.getDatabaseInstance(this).getMetaDataDao().getAllMetaData();
                 String metaDataJSON = customParse(metaDataList);
 
@@ -727,12 +734,12 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
     private String addMetaDataToJson() {
 
-        MetaData metaData = new MetaData();
-        metaData.setKeys("pushDataTime");
-        metaData.setValue(new Utility().GetCurrentDateTime(false));
+//        MetaData metaData = new MetaData();
+/*        metaData.setKeys("pushDataTime");
+        metaData.setValue(new Utility().GetCurrentDateTime(false));*/
         List<MetaData> metaDataList = AppDatabase.getDatabaseInstance(this).getMetaDataDao().getAllMetaData();
         String metaDataJSON = customParse(metaDataList);
-        AppDatabase.getDatabaseInstance(this).getMetaDataDao().insertMetadata(metaData);
+//        AppDatabase.getDatabaseInstance(this).getMetaDataDao().insertMetadata(metaData);
         return metaDataJSON;
     }
 

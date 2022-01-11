@@ -9,6 +9,7 @@ package com.pratham.admin.ui;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,15 @@ import com.pratham.admin.R;
 import org.androidannotations.api.bean.BeanHolder;
 import org.androidannotations.api.builder.FragmentBuilder;
 import org.androidannotations.api.view.HasViews;
+import org.androidannotations.api.view.OnViewChangedListener;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
+@SuppressLint({
+    "NonConstantResourceId"
+})
 public final class CRL_ProfileFragment_
     extends com.pratham.admin.ui.CRL_ProfileFragment
-    implements BeanHolder, HasViews
+    implements BeanHolder, HasViews, OnViewChangedListener
 {
     private final OnViewChangedNotifier onViewChangedNotifier_ = new OnViewChangedNotifier();
     private View contentView_;
@@ -53,9 +58,15 @@ public final class CRL_ProfileFragment_
     public void onDestroyView() {
         super.onDestroyView();
         contentView_ = null;
+        tv_crlName = null;
+        tv_crlUsername = null;
+        tv_crlEmail = null;
+        tv_programNameAndBlock = null;
+        rv_tabList = null;
     }
 
     private void init_(Bundle savedInstanceState) {
+        OnViewChangedNotifier.registerOnViewChangedListener(this);
     }
 
     @Override
@@ -76,6 +87,16 @@ public final class CRL_ProfileFragment_
     @Override
     public<T> void putBean(Class<T> key, T value) {
         beans_.put(key, value);
+    }
+
+    @Override
+    public void onViewChanged(HasViews hasViews) {
+        this.tv_crlName = hasViews.internalFindViewById(R.id.tv_crlName);
+        this.tv_crlUsername = hasViews.internalFindViewById(R.id.tv_crlUsername);
+        this.tv_crlEmail = hasViews.internalFindViewById(R.id.tv_crlEmail);
+        this.tv_programNameAndBlock = hasViews.internalFindViewById(R.id.tv_programNameAndBlock);
+        this.rv_tabList = hasViews.internalFindViewById(R.id.rv_tabList);
+        init();
     }
 
     public static class FragmentBuilder_

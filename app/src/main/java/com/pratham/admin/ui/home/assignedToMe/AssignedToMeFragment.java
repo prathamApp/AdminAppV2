@@ -177,6 +177,7 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
             response = null;
             try {
                 response = new JSONArray(response1);
+                Utility.dismissLoadingDialog();
                 if (response.length() > 0) {
 //                    MyDeviceList myDeviceList = new MyDeviceList(context, response);
 //                    myDeviceList.show();

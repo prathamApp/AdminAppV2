@@ -13,6 +13,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import com.pratham.admin.R;
 import org.androidannotations.api.bean.BeanHolder;
@@ -58,6 +59,7 @@ public final class TabHolderFragment_
     public void onDestroyView() {
         super.onDestroyView();
         contentView_ = null;
+        searchTab = null;
         spinner_program = null;
         spinner_state = null;
         spinner_block = null;
@@ -65,6 +67,7 @@ public final class TabHolderFragment_
         rv_tabHolder = null;
         ll_spinnerOne = null;
         ll_spinnerTwo = null;
+        tv_noDataFound = null;
     }
 
     private void init_(Bundle savedInstanceState) {
@@ -93,6 +96,7 @@ public final class TabHolderFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
+        this.searchTab = hasViews.internalFindViewById(R.id.et_search);
         this.spinner_program = hasViews.internalFindViewById(R.id.spinner_program);
         this.spinner_state = hasViews.internalFindViewById(R.id.spinner_state);
         this.spinner_block = hasViews.internalFindViewById(R.id.spinner_block);
@@ -100,6 +104,30 @@ public final class TabHolderFragment_
         this.rv_tabHolder = hasViews.internalFindViewById(R.id.rv_tabHolder);
         this.ll_spinnerOne = hasViews.internalFindViewById(R.id.ll_spinnerOne);
         this.ll_spinnerTwo = hasViews.internalFindViewById(R.id.ll_spinnerTwo);
+        this.tv_noDataFound = hasViews.internalFindViewById(R.id.tv_noDataFound);
+        View view_btn_allocate = hasViews.internalFindViewById(R.id.btn_allocate);
+        View view_btn_go = hasViews.internalFindViewById(R.id.btn_go);
+
+        if (view_btn_allocate!= null) {
+            view_btn_allocate.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    TabHolderFragment_.this.allocateTab();
+                }
+            }
+            );
+        }
+        if (view_btn_go!= null) {
+            view_btn_go.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    TabHolderFragment_.this.loadTabHolders();
+                }
+            }
+            );
+        }
         init();
     }
 

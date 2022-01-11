@@ -17,11 +17,11 @@ import java.lang.Override;
 public class SelectVillageDialog_ViewBinding implements Unbinder {
   private SelectVillageDialog target;
 
-  private View view7f0a03a5;
+  private View view7f0a03b9;
 
-  private View view7f0a0091;
+  private View view7f0a0094;
 
-  private View view7f0a03aa;
+  private View view7f0a03be;
 
   @UiThread
   public SelectVillageDialog_ViewBinding(SelectVillageDialog target) {
@@ -35,7 +35,7 @@ public class SelectVillageDialog_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.txt_clear_changes_village, "field 'clear_changes' and method 'clearChanges'");
     target.clear_changes = Utils.castView(view, R.id.txt_clear_changes_village, "field 'clear_changes'", TextView.class);
-    view7f0a03a5 = view;
+    view7f0a03b9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,7 +44,7 @@ public class SelectVillageDialog_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_close_village, "field 'btn_close' and method 'closeDialog'");
     target.btn_close = Utils.castView(view, R.id.btn_close_village, "field 'btn_close'", ImageButton.class);
-    view7f0a0091 = view;
+    view7f0a0094 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -54,7 +54,7 @@ public class SelectVillageDialog_ViewBinding implements Unbinder {
     target.txt_message_village = Utils.findRequiredViewAsType(source, R.id.txt_message_village, "field 'txt_message_village'", TextView.class);
     target.flowLayout = Utils.findRequiredViewAsType(source, R.id.flowLayout, "field 'flowLayout'", GridLayout.class);
     view = Utils.findRequiredView(source, R.id.txt_ok_village, "method 'ok'");
-    view7f0a03aa = view;
+    view7f0a03be = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -75,11 +75,11 @@ public class SelectVillageDialog_ViewBinding implements Unbinder {
     target.txt_message_village = null;
     target.flowLayout = null;
 
-    view7f0a03a5.setOnClickListener(null);
-    view7f0a03a5 = null;
-    view7f0a0091.setOnClickListener(null);
-    view7f0a0091 = null;
-    view7f0a03aa.setOnClickListener(null);
-    view7f0a03aa = null;
+    view7f0a03b9.setOnClickListener(null);
+    view7f0a03b9 = null;
+    view7f0a0094.setOnClickListener(null);
+    view7f0a0094 = null;
+    view7f0a03be.setOnClickListener(null);
+    view7f0a03be = null;
   }
 }

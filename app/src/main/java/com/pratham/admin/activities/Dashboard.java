@@ -337,8 +337,8 @@ public class Dashboard extends BaseActivity implements DashRVClickListener, Conn
                 // Prepare Data
                 Gson gson = new Gson();
                 metaData = new MetaData();
-                metaData.setKeys("pushDataTime");
-                metaData.setValue(new Utility().GetCurrentDateTime(false));
+/*                metaData.setKeys("pushDataTime");
+                metaData.setValue(new Utility().GetCurrentDateTime(false));*/
                 metaDataList = AppDatabase.getDatabaseInstance(this).getMetaDataDao().getAllMetaData();
                 String metaDataJSON = customParse(metaDataList);
 
