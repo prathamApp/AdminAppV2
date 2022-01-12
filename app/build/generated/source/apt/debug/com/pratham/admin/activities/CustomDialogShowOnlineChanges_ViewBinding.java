@@ -17,9 +17,9 @@ import java.lang.Override;
 public class CustomDialogShowOnlineChanges_ViewBinding implements Unbinder {
   private CustomDialogShowOnlineChanges target;
 
-  private View view7f0a03b7;
+  private View view7f0a03b5;
 
-  private View view7f0a03b9;
+  private View view7f0a03b7;
 
   @UiThread
   public CustomDialogShowOnlineChanges_ViewBinding(CustomDialogShowOnlineChanges target) {
@@ -37,7 +37,7 @@ public class CustomDialogShowOnlineChanges_ViewBinding implements Unbinder {
     target.recycler = Utils.findRequiredViewAsType(source, R.id.recycler, "field 'recycler'", RecyclerView.class);
     target.title = Utils.findRequiredViewAsType(source, R.id.title, "field 'title'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.txt_Ok, "method 'update'");
-    view7f0a03b7 = view;
+    view7f0a03b5 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -45,7 +45,7 @@ public class CustomDialogShowOnlineChanges_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.txt_clear_changes_village, "method 'clearChangesList'");
-    view7f0a03b9 = view;
+    view7f0a03b7 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -66,9 +66,9 @@ public class CustomDialogShowOnlineChanges_ViewBinding implements Unbinder {
     target.recycler = null;
     target.title = null;
 
+    view7f0a03b5.setOnClickListener(null);
+    view7f0a03b5 = null;
     view7f0a03b7.setOnClickListener(null);
     view7f0a03b7 = null;
-    view7f0a03b9.setOnClickListener(null);
-    view7f0a03b9 = null;
   }
 }

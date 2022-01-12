@@ -1,0 +1,57 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\befe5446c551ff4565ac3eeaf8b4cb81\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,55",
+                        "endOffsets": "108,164"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\7d7acbe244b4570c9bb5b424e504631f\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "456",
+                        "endLines": "14",
+                        "endColumns": "13",
+                        "endOffsets": "728"
+                    }
+                },
+                {
+                    "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\values-hdpi\\styles.xml",
+                    "from": {
+                        "startLines": "3,46,58,10,64,53,32,42",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "57,1685,2111,352,2327,1954,1156,1561",
+                        "endLines": "8,51,62,13,69,56,40,44",
+                        "endColumns": "12,12,12,12,12,12,12,12",
+                        "endOffsets": "344,1946,2319,491,2606,2103,1553,1677"
+                    },
+                    "to": {
+                        "startLines": "4,15,21,26,30,36,40,49",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "169,733,994,1203,1344,1623,1774,2168",
+                        "endLines": "9,20,25,29,35,39,48,51",
+                        "endColumns": "12,12,12,12,12,12,12,12",
+                        "endOffsets": "451,989,1198,1339,1618,1769,2163,2282"
+                    }
+                }
+            ]
+        }
+    ]
+}

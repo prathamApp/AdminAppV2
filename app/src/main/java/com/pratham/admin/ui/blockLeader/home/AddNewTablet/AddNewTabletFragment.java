@@ -144,38 +144,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
             rl_spinnerParent.setVisibility(View.VISIBLE);
             btn_sendTablets.setVisibility(View.VISIBLE);
         }
-
-/*        addTabToList();
-
-        String val=null;
-        boolean found = false;
-        for (Model_NewTablet n : newTabletList) {
-            val = modelNewTablet.getSerialNo();
-            if (n.getSerialNo().equalsIgnoreCase(modelNewTablet.getSerialNo())) {
-                found = true;
-                break;
-            }
-        }
-
-        if(found)
-            Toast.makeText(getActivity(), "Tablet Already Scanned!", Toast.LENGTH_SHORT).show();
-        else {
-            newTabletList.add(modelNewTablet);
-            scannedTabList.add(modelNewTablet.getSerialNo());
-            Log.e("sssss : ", val+" is not found.");
-        }
-
-
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                scannedTabList);
-
-        lv_newTabs.setAdapter(arrayAdapter);
-        mScannerView.stopCamera();
-        mScannerView.startCamera();
-        mScannerView.resumeCameraPreview(AddNewTabletFragment.this);*/
     }
 
     @Click(R.id.btn_sendTablets)
@@ -195,21 +163,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
 
         rl_spinnerParent.setVisibility(View.GONE);
 */
-
-
-/*        if(newTabletList.size()==0) {
-            addTabToList();
-        }
-        if(newTabletList.size()>0) {
-            Gson gson = new Gson();
-            Type tabList = new TypeToken<ArrayList<Model_NewTablet>>() {
-            }.getType();
-            String newTab = gson.toJson(newTabletList, tabList);
-            Log.e("Tabs : ", newTab);
-            reset();
-        } else {
-            Toast.makeText(getActivity(), "Scan Tablet First.", Toast.LENGTH_SHORT).show();
-        }*/
     }
 
     public void submitTablets() {
@@ -235,23 +188,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
                     modelNewTablet.setWiFiMacAddress("");
                     newTabletList.add(modelNewTablet);
                 }
-/*                String val = null;
-                boolean found = false;
-                for (Model_NewTablet n : newTabletList) {
-                    val = modelNewTablet.getSerialNo();
-                    if (n.getSerialNo().equalsIgnoreCase(modelNewTablet.getSerialNo())) {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (found)
-                    Toast.makeText(getActivity(), "Tablet Already Scanned!", Toast.LENGTH_SHORT).show();
-                else {
-                    newTabletList.add(modelNewTablet);
-                    scannedTabList.add(modelNewTablet.getSerialNo());
-                    Log.e("sssss : ", val + " is not found.");
-                }*/
             } else {
                 Toast.makeText(getActivity(), "Enter All Tablet Details.", Toast.LENGTH_SHORT).show();
             }

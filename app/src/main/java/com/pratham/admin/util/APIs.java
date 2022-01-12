@@ -172,19 +172,16 @@ public class APIs {
     // Replace Admin App API
     public static final String GetCollectedTabList = "http://swap.prathamcms.org/api/ReplaceCollect/get?userid=";
 
-    // Device List API
-    public static final String DeviceList = "http://swap.prathamcms.org/api/tablist?userid=";
-
     //Store person AOI
     public static final String storePersonAPI = "http://www.swap.prathamcms.org/api/Vendor?programId=";
 
     //Notification API
     public static final String notificationAPI = " http://swap.prathamcms.org/api/tabletnotification/get?userid=";
 
-    //ProgramsList API
-    public static final String programsAPI = "http://swap.prathamcms.org/api/program";
 
-    //AdminApp2
+    /**
+     *     AdminApp2 API's
+     */
 
     //Request Tablet
     public static final String requestTabletAPI = "http://swap.prathamcms.org/API/RequestTablet/RequestTablet";
@@ -235,4 +232,11 @@ public class APIs {
 
     //API to Assign Tablet(Json will be pushed to server)
     public static final String assignTabletAPI = "http://swap.prathamcms.org/API/AdminAppV2pushFiles/pushFiles";
+
+    //ProgramsList API
+    public static final String programsAPI = "http://swap.prathamcms.org/api/program";
+
+    // Device List API
+    public static final String DeviceList = "http://swap.prathamcms.org/api/tablist?userid=";
+
 }

@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+            "map": [
+                {
+                    "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\values-xhdpi\\styles.xml",
+                    "from": {
+                        "startLines": "3,46,58,10,64,53,32,42",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "57,1662,2088,352,2304,1931,1133,1538",
+                        "endLines": "8,51,62,13,69,56,40,44",
+                        "endColumns": "12,12,12,12,12,12,12,12",
+                        "endOffsets": "344,1923,2296,491,2583,2080,1530,1654"
+                    },
+                    "to": {
+                        "startLines": "4,10,16,21,25,31,35,44",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "169,456,717,926,1067,1346,1497,1891",
+                        "endLines": "9,15,20,24,30,34,43,46",
+                        "endColumns": "12,12,12,12,12,12,12,12",
+                        "endOffsets": "451,712,921,1062,1341,1492,1886,2005"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\befe5446c551ff4565ac3eeaf8b4cb81\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,55",
+                        "endOffsets": "108,164"
+                    }
+                }
+            ]
+        }
+    ]
+}

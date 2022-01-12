@@ -1233,3 +1233,11 @@ Caused by: java.lang.annotation.AnnotationTypeMismatchException: Incorrectly typ
 13:54:24.943 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
 13:54:24.944 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
 13:54:24.945 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.
+16:13:02.959 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component AddNewGroup_ is not registered in the AndroidManifest.xml file.
+16:13:02.960 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
+16:13:02.960 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
+16:13:02.961 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.
+16:44:45.202 [Daemon worker Thread 3] WARN  o.a.i.p.ModelValidator:78 - The component AddNewGroup_ is not registered in the AndroidManifest.xml file.
+16:44:45.204 [Daemon worker Thread 3] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
+16:44:45.204 [Daemon worker Thread 3] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
+16:44:45.205 [Daemon worker Thread 3] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.

@@ -704,10 +704,6 @@
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\7d7acbe244b4570c9bb5b424e504631f\\res\\interpolator\\btn_radio_to_off_mtrl_animation_interpolator_0.xml"
     },
     {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_request_tablet_png.png.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\request_tablet_png.png"
-    },
-    {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_collect.xml.flat",
         "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\layout\\fragment_collect.xml"
     },
@@ -1352,10 +1348,6 @@
         "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\ic_sync_white_48.xml"
     },
     {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_home_options.xml.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\layout\\item_home_options.xml"
-    },
-    {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_check_material.xml.flat",
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\7d7acbe244b4570c9bb5b424e504631f\\res\\drawable\\abc_btn_check_material.xml"
     },
@@ -1828,16 +1820,8 @@
         "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\list_selector_background_transition.xml"
     },
     {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_replace_tablet_png.png.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\replace_tablet_png.png"
-    },
-    {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\color_material_on_background_emphasis_high_type.xml.flat",
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\e2772f4177fbbdb46d9e386e1777ce03\\res\\color\\material_on_background_emphasis_high_type.xml"
-    },
-    {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_min.png.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\login_min.png"
     },
     {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -3180,10 +3164,6 @@
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\7d7acbe244b4570c9bb5b424e504631f\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lost_tablet.png.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\lost_tablet.png"
-    },
-    {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\anim_nav_default_pop_exit_anim.xml.flat",
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\2eccf5dfa249306da9f176fd0aad75d7\\res\\anim\\nav_default_pop_exit_anim.xml"
     },
@@ -3346,10 +3326,6 @@
     {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\anim_btn_radio_to_on_mtrl_dot_group_animation.xml.flat",
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\7d7acbe244b4570c9bb5b424e504631f\\res\\anim\\btn_radio_to_on_mtrl_dot_group_animation.xml"
-    },
-    {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable_assign_tablet_png.png.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\drawable\\assign_tablet_png.png"
     },
     {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",

@@ -22,9 +22,9 @@ public class Status_Action_ViewBinding implements Unbinder {
 
   private View view7f0a0081;
 
-  private View view7f0a022e;
+  private View view7f0a022d;
 
-  private View view7f0a022f;
+  private View view7f0a022e;
 
   @UiThread
   public Status_Action_ViewBinding(Status_Action target) {
@@ -53,7 +53,7 @@ public class Status_Action_ViewBinding implements Unbinder {
     target.qr_serialNo = Utils.findRequiredViewAsType(source, R.id.qr_serialNo, "field 'qr_serialNo'", EditText.class);
     target.successMessage = Utils.findRequiredViewAsType(source, R.id.successMessage, "field 'successMessage'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.qr_btn_reset, "method 'resetCamera'");
-    view7f0a022e = view;
+    view7f0a022d = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -61,7 +61,7 @@ public class Status_Action_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.qr_btn_save, "method 'saveTabTrack'");
-    view7f0a022f = view;
+    view7f0a022e = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -88,9 +88,9 @@ public class Status_Action_ViewBinding implements Unbinder {
 
     view7f0a0081.setOnClickListener(null);
     view7f0a0081 = null;
+    view7f0a022d.setOnClickListener(null);
+    view7f0a022d = null;
     view7f0a022e.setOnClickListener(null);
     view7f0a022e = null;
-    view7f0a022f.setOnClickListener(null);
-    view7f0a022f = null;
   }
 }

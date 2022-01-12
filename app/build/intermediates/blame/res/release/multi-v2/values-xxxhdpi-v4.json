@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-xxxhdpi-v4\\values-xxxhdpi-v4.xml",
+            "map": [
+                {
+                    "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\values-xxxhdpi\\styles.xml",
+                    "from": {
+                        "startLines": "3,38,48,21,9,53,44,26,35",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "57,1407,1829,717,350,2042,1674,883,1285",
+                        "endLines": "8,43,52,24,12,58,47,33,37",
+                        "endColumns": "12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "344,1668,2036,875,490,2321,1823,1277,1401"
+                    },
+                    "to": {
+                        "startLines": "2,8,14,19,23,27,33,37,45",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,342,603,811,970,1111,1390,1541,1933",
+                        "endLines": "7,13,18,22,26,32,36,44,47",
+                        "endColumns": "12,12,12,12,12,12,12,12,12",
+                        "endOffsets": "337,598,806,965,1106,1385,1536,1928,2047"
+                    }
+                }
+            ]
+        }
+    ]
+}

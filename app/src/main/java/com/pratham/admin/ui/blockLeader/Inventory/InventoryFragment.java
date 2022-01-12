@@ -175,16 +175,13 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
 
     public void myDeviceList() {
-        //todo check internret connection
-        checkConnection();
-        if (internetIsAvailable) {
+        if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
             //String url = APIs.DeviceList + "6501";
             String url = APIs.DeviceList + FastSave.getInstance().getString("CRLid", "no_crl");
             Log.e("url : ",url);
             //String url = APIs.DeviceList + FastSave.getInstance().getString("CRLid", "no_crl");
             loadDevises(url);
         } else {
-            checkConnection();
             new AlertDialog.Builder(requireActivity()).setTitle("Warning").setMessage("No internet connection").setPositiveButton("Close", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -196,15 +193,6 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     private void loadDevises(String url) {
         NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, url, "Loading Devices..", "loading_devises", getActivity());
-    }
-
-    private void checkConnection() {
-        boolean isConnected = ConnectionReceiver.isConnected();
-        if (!isConnected) {
-            internetIsAvailable = false;
-        } else {
-            internetIsAvailable = true;
-        }
     }
 
     @Override
@@ -274,13 +262,12 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
             }
         }
         deviceAdapter.notifyItemChanged(position, deviseList);
-        Log.e("ssssssssssss : ",String.valueOf(assignTabList.size()));
 
         Gson gson = new Gson();
         Type devicesList = new TypeToken<ArrayList<DeviseList>>() {
         }.getType();
         selectedTabJson = gson.toJson(assignTabList,devicesList);
-        Log.e("ssssssssssss : ",selectedTabJson);
+        Log.e("selectedTabJSON : ",selectedTabJson);
     }
 
     @Click(R.id.btn_assignTab)
