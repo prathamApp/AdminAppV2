@@ -326,6 +326,8 @@
     <string name="noNotificationFound">No Notification Found</string>
     <string name="loadingNotification">Loading Notifications..</string>
 
+    <string name="acknowledge">Acknowledge</string>
+
 
     <string-array name="india_states">
         <item>State</item>
@@ -666,7 +668,7 @@
     <string name="replace_request_sent_success">Replace Request Sent Successfully...</string>
     <string name="report_lost">Reported Successfully...</string>
     <string name="no_data_found">No Data Found!</string>
-
+    <string name="default_notification_channel_id" translatable="false">AdminAppV2</string>
     <string-array name="tab_status">
         <item>Tab Status</item>
         <item>Disputed</item>

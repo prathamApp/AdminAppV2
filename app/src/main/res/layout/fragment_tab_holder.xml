@@ -127,18 +127,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_go"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_alignParentRight="true"
         android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:fontFamily="@font/glacialindifferencebold"
         android:shadowRadius="5"
         android:text="Allocate"
-        android:textSize="@dimen/_10sdp"
         android:textColor="@color/White"
+        android:textSize="@dimen/_10sdp"
         app:backgroundTint="@color/button_purple"
         app:cornerRadius="@dimen/_5sdp"
-        app:elevation="@dimen/_10sdp"
-        android:layout_alignParentRight="true"/>
+        app:elevation="@dimen/_10sdp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tabHolder"

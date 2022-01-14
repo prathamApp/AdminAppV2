@@ -1,15 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.pratham.admin.ui.notification.NotificationFragment"
+    android:background="@color/screen_background">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!--    <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_round_refresh_48"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:visibility="gone"/>-->
+
     <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:text="Notifications"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:padding="@dimen/_5sdp"
+        android:drawableLeft="@drawable/ic_search_grey_24dp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:hint="Search"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:background="@drawable/rectangular_search_bg"
+        android:layout_below="@+id/tv_label"/>
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_notiHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Second" />
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_below="@+id/et_search"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_noDataFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/et_search"
+        android:text="@string/no_data_found"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_20sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+</RelativeLayout>

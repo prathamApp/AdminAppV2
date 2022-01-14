@@ -22,6 +22,8 @@ import com.pratham.admin.ui.blockLeader.tabHolders.TabHolderFragment_;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceFormFragment;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceFormFragment_;
 import com.pratham.admin.ui.home.reportLost.ReportlostFormFragment_;
+import com.pratham.admin.ui.notification.NotificationFragment;
+import com.pratham.admin.ui.notification.NotificationFragment_;
 import com.pratham.admin.util.BaseActivity;
 
 import org.androidannotations.annotations.AfterViews;
@@ -94,7 +96,14 @@ public class Home extends BaseActivity {
 
                     break;
                 case R.id.notification:
-                    Toast.makeText(Home.this, "Under Construction!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Home.this, "Under Construction!", Toast.LENGTH_SHORT).show();
+                    selectedFragment = new NotificationFragment_();
+                    // It will help to replace the
+                    // one fragment to other.
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
                     break;
                 case R.id.setting:
                     Toast.makeText(Home.this, "Setting", Toast.LENGTH_SHORT).show();
