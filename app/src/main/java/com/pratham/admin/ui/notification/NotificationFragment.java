@@ -27,6 +27,9 @@ import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.database.AppDatabase;
 import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.CRL;
+import com.pratham.admin.modalclasses.DeviseList;
+import com.pratham.admin.modalclasses.MetaData;
+import com.pratham.admin.modalclasses.Model_AssignTab;
 import com.pratham.admin.modalclasses.Model_Role;
 import com.pratham.admin.modalclasses.Model_User;
 import com.pratham.admin.modalclasses.ProgramsModal;
@@ -43,6 +46,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -53,6 +57,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.pratham.admin.util.APIs.assignTabletAPI;
 
 @SuppressLint("NonConstantResourceId")
 @EFragment(R.layout.fragment_notification)
@@ -72,8 +78,10 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
        boolean isStoreManager = false;
     JSONArray tabholdersResponse;
-
-
+    String assigneePersonId, assigneePersonName;
+    String selectedTabJson="";
+    String metaDataJSON;
+    List<DeviseList> assignTabList;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -81,7 +89,7 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
     @AfterViews
     public void init() {
-        NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.getRole, "Loading...", "roleApi", getActivity());
+        assignTabList = new ArrayList<DeviseList>();
         storeManagerAPI();
 //        if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("13")) {
 //
@@ -172,7 +180,34 @@ public class NotificationFragment extends Fragment implements NotificationHolder
                 crl1.setSelected(false);
         }
 //        temp.set(position, modalGroup);
-        notificationHoldersAdapter.notifyDataSetChanged();
+ //       notificationHoldersAdapter.notifyDataSetChanged();
+
+        {
+            addMetaDataToJson();
+
+            try {
+                Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
+                        FastSave.getInstance().getString("CRLid", "no_crl"),
+                        FastSave.getInstance().getString("CRLname", "no_crl"),
+                        assigneePersonId,
+                        assigneePersonName,
+                        new Utility().GetCurrentDateNew(),
+                        assignTabList,
+                        metaDataJSON);
+
+                String json = gson.toJson(model_assignTab);
+                Log.e("json : ", json);
+
+                if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                    NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+                }
+            } catch (Exception e){
+                Utility.dismissLoadingDialog();
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     @Override
@@ -210,6 +245,15 @@ public class NotificationFragment extends Fragment implements NotificationHolder
                 e.printStackTrace();
             }
         }
+        else if (header.equalsIgnoreCase("AssignTablet")) {
+            Log.e("responseAssignTablet : ", response1);
+/*            Gson gson = new Gson();
+            API_Response apiResponse;
+            Type json = new TypeToken<API_Response>() {
+            }.getType();
+            apiResponse = gson.fromJson(response1, json);*/
+            Toast.makeText(getActivity(), "Tablet Assigned.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -219,7 +263,19 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
     }
 
-
+    private void addMetaDataToJson() {
+        try {
+            JSONObject metaDataObject = new JSONObject();
+            List<MetaData> metaDataList = AppDatabase.getDatabaseInstance(getActivity()).getMetaDataDao().getAllMetaData();
+            for (MetaData metadata : metaDataList) {
+                metaDataObject.put(metadata.getKeys(), metadata.getValue());
+            }
+            metaDataJSON = metaDataObject.toString();
+            Log.e("meta data : ", metaDataJSON);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

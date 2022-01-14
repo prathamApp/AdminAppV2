@@ -49,19 +49,39 @@
             android:text="######"
             android:fontFamily="@font/glacialindifferenceregular"
             android:textColor="@color/green_700"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toEndOf="@+id/iv_tabHolderImage"
+        android:layout_below="@+id/ll_tabHolderDetail"
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_Type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="######"
+            android:text="20 Tablet"
             android:fontFamily="@font/glacialindifferenceregular"
             android:textColor="@color/green_700"/>
-    </LinearLayout>
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_acknowledege"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+
+            android:layout_alignParentRight="true"
+
+
+            android:fontFamily="@font/glacialindifferencebold"
+            android:shadowRadius="5"
+            android:text="@string/acknowledge"
+            android:textColor="@color/White"
+            android:textSize="@dimen/_8sdp"
+            app:backgroundTint="@color/button_purple"
+            app:cornerRadius="@dimen/_5sdp"
+            app:elevation="@dimen/_10sdp" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/iv_call"
@@ -80,21 +100,5 @@
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_sms_grey_48" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_allocate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:fontFamily="@font/glacialindifferencebold"
-        android:shadowRadius="5"
-        android:text="@string/acknowledge"
-        android:textColor="@color/White"
-        android:textSize="@dimen/_8sdp"
-        app:backgroundTint="@color/button_purple"
-        app:cornerRadius="@dimen/_5sdp"
-        app:elevation="@dimen/_10sdp" />
 </RelativeLayout>

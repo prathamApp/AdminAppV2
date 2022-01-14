@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
 import com.pratham.admin.R;
 import com.pratham.admin.modalclasses.CRL;
 import com.pratham.admin.ui.blockLeader.tabHolders.TabHolderListItemListener;
@@ -67,6 +68,7 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
         TextView tv_name;
         TextView tv_detail;
         ImageView iv_call;
+        MaterialButton btn_acknowledege;
         ImageView iv_sms;
         ImageView iv_crlSelected;
         ImageView iv_tabHolderImage;
@@ -78,6 +80,7 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
             tv_detail = itemView.findViewById(R.id.tv_tabHolderDetail);
             iv_call = itemView.findViewById(R.id.iv_call);
             iv_sms = itemView.findViewById(R.id.iv_message);
+            btn_acknowledege = itemView.findViewById(R.id.btn_acknowledege);
             iv_crlSelected = itemView.findViewById(R.id.iv_crl_selected);
             iv_tabHolderImage = itemView.findViewById(R.id.iv_tabHolderImage);
             ll_tabHolderDetail = itemView.findViewById(R.id.ll_tabHolderDetail);
@@ -92,6 +95,12 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
                         //ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE},1);
                     }
                     context.startActivity(callIntent);
+                }
+            });
+            btn_acknowledege.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    tabHolderListItemListener.tabHolderItemClicked(itemView, crlList.get(getAdapterPosition()), getAdapterPosition())
                 }
             });
 
