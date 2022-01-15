@@ -19,9 +19,9 @@ import java.lang.Override;
 public class Activity_QRScan_ViewBinding implements Unbinder {
   private Activity_QRScan target;
 
-  private View view7f0a022d;
-
   private View view7f0a022e;
+
+  private View view7f0a022f;
 
   @UiThread
   public Activity_QRScan_ViewBinding(Activity_QRScan target) {
@@ -44,7 +44,7 @@ public class Activity_QRScan_ViewBinding implements Unbinder {
     target.qr_serialNo = Utils.findRequiredViewAsType(source, R.id.qr_serialNo, "field 'qr_serialNo'", EditText.class);
     target.successMessage = Utils.findRequiredViewAsType(source, R.id.successMessage, "field 'successMessage'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.qr_btn_reset, "method 'resetCamera'");
-    view7f0a022d = view;
+    view7f0a022e = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class Activity_QRScan_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.qr_btn_save, "method 'saveTabTrack'");
-    view7f0a022e = view;
+    view7f0a022f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -79,9 +79,9 @@ public class Activity_QRScan_ViewBinding implements Unbinder {
     target.qr_serialNo = null;
     target.successMessage = null;
 
-    view7f0a022d.setOnClickListener(null);
-    view7f0a022d = null;
     view7f0a022e.setOnClickListener(null);
     view7f0a022e = null;
+    view7f0a022f.setOnClickListener(null);
+    view7f0a022f = null;
   }
 }

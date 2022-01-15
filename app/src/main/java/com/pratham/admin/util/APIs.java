@@ -192,10 +192,10 @@ public class APIs {
     //ReplaceTablet
     public static final String replaceTabletTAPI = "http://swap.prathamcms.org/API/ReplaceTablet/ReplaceTablet";
 
-    //Tablet Count
+    //Tablet Count (Assigned, Unassigned and Disputed)
     public static final String tabletCountAPI="http://swap.prathamcms.org/api/BRG?userid=";
 
-    //Tablet Count using blockname and userid
+    //Tablet Count using blockname and userid (Assigned, Unassigned and Disputed)
     public static final String tabletCountByBlockNameAPI="http://swap.prathamcms.org/api/BlockCount?userid=";
 
     //Image Push
@@ -238,5 +238,8 @@ public class APIs {
 
     // Device List API
     public static final String DeviceList = "http://swap.prathamcms.org/api/tablist?userid=";
+
+    //API to push new scanned tablets to server
+    public static final String addNewTabAPI = "http://swap.prathamcms.org/API/ScanTablet/pushScanDevice";
 
 }

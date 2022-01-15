@@ -19,9 +19,9 @@ import java.lang.Override;
 public class CollectFragment_ViewBinding implements Unbinder {
   private CollectFragment target;
 
-  private View view7f0a022d;
-
   private View view7f0a022e;
+
+  private View view7f0a022f;
 
   @UiThread
   public CollectFragment_ViewBinding(final CollectFragment target, View source) {
@@ -38,7 +38,7 @@ public class CollectFragment_ViewBinding implements Unbinder {
     target.damageType = Utils.findRequiredViewAsType(source, R.id.damageType, "field 'damageType'", Spinner.class);
     target.comments = Utils.findRequiredViewAsType(source, R.id.comments, "field 'comments'", EditText.class);
     view = Utils.findRequiredView(source, R.id.qr_btn_reset, "method 'resetCamera'");
-    view7f0a022d = view;
+    view7f0a022e = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class CollectFragment_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.qr_btn_save, "method 'saveTabTrack'");
-    view7f0a022e = view;
+    view7f0a022f = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -72,9 +72,9 @@ public class CollectFragment_ViewBinding implements Unbinder {
     target.damageType = null;
     target.comments = null;
 
-    view7f0a022d.setOnClickListener(null);
-    view7f0a022d = null;
     view7f0a022e.setOnClickListener(null);
     view7f0a022e = null;
+    view7f0a022f.setOnClickListener(null);
+    view7f0a022f = null;
   }
 }

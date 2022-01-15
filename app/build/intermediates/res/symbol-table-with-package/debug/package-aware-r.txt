@@ -3046,6 +3046,7 @@ id enterAlwaysCollapsed
 id et_additionalRemark
 id et_brand
 id et_contactNumber
+id et_donor
 id et_model
 id et_requestTablet
 id et_search
@@ -3574,6 +3575,7 @@ id textEnd
 id textInputLayout_additionalRemark
 id textInputLayout_brand
 id textInputLayout_contactNumber
+id textInputLayout_donor
 id textInputLayout_model
 id textInputLayout_otherDetail
 id textInputLayout_password

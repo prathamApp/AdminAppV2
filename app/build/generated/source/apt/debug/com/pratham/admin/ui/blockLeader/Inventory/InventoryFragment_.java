@@ -59,6 +59,7 @@ public final class InventoryFragment_
         rv_tabHolders = null;
         tv_totalTablets = null;
         spinner_tabStatus = null;
+        btn_assgnTab = null;
     }
 
     private void init_(Bundle savedInstanceState) {
@@ -91,10 +92,9 @@ public final class InventoryFragment_
         this.rv_tabHolders = hasViews.internalFindViewById(R.id.rv_tabHolder);
         this.tv_totalTablets = hasViews.internalFindViewById(R.id.tv_totalTabCount);
         this.spinner_tabStatus = hasViews.internalFindViewById(R.id.spinner_tabStatus);
-        View view_btn_assignTab = hasViews.internalFindViewById(R.id.btn_assignTab);
-
-        if (view_btn_assignTab!= null) {
-            view_btn_assignTab.setOnClickListener(new OnClickListener() {
+        this.btn_assgnTab = hasViews.internalFindViewById(R.id.btn_assignTab);
+        if (this.btn_assgnTab!= null) {
+            this.btn_assgnTab.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View view) {

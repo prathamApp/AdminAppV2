@@ -20,12 +20,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.error.ANError;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.zxing.Result;
+import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
 import com.pratham.admin.activities.Activity_QRScan;
+import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
+import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.Model_Donor;
 import com.pratham.admin.modalclasses.Model_NewTablet;
@@ -42,13 +47,17 @@ import org.androidannotations.annotations.ViewById;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+import static com.pratham.admin.util.APIs.addNewTabAPI;
+import static com.pratham.admin.util.APIs.assignTabletAPI;
+
 @SuppressLint("NonConstantResourceId")
 @EFragment(R.layout.fragment_add_new_tablet)
-public class AddNewTabletFragment extends Fragment implements ZXingScannerView.ResultHandler {
+public class AddNewTabletFragment extends Fragment implements ZXingScannerView.ResultHandler, NetworkCallListener {
 
     @ViewById(R.id.barcode_frame)
     FrameLayout barcode_frame;
@@ -83,6 +92,12 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     @ViewById(R.id.btn_sendTablets)
     Button btn_sendTablets;
 
+    @ViewById(R.id.textInputLayout_donor)
+    TextInputLayout textInputLayout_donor;
+
+    @ViewById(R.id.et_donor)
+    EditText et_donor;
+
     public ZXingScannerView mScannerView;
 
     List<Model_NewTablet> newTabletList = new ArrayList<>();
@@ -98,6 +113,8 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     public static String selectedProgramName = null;
 
     Model_NewTablet modelNewTablet;
+
+    boolean otherDonor = false;
 
     public AddNewTabletFragment() {
         // Required empty public constructor
@@ -149,33 +166,22 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     @Click(R.id.btn_sendTablets)
     public void sendTablet() {
         submitTablets();
-/*        mScannerView.stopCamera();
-        mScannerView.startCamera();
-        mScannerView.resumeCameraPreview(AddNewTabletFragment.this);*/
-/*
-        spinner_yearOfpurchase.setSelection(0);
-        spinner_donor.setSelection(0);
-        spinner_vendor.setSelection(0);
-        et_brand.setText("");
-        et_model.setText("");
-        newTabletList.clear();
-        scannedTabList.clear();
-
-        rl_spinnerParent.setVisibility(View.GONE);
-*/
     }
 
     public void submitTablets() {
+        String donor;
         if (spinner_donor.getSelectedItemPosition() != 0 && spinner_vendor.getSelectedItemPosition() != 0 &&
                 spinner_yearOfpurchase.getSelectedItemPosition() != 0) {
             if (!et_brand.getText().toString().isEmpty() && !et_model.getText().toString().isEmpty()) {
+                if(otherDonor) donor = et_donor.getText().toString();
+                else donor = spinner_donor.getSelectedItem().toString();
                 for (int i = 0; i < scannedTabList.size(); i++) {
                     modelNewTablet = new Model_NewTablet();
                     modelNewTablet.setUserId(FastSave.getInstance().getString("CRLid", "no_crl"));
                     modelNewTablet.setBrand(et_brand.getText().toString());
                     modelNewTablet.setModel(et_model.getText().toString());
                     modelNewTablet.setSerialNo(scannedTabList.get(i).toString());
-                    modelNewTablet.setDonor(spinner_donor.getSelectedItem().toString());
+                    modelNewTablet.setDonor(donor);
                     modelNewTablet.setVendor(spinner_vendor.getSelectedItem().toString());
                     modelNewTablet.setYop(spinner_yearOfpurchase.getSelectedItem().toString());
                     modelNewTablet.setStatus("Working");
@@ -200,6 +206,9 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
             }.getType();
             String newTab = gson.toJson(newTabletList, tabList);
             Log.e("Tabs : ", newTab);
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, addNewTabAPI, "UPLOADING ... ", newTab, "AddNewTablets");
+            }
         } else {
             Toast.makeText(getActivity(), "Scan Tablet First.", Toast.LENGTH_SHORT).show();
         }
@@ -244,13 +253,66 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     }
 
     private void showDonors(List<String> donorList) {
+        donorList.add("Other");
         ArrayAdapter donorSpnrAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, donorList);
         spinner_donor.setAdapter(donorSpnrAdapter);
+
+        spinner_donor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(donorList.get(position).equalsIgnoreCase("Other")) {
+                    spinner_donor.setVisibility(View.GONE);
+                    textInputLayout_donor.setVisibility(View.VISIBLE);
+                    otherDonor = true;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     private void showVendors(List<String> vendorList) {
         ArrayAdapter vendorSpnrAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_dropdown_item, vendorList);
         spinner_vendor.setAdapter(vendorSpnrAdapter);
+    }
+
+    @Override
+    public void onResponse(String response, String header) {
+        if(header.equalsIgnoreCase("AddNewTablets")){
+            Toast.makeText(getActivity(), "Tablet added successfully...", Toast.LENGTH_SHORT).show();
+            clearFields();
+            btn_sendTablets.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void onError(ANError anError, String header) {
+        if(header.equalsIgnoreCase("AddNewTablets")){
+            Log.e("New Tab ErrorMessage : ", Objects.requireNonNull(anError.getMessage()));
+            Log.e("New Tab ErrorDetail : ", Objects.requireNonNull(anError.getErrorDetail()));
+            Toast.makeText(getActivity(), "Failed to add Tablet!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void clearFields(){
+/*                mScannerView.stopCamera();
+        mScannerView.startCamera();
+        mScannerView.resumeCameraPreview(AddNewTabletFragment.this);*/
+        spinner_yearOfpurchase.setSelection(0);
+        spinner_donor.setSelection(0);
+        spinner_vendor.setSelection(0);
+        et_brand.setText("");
+        et_model.setText("");
+        et_donor.setText("");
+        newTabletList.clear();
+        scannedTabList.clear();
+
+        spinner_donor.setVisibility(View.VISIBLE);
+        textInputLayout_donor.setVisibility(View.GONE);
+        rl_spinnerParent.setVisibility(View.GONE);
     }
 
     /*private void showPrograms(List<ProgramsModal> programsModalList) {

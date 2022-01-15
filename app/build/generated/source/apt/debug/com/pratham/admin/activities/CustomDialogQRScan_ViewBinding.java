@@ -16,9 +16,9 @@ import java.lang.Override;
 public class CustomDialogQRScan_ViewBinding implements Unbinder {
   private CustomDialogQRScan target;
 
-  private View view7f0a03b5;
-
   private View view7f0a03b7;
+
+  private View view7f0a03b9;
 
   @UiThread
   public CustomDialogQRScan_ViewBinding(CustomDialogQRScan target) {
@@ -34,7 +34,7 @@ public class CustomDialogQRScan_ViewBinding implements Unbinder {
     target.message = Utils.findRequiredViewAsType(source, R.id.message, "field 'message'", TextView.class);
     target.recycler = Utils.findRequiredViewAsType(source, R.id.recycler, "field 'recycler'", RecyclerView.class);
     view = Utils.findRequiredView(source, R.id.txt_Ok, "method 'update'");
-    view7f0a03b5 = view;
+    view7f0a03b7 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -42,7 +42,7 @@ public class CustomDialogQRScan_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.txt_clear_changes_village, "method 'clearChangesList'");
-    view7f0a03b7 = view;
+    view7f0a03b9 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,9 +62,9 @@ public class CustomDialogQRScan_ViewBinding implements Unbinder {
     target.message = null;
     target.recycler = null;
 
-    view7f0a03b5.setOnClickListener(null);
-    view7f0a03b5 = null;
     view7f0a03b7.setOnClickListener(null);
     view7f0a03b7 = null;
+    view7f0a03b9.setOnClickListener(null);
+    view7f0a03b9 = null;
   }
 }
