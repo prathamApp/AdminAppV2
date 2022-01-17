@@ -242,4 +242,7 @@ public class APIs {
     //API to push new scanned tablets to server
     public static final String addNewTabAPI = "http://swap.prathamcms.org/API/ScanTablet/pushScanDevice";
 
+
+    // Device List API
+    public static final String getAcknowledgeList = "http://swap.prathamcms.org/api/Acknowledge/GetAcknowledgeDevice?userid=";
 }
