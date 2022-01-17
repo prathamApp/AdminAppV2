@@ -114,3 +114,11 @@
 15:41:17.297 [Execution worker for ':' Thread 4] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
 15:41:17.297 [Execution worker for ':' Thread 4] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
 15:41:17.297 [Execution worker for ':' Thread 4] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.
+12:31:30.25 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component AddNewGroup_ is not registered in the AndroidManifest.xml file.
+12:31:30.25 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
+12:31:30.25 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
+12:31:30.25 [Execution worker for ':' Thread 6] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.
+15:27:29.936 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component AddNewGroup_ is not registered in the AndroidManifest.xml file.
+15:27:29.937 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component DeviceInformation_ is not registered in the AndroidManifest.xml file.
+15:27:29.937 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component AttendanceForm_ is not registered in the AndroidManifest.xml file.
+15:27:29.937 [Execution worker for ':' Thread 2] WARN  o.a.i.p.ModelValidator:78 - The component YouthInfoFormActivity_ is not registered in the AndroidManifest.xml file.

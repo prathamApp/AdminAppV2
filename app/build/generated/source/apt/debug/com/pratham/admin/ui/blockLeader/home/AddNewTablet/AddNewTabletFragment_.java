@@ -71,7 +71,6 @@ public final class AddNewTabletFragment_
         btn_sendTablets = null;
         textInputLayout_donor = null;
         et_donor = null;
-        btn_Submit = null;
     }
 
     private void init_(Bundle savedInstanceState) {
@@ -112,7 +111,6 @@ public final class AddNewTabletFragment_
         this.btn_sendTablets = hasViews.internalFindViewById(R.id.btn_sendTablets);
         this.textInputLayout_donor = hasViews.internalFindViewById(R.id.textInputLayout_donor);
         this.et_donor = hasViews.internalFindViewById(R.id.et_donor);
-        this.btn_Submit = hasViews.internalFindViewById(R.id.btn_Submit);
         View view_iv_refresh = hasViews.internalFindViewById(R.id.iv_refresh);
         View view_btn_addToInventory = hasViews.internalFindViewById(R.id.btn_addToInventory);
 
