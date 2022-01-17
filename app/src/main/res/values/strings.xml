@@ -673,7 +673,7 @@
         <item>Tab Status</item>
         <item>Disputed</item>
         <item>Unassigned</item>
-        <item>Damaged</item>
+        <item>All</item>
     </string-array>
 
     <string-array name="spinner_block">

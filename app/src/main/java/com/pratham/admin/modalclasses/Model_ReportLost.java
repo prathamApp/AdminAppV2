@@ -19,11 +19,12 @@ public class Model_ReportLost {
     String enquiryundertaken;
     String enquiryconcluded;
     String imageurl;
+    String reportstoid;
 
     public Model_ReportLost(String CRL_ID, String tabletSerialId, String deviceID, String reportLostDate, String contactnumber,
                             String tabletlastseendate, String brandmodel, String lastseenwithperson, String personreportingto,
                             String ischarger, String isleathercover, String issdcard, String additionalremark, String ispolicecomplaint,
-                            String incidentverifiedat, String enquiryundertaken, String enquiryconcluded, String imageurl) {
+                            String incidentverifiedat, String enquiryundertaken, String enquiryconcluded, String imageurl, String reportstoid) {
         this.CRL_ID = CRL_ID;
         TabletSerialId = tabletSerialId;
         DeviceID = deviceID;
@@ -42,6 +43,7 @@ public class Model_ReportLost {
         this.enquiryundertaken = enquiryundertaken;
         this.enquiryconcluded = enquiryconcluded;
         this.imageurl = imageurl;
+        this.reportstoid = reportstoid;
     }
 
     public String getCrlId() {
@@ -184,4 +186,8 @@ public class Model_ReportLost {
 
     public void setImageurl(String imageurl) { this.imageurl = imageurl; }
 
+    public String getReportstoid() { return reportstoid; }
+
+    public void setReportstoid(String reportstoid) { this.reportstoid = reportstoid; }
 }
+
