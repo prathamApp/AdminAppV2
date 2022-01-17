@@ -54,10 +54,9 @@ public class InventoryTabListAdapter extends RecyclerView.Adapter<InventoryTabLi
         holder.cv_tablet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*
                 if(deviseList.get(position).getStatus()!=null && deviseList.get(position).getStatus().contains("Pending"))
                     Toast.makeText(context, "Request Already Sent.", Toast.LENGTH_SHORT).show();
-*/
+                else
                 inventoryTabItemClick.onTabItemClicked(position, deviseList.get(position));
             }
         });

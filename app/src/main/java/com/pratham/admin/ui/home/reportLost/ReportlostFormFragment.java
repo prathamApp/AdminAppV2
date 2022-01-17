@@ -274,7 +274,8 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
                             incidentVerificationRadioButton.getText().toString(),
                             enqUndertakenRadioButton.getText().toString(),
                             enqCocludedRadioButton.getText().toString(),
-                            fileName);
+                            fileName,
+                            FastSave.getInstance().getString("reportingPersonId",""));
 
                     Gson gson = new Gson();
                     String json = gson.toJson(model_reportLost);// converting model content to json

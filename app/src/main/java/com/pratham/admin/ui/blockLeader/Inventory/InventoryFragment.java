@@ -16,7 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -77,6 +79,9 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
     @ViewById(R.id.spinner_tabStatus)
     Spinner spinner_tabStatus;
 
+    @ViewById(R.id.btn_assignTab)
+    Button btn_assgnTab;
+
     boolean internetIsAvailable = false;
     List<DeviseList> deviceList;
     List<DeviseList> assignTabList;
@@ -88,7 +93,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
     ArrayAdapter adapterTabStatus;
 
     String assigneePersonId, assigneePersonName;
-    String selectedTabJson="";
+    String selectedTabJson = "";
     String metaDataJSON;
 
     Gson gson = new Gson();
@@ -98,18 +103,40 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
     }
 
     @AfterViews
-    public void init(){
+    public void init() {
         try {
             assigneePersonId = requireArguments().getString("assigneeId");
             assigneePersonName = requireArguments().getString("assigneeName");
-            Log.e("dddddddddddd",assigneePersonId);
-        } catch (Exception e){
+            Log.e("dddddddddddd", assigneePersonId);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        if(assigneePersonId!=null && assigneePersonName!=null)
+            btn_assgnTab.setVisibility(View.VISIBLE);
+        else
+            btn_assgnTab.setVisibility(View.GONE);
+
         myDeviceList();
         //spinner adapters
         adapterTabStatus = ArrayAdapter.createFromResource(getActivity(), R.array.tab_status, R.layout.support_simple_spinner_dropdown_item);
         spinner_tabStatus.setAdapter(adapterTabStatus);
+
+        spinner_tabStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (adapterTabStatus.getItem(position).toString().equalsIgnoreCase("Unassigned")) {
+                    filter("Working");
+                } else if (adapterTabStatus.getItem(position).toString().equalsIgnoreCase("Disputed")) {
+                    filter("Pending");
+                } else if (adapterTabStatus.getItem(position).toString().equalsIgnoreCase("All")) {
+                    filter("All");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         searchTab.addTextChangedListener(new TextWatcher() {
             @Override
@@ -147,26 +174,30 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        tv_totalTablets.setText("Total Tablet(s) :  "+deviceList.size());
+        tv_totalTablets.setText("Total Tablet(s) :  " + deviceList.size());
     }
 
     private void filter(String text) {
         //new array list that will hold the filtered data
         ArrayList<DeviseList> filterdNames = new ArrayList<>();
 
-        //looping through existing elements
-        for (int i = 0; i < deviceList.size(); i++) {
-            final String damageType = deviceList.get(i).getSerialno();
-            final String fromName = deviceList.get(i).getDeviceid();
-            final String fromId = deviceList.get(i).getModel();
-            final String status = deviceList.get(i).getStatus();
-            //if the existing elements contains the search input
-            if (damageType.toLowerCase().contains(text.toLowerCase())
-                    || fromName.toLowerCase().contains(text.toLowerCase())
-                    || fromId.toLowerCase().contains(text.toLowerCase())
-                    || status.toLowerCase().contains(text.toLowerCase())) {
-                //adding the element to filtered list
-                filterdNames.add(deviceList.get(i));
+        if(text.equalsIgnoreCase("All")){
+            filterdNames.addAll(deviceList);
+        } else {
+            //looping through existing elements
+            for (int i = 0; i < deviceList.size(); i++) {
+                final String damageType = deviceList.get(i).getSerialno();
+                final String fromName = deviceList.get(i).getDeviceid();
+                final String fromId = deviceList.get(i).getModel();
+                final String status = deviceList.get(i).getStatus();
+                //if the existing elements contains the search input
+                if (damageType.toLowerCase().contains(text.toLowerCase())
+                        || fromName.toLowerCase().contains(text.toLowerCase())
+                        || fromId.toLowerCase().contains(text.toLowerCase())
+                        || status.toLowerCase().contains(text.toLowerCase())) {
+                    //adding the element to filtered list
+                    filterdNames.add(deviceList.get(i));
+                }
             }
         }
         //calling a method of the adapter class and passing the filtered list
@@ -178,7 +209,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
             //String url = APIs.DeviceList + "6501";
             String url = APIs.DeviceList + FastSave.getInstance().getString("CRLid", "no_crl");
-            Log.e("url : ",url);
+            Log.e("url : ", url);
             //String url = APIs.DeviceList + FastSave.getInstance().getString("CRLid", "no_crl");
             loadDevises(url);
         } else {
@@ -224,6 +255,9 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
             }
         } else if (header.equalsIgnoreCase("AssignTablet")) {
             Log.e("responseAssignTablet : ", response1);
+            assignTabList.clear();
+            deviceList.clear();
+            myDeviceList();
 /*            Gson gson = new Gson();
             API_Response apiResponse;
             Type json = new TypeToken<API_Response>() {
@@ -252,8 +286,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
                 if (device.isSelected()) {
                     device.setSelected(false);
                     assignTabList.remove(device);
-                }
-                else {
+                } else {
                     device.setSelected(true);
                     assignTabList.add(device);
                 }
@@ -266,12 +299,12 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         Gson gson = new Gson();
         Type devicesList = new TypeToken<ArrayList<DeviseList>>() {
         }.getType();
-        selectedTabJson = gson.toJson(assignTabList,devicesList);
-        Log.e("selectedTabJSON : ",selectedTabJson);
+        selectedTabJson = gson.toJson(assignTabList, devicesList);
+        Log.e("selectedTabJSON : ", selectedTabJson);
     }
 
     @Click(R.id.btn_assignTab)
-    public void assignTablet(){
+    public void assignTablet() {
         addMetaDataToJson();
 
         try {
@@ -290,7 +323,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
             if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
                 NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Utility.dismissLoadingDialog();
             e.printStackTrace();
         }
@@ -305,7 +338,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
             }
             metaDataJSON = metaDataObject.toString();
             Log.e("meta data : ", metaDataJSON);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
