@@ -100,7 +100,7 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
             btn_acknowledege.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tabHolderListItemListener.tabHolderItemClicked(itemView, crlList.get(getAdapterPosition()), getAdapterPosition())
+                    tabHolderListItemListener.tabHolderItemClicked(itemView, crlList.get(getAdapterPosition()), getAdapterPosition());
                 }
             });
 

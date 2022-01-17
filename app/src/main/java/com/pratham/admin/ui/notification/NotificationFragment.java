@@ -156,6 +156,8 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
     private void storeManagerAPI() {
         if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+            String url = APIs.getAcknowledgeList + FastSave.getInstance().getString("CRLid", "no_crl");
+            Log.i("urls",url);
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.getAllUsers, "Loading...", "loading_users", getActivity());
 
         }
@@ -184,7 +186,7 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
         {
             addMetaDataToJson();
-
+Gson gson=new Gson();
             try {
                 Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
                         FastSave.getInstance().getString("CRLid", "no_crl"),
@@ -199,7 +201,7 @@ public class NotificationFragment extends Fragment implements NotificationHolder
                 Log.e("json : ", json);
 
                 if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
-                    NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+                   // NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
                 }
             } catch (Exception e){
                 Utility.dismissLoadingDialog();
@@ -246,13 +248,13 @@ public class NotificationFragment extends Fragment implements NotificationHolder
             }
         }
         else if (header.equalsIgnoreCase("AssignTablet")) {
-            Log.e("responseAssignTablet : ", response1);
+            Log.e("responseAssignTablet : ", response);
 /*            Gson gson = new Gson();
             API_Response apiResponse;
             Type json = new TypeToken<API_Response>() {
             }.getType();
             apiResponse = gson.fromJson(response1, json);*/
-            Toast.makeText(getActivity(), "Tablet Assigned.", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "Tablet Assigned.", Toast.LENGTH_SHORT).show();
         }
     }
 
