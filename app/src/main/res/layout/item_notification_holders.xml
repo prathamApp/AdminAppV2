@@ -57,13 +57,15 @@
         android:layout_toEndOf="@+id/iv_tabHolderImage"
         android:layout_below="@+id/ll_tabHolderDetail"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tv_Type"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/btn_acknowledege"
+            android:fontFamily="@font/glacialindifferencebold"
             android:text="20 Tablet"
-            android:fontFamily="@font/glacialindifferenceregular"
-            android:textColor="@color/green_700"/>
+            android:textColor="@color/button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_acknowledege"

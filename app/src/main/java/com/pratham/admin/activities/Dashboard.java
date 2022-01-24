@@ -133,7 +133,7 @@ public class Dashboard extends BaseActivity implements DashRVClickListener, Conn
                         // Log and toast
                         //  String msg = getString(R.string.msg_token_fmt, token);
                         Log.d("FIREBASE", token);
-                        Toast.makeText(Dashboard.this, token, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Dashboard.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
 

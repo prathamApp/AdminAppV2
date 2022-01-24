@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +27,12 @@ import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.database.AppDatabase;
 import com.pratham.admin.interfaces.NetworkCallListener;
+import com.pratham.admin.modalclasses.API_Response;
 import com.pratham.admin.modalclasses.CRL;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.MetaData;
 import com.pratham.admin.modalclasses.Model_AssignTab;
+import com.pratham.admin.modalclasses.Model_Notification;
 import com.pratham.admin.modalclasses.Model_Role;
 import com.pratham.admin.modalclasses.Model_User;
 import com.pratham.admin.modalclasses.ProgramsModal;
@@ -58,6 +61,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.pratham.admin.util.APIs.AcknowledgeDevice;
 import static com.pratham.admin.util.APIs.assignTabletAPI;
 
 @SuppressLint("NonConstantResourceId")
@@ -72,7 +76,10 @@ public class NotificationFragment extends Fragment implements NotificationHolder
     @ViewById(R.id.tv_noDataFound)
     TextView tv_noDataFound;
 
-    private List<CRL> crlList = new ArrayList<>();
+    @ViewById(R.id.notification_layout)
+    RelativeLayout notification_layout;
+
+    private List<Model_Notification> crlList = new ArrayList<>();
    private NotificationHoldersAdapter notificationHoldersAdapter;
 
 
@@ -136,12 +143,12 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
     private void filter(String text) {
         //new array list that will hold the filtered data
-        ArrayList<CRL> filterdNames = new ArrayList<>();
+        ArrayList<Model_Notification> filterdNames = new ArrayList<>();
 
         //looping through existing elements
         for (int i = 0; i < crlList.size(); i++) {
-            final String byName = crlList.get(i).getFirstName();
-            final String byRole = crlList.get(i).getRoleName();
+            final String byName = crlList.get(i).getAssignByName();
+            final String byRole = crlList.get(i).getAssignToName();
             //if the existing elements contains the search input
             if (byName.toLowerCase().contains(text.toLowerCase())
                     || byRole.toLowerCase().contains(text.toLowerCase())) {
@@ -158,37 +165,33 @@ public class NotificationFragment extends Fragment implements NotificationHolder
         if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
             String url = APIs.getAcknowledgeList + FastSave.getInstance().getString("CRLid", "no_crl");
             Log.i("urls",url);
-            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.getAllUsers, "Loading...", "loading_users", getActivity());
+            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, url, "Loading...", "loading_users", getActivity());
 
         }
     }
 
-    private void prepareData() {
-        crlList = AppDatabase.getDatabaseInstance(getActivity()).getCRLdao().getCRLsByReportingPerson(FastSave.getInstance().getString("CRLid", ""));
-        Log.e("CRL List : ", String.valueOf(crlList.size()));
-
-    }
 
 
 
     @Override
-    public void tabHolderItemClicked(View v, CRL crl, int position) {
-        for (CRL crl1 : notificationHoldersAdapter.getCrlList()) {
-            if (crl1.getCRLId().equalsIgnoreCase(crl.getCRLId())) {
-                crl1.setSelected(true);
-               // assigneePersonId = crl1.getCRLId();
-                //assigneePersonName = crl1.getFirstName();
-            } else
-                crl1.setSelected(false);
+    public void tabHolderItemClicked(View v, Model_Notification Model_Notification, int position) {
+        for (Model_Notification crl1 : notificationHoldersAdapter.getnotificationList()) {
+
         }
 //        temp.set(position, modalGroup);
  //       notificationHoldersAdapter.notifyDataSetChanged();
 
         {
+            Utility.showLoadingDialog(getActivity());
             addMetaDataToJson();
-Gson gson=new Gson();
+            Gson gson=new Gson();
+
+
+
+
+
             try {
-                Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
+               /* Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
                         FastSave.getInstance().getString("CRLid", "no_crl"),
                         FastSave.getInstance().getString("CRLname", "no_crl"),
                         assigneePersonId,
@@ -198,10 +201,36 @@ Gson gson=new Gson();
                         metaDataJSON);
 
                 String json = gson.toJson(model_assignTab);
+                Log.e("json : ", json);*/
+
+
+                JSONArray jsonArray = new JSONArray();
+                String toid = Model_Notification.getAssignById();
+                String fromid = Model_Notification.getAssignToId();
+                String oldstatus = getoldstatus(Model_Notification.getStatus());
+                String status = getstatus(Model_Notification.getStatus());
+               String AcknowledDateTime= new Utility().GetCurrentDateNew();
+                for(int i=0;i<Model_Notification.getLstackdevice().size();i++)
+                {
+
+
+                   DeviseList getData=Model_Notification.getLstackdevice().get(i);
+                    JSONObject DataObject = new JSONObject();
+                    DataObject.put("fromid",fromid);
+                    DataObject.put("toid",toid);
+                    DataObject.put("oldstatus",oldstatus);
+                    DataObject.put("status",status);
+                    DataObject.put("AcknowledDateTime",AcknowledDateTime);
+                    DataObject.put("serialNo",getData.getSerialno());
+
+                    jsonArray.put(DataObject);
+                }
+
+                String json = jsonArray.toString();
                 Log.e("json : ", json);
 
                 if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
-                   // NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+                    NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, AcknowledgeDevice, "UPLOADING ... ", json, "AcknowledgeDevice");
                 }
             } catch (Exception e){
                 Utility.dismissLoadingDialog();
@@ -213,9 +242,9 @@ Gson gson=new Gson();
     }
 
     @Override
-    public void tabHolderDetails(CRL crl) {
+    public void tabHolderDetails(Model_Notification model_Notification) {
         /*Bundle tabHolderDetail = new Bundle();
-        tabHolderDetail.putParcelable("TabHolder_Detail",  crl);
+        tabHolderDetail.putParcelable("TabHolder_Detail",  model_Notification);
         Utility.showFragment(getActivity(), new CRL_ProfileFragment_(),R.id.fragment_container,
                 tabHolderDetail, CRL_ProfileFragment_.class.getSimpleName());*/
     }
@@ -235,26 +264,40 @@ Gson gson=new Gson();
                 tabholdersResponse = new JSONArray(response);
 
                 if (tabholdersResponse.length() > 0) {
-                    Log.i("load",tabholdersResponse.toString());
-                    Type tabholderList = new TypeToken<ArrayList<CRL>>() {
+                    Log.i("load", tabholdersResponse.toString());
+                    Type tabholderList = new TypeToken<ArrayList<Model_Notification>>() {
                     }.getType();
+                    crlList.clear();
                     crlList = gson.fromJson(response.toString(), tabholderList);
-                    Log.e("crl : ", String.valueOf(crlList.size()));
+                    Log.e("Model_Notification : ", String.valueOf(crlList.size()));
                     initializeAdapter();
                     Utility.dismissLoadingDialog();
+                } else {
+                    Utility.dismissLoadingDialog();
+                    tv_noDataFound.setVisibility(View.VISIBLE);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else if (header.equalsIgnoreCase("AssignTablet")) {
+        } else if (header.equalsIgnoreCase("AcknowledgeDevice")) {
             Log.e("responseAssignTablet : ", response);
-/*            Gson gson = new Gson();
+
+
+            Utility.dismissLoadingDialog();
+            Log.e("responseReplace", response);
+
             API_Response apiResponse;
             Type json = new TypeToken<API_Response>() {
             }.getType();
-            apiResponse = gson.fromJson(response1, json);*/
-           // Toast.makeText(getActivity(), "Tablet Assigned.", Toast.LENGTH_SHORT).show();
+            apiResponse = gson.fromJson(response, json);
+
+
+            Toast.makeText(getActivity(), apiResponse.getErrorDesc(), Toast.LENGTH_SHORT).show();
+            storeManagerAPI();
+            //Utility.showSnackbar(getActivity(), notification_layout, apiResponse.getErrorDesc());
+           // requireActivity().getSupportFragmentManager().popBackStack();
+
+
         }
     }
 
@@ -279,5 +322,30 @@ Gson gson=new Gson();
         }
     }
 
+    public String getstatus(String status)
+    {
+        String oldstatus = "";
+
+        if(status.contains("Lost"))
+            oldstatus = "Stolen";
+        else if(status.contains("Replace"))
+            oldstatus = "Damaged";
+        else
+            oldstatus = "Working";
+        return oldstatus;
+    }
+
+    public String getoldstatus(String status)
+    {
+        String oldstatus = "";
+
+        if(status.contains("Lost"))
+            oldstatus = "Lost";
+        else if(status.contains("Replace"))
+            oldstatus = "Replace";
+        else
+            oldstatus = "Assign";
+        return oldstatus;
+    }
 
 }

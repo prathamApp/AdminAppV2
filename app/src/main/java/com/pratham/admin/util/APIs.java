@@ -245,4 +245,7 @@ public class APIs {
 
     // Device List API
     public static final String getAcknowledgeList = "http://swap.prathamcms.org/api/Acknowledge/GetAcknowledgeDevice?userid=";
+
+    // Device List API
+    public static final String AcknowledgeDevice = "http://swap.prathamcms.org/API/Acknowledge/AcknowledgeDevice";
 }

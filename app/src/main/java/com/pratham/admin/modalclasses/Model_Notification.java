@@ -8,20 +8,31 @@ public class Model_Notification {
     String AssignToId;
     String AssignByName;
     String AssignToName;
-    String Status;
-    List<DeviseList> TabList;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    String status;
+    String Ackstatus;
+    List<DeviseList> lstackdevice;
 
 
     public Model_Notification(){}
 
-    public Model_Notification(String AssignDate, String AssignById, String AssignToId, String AssignByName, String AssignToName, String Status, List<DeviseList> TabList) {
+    public Model_Notification(String AssignDate, String AssignById, String AssignToId, String AssignByName, String AssignToName, String status,String Ackstatus, List<DeviseList> lstackdevice) {
         this.AssignDate = AssignDate;
         this.AssignById = AssignById;
         this.AssignToId = AssignToId;
         this.AssignByName = AssignByName;
         this.AssignToName = AssignToName;
-        this.Status = Status;
-        this.TabList = TabList;
+        this.status = status;
+        this.Ackstatus = Ackstatus;
+        this.lstackdevice = lstackdevice;
 
     }
 
@@ -65,19 +76,21 @@ public class Model_Notification {
         AssignToName = assignToName;
     }
 
-    public String getStatus() {
-        return Status;
+
+
+    public String getAckstatus() {
+        return Ackstatus;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setAckstatus(String ackstatus) {
+        Ackstatus = ackstatus;
     }
 
-    public List<DeviseList> getTabList() {
-        return TabList;
+    public List<DeviseList> getLstackdevice() {
+        return lstackdevice;
     }
 
-    public void setTabList(List<DeviseList> tabList) {
-        TabList = tabList;
+    public void setLstackdevice(List<DeviseList> lstackdevice) {
+        this.lstackdevice = lstackdevice;
     }
 }

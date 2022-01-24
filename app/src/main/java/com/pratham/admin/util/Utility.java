@@ -61,7 +61,7 @@ import static com.pratham.admin.util.APIs.requestTabletAPI;
 public class Utility {
 
     private final DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
-    private final DateFormat dateFormatnew = new SimpleDateFormat("yy_MM_dd_HH_mm_ss", Locale.ENGLISH);
+    private final DateFormat dateFormatnew = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
     private final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
     private final DateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
     public static String targetPath = "";
@@ -399,6 +399,26 @@ public class Utility {
 
     //show snackbar
     public static void showSnackbar(Context context, View v, int message){
+        Snackbar snackbar = Snackbar.make(v, message, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .setAction("OKAY", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String msg = String.valueOf(message);
+                        if(msg.equalsIgnoreCase(String.valueOf(R.string.replace_request_sent_success))){
+                            EventMessage startUpdate = new EventMessage();
+                            startUpdate.setMessage(String.valueOf(R.string.replace_request_sent_success));
+                            EventBus.getDefault().post(startUpdate);
+                        } else if(msg.equalsIgnoreCase(String.valueOf(R.string.report_lost))){
+                            EventMessage startUpdate = new EventMessage();
+                            startUpdate.setMessage(String.valueOf(R.string.report_lost));
+                            EventBus.getDefault().post(startUpdate);
+                        }
+                    }
+                });
+        snackbar.setActionTextColor(Color.RED);
+        snackbar.show();
+    }
+    public static void showSnackbar(Context context, View v, String message){
         Snackbar snackbar = Snackbar.make(v, message, BaseTransientBottomBar.LENGTH_INDEFINITE)
                 .setAction("OKAY", new View.OnClickListener() {
                     @Override

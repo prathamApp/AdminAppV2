@@ -238,7 +238,7 @@ public class ReplaceFormFragment extends Fragment implements NetworkCallListener
                                 tabletSerialId,
                                 tabletDeviceId,
                                 FastSave.getInstance().getString("reportingPersonId",""),
-                                new Utility().GetCurrentDateTime(false),
+                                new Utility().GetCurrentDateNew(),
                                 et_contactNumber.getText().toString(),
                                 screenDamage,
                                 bodyDamage,

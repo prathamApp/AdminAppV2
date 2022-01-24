@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.pratham.admin.R;
+import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.modalclasses.CRL;
+import com.pratham.admin.modalclasses.Model_Notification;
 import com.pratham.admin.ui.blockLeader.tabHolders.TabHolderListItemListener;
 
 import java.util.ArrayList;
@@ -25,12 +28,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class NotificationHoldersAdapter extends RecyclerView.Adapter<NotificationHoldersAdapter.MyViewHolder> {
-    List<CRL> crlList;
+    List<Model_Notification> notificationList;
     Context context;
     private final NotificationHolderListItemListener tabHolderListItemListener;
 
-    public NotificationHoldersAdapter(Context context, List crlList, NotificationHolderListItemListener tabHolderListItemListener) {
-        this.crlList = crlList;
+    public NotificationHoldersAdapter(Context context, List notificationList, NotificationHolderListItemListener tabHolderListItemListener) {
+        this.notificationList = notificationList;
         this.context = context;
         this.tabHolderListItemListener = tabHolderListItemListener;
     }
@@ -45,28 +48,61 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         //  if(deviseList.get(position).getPratham_ID()!=null)
-        holder.tv_name.setText(crlList.get(position).getFirstName());
-        holder.tv_detail.setText(crlList.get(position).getMobile());
-        // if(deviseList.get(position).getQR_ID()!=null)
-        if (crlList.get(position).isSelected())
-            holder.iv_crlSelected.setVisibility(View.VISIBLE);
+
+        Log.i("CRLid",FastSave.getInstance().getString("CRLid", "no_crl"));
+        holder.tv_detail.setText(notificationList.get(position).getAssignDate());
+        if(notificationList.get(position).getAssignById().equals(FastSave.getInstance().getString("CRLid", "no_crl")))
+        {
+            holder.tv_name.setText(notificationList.get(position).getAssignToName());
+            holder.btn_acknowledege.setVisibility(View.GONE);
+            if(notificationList.get(position).getStatus().contains("Replace") || notificationList.get(position).getStatus().contains("Damaged"))
+            holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Replace Tablets "+(notificationList.get(position).getAckstatus().equals("Acknowledged")?"Received":"Sent"));
+            else if(notificationList.get(position).getStatus().contains("Lost") || notificationList.get(position).getStatus().contains("Stolen"))
+                holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Lost Tablets Reported");
+            else
+                holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Tablets "+(notificationList.get(position).getAckstatus().equals("Acknowledged")?"Received":"Sent"));
+        }
+        else if(notificationList.get(position).getAssignToId().equals(FastSave.getInstance().getString("CRLid", "no_crl")))
+        {
+            holder.tv_name.setText(notificationList.get(position).getAssignByName());
+            //holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Tablets Received");
+            if(notificationList.get(position).getStatus().contains("Replace") || notificationList.get(position).getStatus().contains("Damaged"))
+                holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Replace Tablets "+(notificationList.get(position).getAckstatus().equals("Acknowledged")?"Sent":"Received"));
+            else if(notificationList.get(position).getStatus().contains("Lost") || notificationList.get(position).getStatus().contains("Stolen"))
+                holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Lost Tablets Reported");
+            else
+                holder.tv_Type.setText(notificationList.get(position).getLstackdevice().size() +" Tablets "+(notificationList.get(position).getAckstatus().equals("Acknowledged")?"Sent":"Received")) ;
+
+
+            if(notificationList.get(position).getAckstatus().equals("Acknowledged"))
+            holder.btn_acknowledege.setVisibility(View.GONE);
+                else
+            holder.btn_acknowledege.setVisibility(View.VISIBLE);
+        }
+        //holder.tv_name.setText(notificationList.get(position).getAssignByName());
+
+        if(notificationList.get(position).getAckstatus().equals("Acknowledged"))
+            holder.tv_Type.setTextColor(context.getResources().getColor(R.color.green_700));
         else
+            holder.tv_Type.setTextColor(context.getResources().getColor(R.color.red_400));
+
             holder.iv_crlSelected.setVisibility(View.GONE);
 
     }
 
     @Override
     public int getItemCount() {
-        return crlList.size();
+        return notificationList.size();
     }
 
-    public List<CRL> getCrlList() {
-        return crlList;
+    public List<Model_Notification> getnotificationList() {
+        return notificationList;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name;
         TextView tv_detail;
+        TextView tv_Type;
         ImageView iv_call;
         MaterialButton btn_acknowledege;
         ImageView iv_sms;
@@ -78,6 +114,7 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
             super(itemView);
             tv_name = itemView.findViewById(R.id.tv_tabHolderName);
             tv_detail = itemView.findViewById(R.id.tv_tabHolderDetail);
+            tv_Type = itemView.findViewById(R.id.tv_Type);
             iv_call = itemView.findViewById(R.id.iv_call);
             iv_sms = itemView.findViewById(R.id.iv_message);
             btn_acknowledege = itemView.findViewById(R.id.btn_acknowledege);
@@ -85,32 +122,20 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
             iv_tabHolderImage = itemView.findViewById(R.id.iv_tabHolderImage);
             ll_tabHolderDetail = itemView.findViewById(R.id.ll_tabHolderDetail);
 
-            iv_call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setData(Uri.parse("tel: " + crlList.get(getAdapterPosition()).getMobile()));
-                    if (ActivityCompat.checkSelfPermission(context,
-                            Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) { //todo check
-                        //ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE},1);
-                    }
-                    context.startActivity(callIntent);
-                }
-            });
             btn_acknowledege.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tabHolderListItemListener.tabHolderItemClicked(itemView, crlList.get(getAdapterPosition()), getAdapterPosition());
+                    tabHolderListItemListener.tabHolderItemClicked(itemView, notificationList.get(getAdapterPosition()), getAdapterPosition());
                 }
             });
 
 
             ll_tabHolderDetail.setOnClickListener(v ->
-                    tabHolderListItemListener.tabHolderItemClicked(itemView, crlList.get(getAdapterPosition()), getAdapterPosition())
+                    tabHolderListItemListener.tabHolderItemClicked(itemView, notificationList.get(getAdapterPosition()), getAdapterPosition())
             );
 
             iv_tabHolderImage.setOnClickListener(v ->
-                    tabHolderListItemListener.tabHolderDetails(crlList.get(getAdapterPosition()))
+                    tabHolderListItemListener.tabHolderDetails(notificationList.get(getAdapterPosition()))
             );
 
             /*
@@ -135,8 +160,10 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
         }
     }
 
-    public void filterList(ArrayList<CRL> filterdNames) {
-        this.crlList = filterdNames;
+    public void filterList(ArrayList<Model_Notification> filterdNames) {
+        this.notificationList = filterdNames;
         notifyDataSetChanged();
     }
+
+
 }

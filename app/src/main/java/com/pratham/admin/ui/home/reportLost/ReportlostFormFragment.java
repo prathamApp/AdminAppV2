@@ -260,7 +260,7 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
                     Model_ReportLost model_reportLost = new Model_ReportLost(FastSave.getInstance().getString("CRLid", ""),
                             tabletSerialId,
                             tabletDeviceId,
-                            new Utility().GetCurrentDateTime(false),
+                            new Utility().GetCurrentDateNew(),
                             et_contactNumber.getText().toString(),
                             tv_lastSeenDate.getText().toString(),
                             tabletBrand,
