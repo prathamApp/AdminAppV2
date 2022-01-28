@@ -417,7 +417,6 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
 
     //get blocks directly
     private void getVillageStatewise() {
-        //  if (ConnectionManager.getConnectionManager().checkConnection(this)) {
         if (internetIsAvailable) {
 //            selectedState = spinner_state.getSelectedItemPosition();
 //            selectedStateName = states[selectedState];
