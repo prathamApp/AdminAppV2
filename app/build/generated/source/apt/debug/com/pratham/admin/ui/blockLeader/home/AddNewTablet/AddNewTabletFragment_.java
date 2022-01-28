@@ -113,6 +113,7 @@ public final class AddNewTabletFragment_
         this.et_donor = hasViews.internalFindViewById(R.id.et_donor);
         View view_iv_refresh = hasViews.internalFindViewById(R.id.iv_refresh);
         View view_btn_addToInventory = hasViews.internalFindViewById(R.id.btn_addToInventory);
+        View view_iv_backButton = hasViews.internalFindViewById(R.id.iv_backButton);
 
         if (view_iv_refresh!= null) {
             view_iv_refresh.setOnClickListener(new OnClickListener() {
@@ -140,6 +141,16 @@ public final class AddNewTabletFragment_
                 @Override
                 public void onClick(View view) {
                     AddNewTabletFragment_.this.sendTablet();
+                }
+            }
+            );
+        }
+        if (view_iv_backButton!= null) {
+            view_iv_backButton.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    AddNewTabletFragment_.this.backButton();
                 }
             }
             );

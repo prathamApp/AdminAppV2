@@ -7,11 +7,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.RequiresApi;
+
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -29,6 +35,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.kyleduo.blurpopupwindow.library.BlurPopupWindow;
 import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
 import com.pratham.admin.activities.SelectVillageDialog;
@@ -137,11 +144,14 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     @ViewById(R.id.tv_YounthCount)
     TextView tv_YounthCount;
 
+    @ViewById(R.id.tv_dialog_title)
+    TextView tv_dialog_title;
+
     Dialog dialog;
     String[] stateCode;
     List<String> selectedVillage = new ArrayList();
     String selectedBlock = "NO BLOCKS";
-    public static String selectedProgramID= null;
+    public static String selectedProgramID = null;
     public static String selectedProgramName = null;
     Animation animation;
     boolean apiLoadFlag = false;
@@ -151,7 +161,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     int groupLoadCount = 0;
     int studLoadCount = 0;
     int countAser = 0;
-    int youthLoadCount =0;
+    int youthLoadCount = 0;
     private String[] states;
     private int selectedState;
     private String selectedStateName = "MH";
@@ -167,10 +177,11 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     private List<Youth> youthList = new ArrayList();
     private ArrayList<ProgramsModal> programsList = new ArrayList<>();
     List<String> prgrms = new ArrayList<>();
+    JSONArray programResponse;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @AfterViews
-    public void init(){
+    public void init() {
         checkConnection();
         //   spinner_village.setEnabled(false);
         spinner_block.setEnabled(false);
@@ -180,7 +191,9 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, states);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_state.setAdapter(adapter);
-        loadprogams();
+        if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork())
+            loadprogams();
+        else Toast.makeText(this, "No Internet Connection!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -190,42 +203,19 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     }
 
     private void loadprogams() {
-        //NetworkCalls.getNetworkCallsInstance(this).getRequest(this, url, "Loading Programs..", "loading_devises");
-
-        AndroidNetworking.get(APIs.programsAPI)
-                .addHeaders("Content-Type", "application/json").build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        programsList.clear();
-                        Gson gson = new Gson();
-                        Type listType = new TypeToken<List<ProgramsModal>>() {
-                        }.getType();
-                        programsList = gson.fromJson(response.toString(), listType);
-                        if (programsList != null) {
-                            ProgramsModal modalProgram = new ProgramsModal();
-                            modalProgram.setProgramId(-1);
-                            modalProgram.setProgramName("Select Program");
-                            LinkedHashSet hs = new LinkedHashSet(programsList);//to remove redundant values
-                            programsList.clear();
-                            programsList.addAll(hs);
-                            programsList.add(0, modalProgram);
-                            //pullDataView.showProgram(prgrmList);
-                            showPrograms(programsList);
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-                        // handle error
-                    }
-                });
+        NetworkCalls.getNetworkCallsInstance(this).getRequestNew(this, APIs.programsAPI, "Loading...", "programApi", this);
     }
 
-    private void showPrograms(final List<ProgramsModal> programsModalList){
+    private void showPrograms(final List<ProgramsModal> programsModalList) {
+        prgrms.clear();
+        ProgramsModal modalProgram = new ProgramsModal();
+        modalProgram.setProgramId(-1);
+        modalProgram.setProgramName("Program");
+        programsList.add(0, modalProgram);
         for (ProgramsModal mp : programsList) {
             prgrms.add(mp.getProgramName());
         }
+
         Toast.makeText(this, "Please Select Program", Toast.LENGTH_SHORT).show();
         ArrayAdapter programAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, prgrms);
         spinner_program.setAdapter(programAdapter);
@@ -238,8 +228,8 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
                 selectedProgramID = String.valueOf(programsModalList.get(position).getProgramId());
                 selectedProgramName = programsModalList.get(position).getProgramName();
 
-                if(spinner_program.getSelectedItemPosition() > 0)
-                loadStates();
+                if (spinner_program.getSelectedItemPosition() > 0)
+                    loadStates();
                 else {
                     spinner_state.setEnabled(false);
                     spinner_state.setSelection(0);
@@ -254,7 +244,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
         });
     }
 
-    private void loadStates(){
+    private void loadStates() {
         spinner_state.setEnabled(true);
         spinner_state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -284,7 +274,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
                 String url;
                 stateCode = getResources().getStringArray(R.array.india_states_shortcode);
                 url = APIs.pullVillagesServerURL + spID + APIs.SERVER_STATE + stateCode[selectedState];
-                loadAPI(url,village,spName);
+                loadAPI(url, village, spName);
             } else {
                 //Toast.makeText(this, "Please Select State", Toast.LENGTH_SHORT).show();
                 spinner_block.setSelection(0);
@@ -292,8 +282,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
                 spinner_block.setEnabled(false);
                 //    spinner_village.setEnabled(false);
             }
-        }
-        else {
+        } else {
             spinner_state.setSelection(0);
             Toast.makeText(this, R.string.noInterntCon, Toast.LENGTH_SHORT).show();
         }
@@ -317,7 +306,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
                         apiLoadFlag = false;
                         String crlURL;
                         crlURL = APIs.pullCrlsServerURL + selectedProgramID + APIs.SERVER_STATECODE + stateCode[selectedState];
-                        Log.e("pullData",crlURL);
+                        Log.e("pullData", crlURL);
                         loadAPI(crlURL, APIs.CRL, selectedProgramName);
                     }
                     btn_saveData.setEnabled(true);
@@ -360,12 +349,19 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     }
 
     private void showDialoginApiCalling(String program, String type) {
+
         if (dialog == null) {
-            dialog = new ProgressDialog(this);
+            dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCancelable(true);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setContentView(R.layout.dialog_loading_api);
         }
-        dialog.setTitle(getString(R.string.pulling) + program + " " + type);
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        TextView tv_dialog_title = dialog.findViewById(R.id.tv_dialog_title);
+        tv_dialog_title.setText(getString(R.string.pulling) + program + " " + type);
         dialog.show();
     }
 
@@ -419,7 +415,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
         studentList.addAll(studentMoadal);
         if (studLoadCount == villageId.size()) {
-            loadAserData(pullAserURL+program);
+            loadAserData(pullAserURL + program);
             dismissShownDialog();
             //pullStorePersons();
             // mayur cha code
@@ -431,7 +427,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
         aserList.clear();
         countAser = 0;
         for (String id : selectedVillage) {
-            String loadAserURL = url+ SERVER_VILLAGE +id;
+            String loadAserURL = url + SERVER_VILLAGE + id;
             downloadAserData(loadAserURL);
         }
     }
@@ -479,7 +475,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
         LinkedHashSet hs = new LinkedHashSet();
         if (villageList.size() == 0) {
             blockNames.add("NO BLOCK");
-            } else {
+        } else {
             blockNames.add("Select Block");
             for (int i = 0; i < villageList.size(); i++) {
                 blockNames.add(villageList.get(i).getBlock());
@@ -541,71 +537,22 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
         ll_pullDetails.setVisibility(View.VISIBLE);
 
-/*
-        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(SelectProgram.this, android.R.style.Theme_Material_Dialog);
-        dialogBuilder.setCancelable(false);
-        dialogBuilder.setTitle(R.string.dataPreview);
-        dialogBuilder.setMessage("CRLList : " + CRLList.size() + "\nstudentList : " + studentList.size() + "\ngroupsList : " + groupsList.size() + "\nCourseList : " + CourseList.size() + "\nCoachList : " + CoachList.size() + "\nCommunityList : " + CommunityList.size() + "\nCompletionList : " + CompletionList.size() + "\nAserList : " + aserList.size() + "\nYouthList : " + youthList.size());
-*/
-        tv_CrlCount.setText("Total CRL's : "+CRLList.size());
-        tv_StudentCount.setText("Total Students : "+studentList.size());
-        tv_GroupCount.setText("Total Groups : "+groupsList.size());
-        tv_CourseCount.setText("Total Courses : "+CourseList.size());
-        tv_CoachCount.setText("Total Coaches : "+CoachList.size());
-        tv_CommunityCount.setText("Total Communities : "+CommunityList.size());
-        tv_CompletionCount.setText("Total Completions : "+CompletionList.size());
-        tv_AserCount.setText("Aser Count : "+aserList.size());
-        tv_YounthCount.setText("Total Youths : "+youthList.size());
-/*        if (CRLList.size() > 0) {
-            dialogBuilder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    try {
-                        new SaveDataTask(SelectProgram.this, SelectProgram.this, CRLList, studentList, groupsList, villageId, CourseList, CoachList, CommunityList, CompletionList, aserList, youthList).execute();
-                        //save all villages if want only selected then uncomment above line
-                        // new SaveDataTask(SelectProgram.this, SelectProgram.this, CRLList, studentList, groupsList, villageList, CourseList, CoachList, CommunityList, CompletionList, aserList).execute();
-                    } catch (Exception e) {
-                        Modal_Log log = new Modal_Log();
-                        log.setCurrentDateTime(new Utility().GetCurrentDate());
-                        log.setErrorType("ERROR");
-                        log.setExceptionMessage(e.getMessage());
-                        log.setExceptionStackTrace(e.getStackTrace().toString());
-                        log.setMethodName("SelectProgram" + "_" + "SaveData");
-                        log.setDeviceId("");
-                        AppDatabase.getDatabaseInstance(SelectProgram.this).getLogDao().insertLog(log);
-                        BackupDatabase.backup(SelectProgram.this);
-
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-        dialogBuilder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                btn_pullData.startAnimation(animation);
-                btn_saveData.setEnabled(true);
-                CRLList.clear();
-                studentList.clear();
-                groupsList.clear();
-                villageId.clear();
-                CourseList.clear();
-                CoachList.clear();
-                CommunityList.clear();
-                CompletionList.clear();
-                spinner_block.setSelection(0);
-                spinner_state.setSelection(0);
-                aserList.clear();
-                youthList.clear();
-            }
-        });*/
-
-//        dialogBuilder.create();
-//        dialogBuilder.show();
+        tv_CrlCount.setText("Total CRL's : " + CRLList.size());
+        tv_StudentCount.setText("Total Students : " + studentList.size());
+        tv_GroupCount.setText("Total Groups : " + groupsList.size());
+        tv_CourseCount.setText("Total Courses : " + CourseList.size());
+        tv_CoachCount.setText("Total Coaches : " + CoachList.size());
+        tv_CommunityCount.setText("Total Communities : " + CommunityList.size());
+        tv_CompletionCount.setText("Total Completions : " + CompletionList.size());
+        tv_AserCount.setText("Aser Count : " + aserList.size());
+        tv_YounthCount.setText("Total Youths : " + youthList.size());
     }
 
     @Click(R.id.btn_confirm)
-    public void confirm(){
+    public void confirm() {
         try {
-            new SaveDataTask(SelectProgram.this, SelectProgram.this, CRLList, studentList, groupsList, villageId, CourseList, CoachList, CommunityList, CompletionList, aserList, youthList).execute();
+            if (CRLList.size() > 0)
+                new SaveDataTask(SelectProgram.this, SelectProgram.this, CRLList, studentList, groupsList, villageId, CourseList, CoachList, CommunityList, CompletionList, aserList, youthList).execute();
             //save all villages if want only selected then uncomment above line
             // new SaveDataTask(SelectProgram.this, SelectProgram.this, CRLList, studentList, groupsList, villageList, CourseList, CoachList, CommunityList, CompletionList, aserList).execute();
         } catch (Exception e) {
@@ -625,7 +572,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     }
 
     @Click(R.id.btn_cancel)
-    public void cancel(){
+    public void cancel() {
         btn_pullData.startAnimation(animation);
         btn_saveData.setEnabled(true);
         CRLList.clear();
@@ -642,13 +589,14 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
         youthList.clear();
         ll_pullDetails.setVisibility(View.GONE);
     }
+
     private void saveDataToSharedPreference() {
         SharedPreferences sharedPref = this.getSharedPreferences("prathamInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("program", selectedProgramName);
         editor.putString("state", selectedStateName);
         editor.putString("village", selectedVillage.get(0).toString());
-        editor.putString("programId",selectedProgramID);
+        editor.putString("programId", selectedProgramID);
         editor.commit();
     }
 
@@ -797,7 +745,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
     private void pullCoaches(String vID) {
         String couchUrl = PullCoaches;
-        showDialoginApiCalling(selectedProgramName, "Pulling Coaches !!!");
+        showDialoginApiCalling(selectedProgramName, "Pulling Coaches.");
         couchUrl = couchUrl + SERVER_VILLAGE + vID + SERVER_PROGRAMID + selectedProgramID;
 
         NetworkCalls.getNetworkCallsInstance(this).getRequestWithautLoader(this, couchUrl, "couchUrl");
@@ -810,18 +758,18 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
     }
 
     private void pullCourses() {
-        showDialoginApiCalling(selectedProgramName, "Pulling Courses !!!");
+        showDialoginApiCalling(selectedProgramName, "Pulling Courses.");
         NetworkCalls.getNetworkCallsInstance(this).getRequestWithautLoader(this, PullCourses, "PullCourses");
     }
 
     private void pullHLCourseCompletion(String vID) {
-        showDialoginApiCalling(selectedProgramName, "Pulling Course Completion !!!");
+        showDialoginApiCalling(selectedProgramName, "Pulling Course Completion.");
         String PullHLCourseCompletionUrl = PullHLCourseCompletion + SERVER_VILLAGE + vID + SERVER_PROGRAMID + selectedProgramID;
         NetworkCalls.getNetworkCallsInstance(this).getRequestWithautLoader(this, PullHLCourseCompletionUrl, "PullHLCourseCompletionUrl");
     }
 
     private void pullYouth(String vID) {
-        showDialoginApiCalling(selectedProgramName, "Pulling Youth !!!");
+        showDialoginApiCalling(selectedProgramName, "Pulling Youth.");
         String PullHLYouthUrl = pullYouthsServerURL + selectedProgramID + SERVER_VILLAGE + vID;
         //String PullHLYouthUrl = "http://swap.prathamcms.org/api/HLYouth/GetHLYouthInfo?ProgramId=1&VillageId=2735";
         NetworkCalls.getNetworkCallsInstance(this).getRequestWithautLoader(this, PullHLYouthUrl, "PullYouth");
@@ -829,7 +777,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
     @Override
     public void onResponce(String response, String header, String type, String program) {
-        Log.e("json : ",response);
+        Log.e("json : ", response);
         if (header.equals("loadAPI")) {
             String json = response;
             // Toast.makeText(SelectProgram.this, json, Toast.LENGTH_LONG).show();
@@ -874,7 +822,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
                 // mayur cha code
                 formsAPI();
             }
-        }else if (header.equals("storeperson")) {
+        } else if (header.equals("storeperson")) {
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<CRL>>() {
             }.getType();
@@ -975,7 +923,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
             try {
                 Type listType = new TypeToken<ArrayList<Youth>>() {
                 }.getType();
-                Log.e("JSON : ",json);
+                Log.e("JSON : ", json);
                 ArrayList<Youth> modalYouthList = gson.fromJson(json, listType);
                 youthList.addAll(modalYouthList);
             } catch (JsonSyntaxException e) {
@@ -993,6 +941,21 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
                 e.printStackTrace();
             }
             dismissShownDialog();
+        } else if (header.equalsIgnoreCase("programApi")) {
+            try {
+                Utility.dismissLoadingDialog();
+                Gson gson = new Gson();
+                programResponse = new JSONArray(response);
+                if (programResponse.length() > 0) {
+                    Type prgmList = new TypeToken<ArrayList<ProgramsModal>>() {
+                    }.getType();
+                    programsList = gson.fromJson(response.toString(), prgmList);
+                    Log.e("prgms : ", String.valueOf(programsList.size()));
+                    showPrograms(programsList);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -1045,7 +1008,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
             }
             dismissShownDialog();
             apiLoadFlag = false;
-        }  else if (header.equals("youthUrl")) {
+        } else if (header.equals("youthUrl")) {
             errorDetected = true;
             if (!internetIsAvailable) {
                 Toast.makeText(SelectProgram.this, R.string.noInterntCon, Toast.LENGTH_LONG).show();

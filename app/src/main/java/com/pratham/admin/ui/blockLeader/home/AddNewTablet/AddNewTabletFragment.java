@@ -168,6 +168,11 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         submitTablets();
     }
 
+    @Click(R.id.iv_backButton)
+    public void backButton(){
+        requireActivity().getSupportFragmentManager().popBackStack();
+    }
+
     public void submitTablets() {
         String donor;
         if (spinner_donor.getSelectedItemPosition() != 0 && spinner_vendor.getSelectedItemPosition() != 0 &&

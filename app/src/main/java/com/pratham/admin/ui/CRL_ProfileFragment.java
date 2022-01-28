@@ -33,6 +33,7 @@ import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 import org.json.JSONArray;
@@ -110,6 +111,7 @@ public class CRL_ProfileFragment extends Fragment implements NetworkCallListener
             //String url = APIs.DeviceList + "6501";
             String url = APIs.DeviceList + crl.getCRLId();
             Log.e("url : ", url);
+
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, url, "Loading Devices..", "loading_devises", getActivity());
         } else {
             new AlertDialog.Builder(requireActivity()).setTitle("Warning").setMessage("No internet connection").setPositiveButton("Close", new DialogInterface.OnClickListener() {
@@ -168,5 +170,10 @@ public class CRL_ProfileFragment extends Fragment implements NetworkCallListener
     @Override
     public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail) {
 
+    }
+
+    @Click(R.id.iv_backButton)
+    public void backButton(){
+        requireActivity().getSupportFragmentManager().popBackStack();
     }
 }

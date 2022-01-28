@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,8 +43,9 @@ public class Home extends BaseActivity {
         // as soon as the application opens the first
         // fragment should be shown to the user
         // in this case it is algorithm fragment
-        if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("6"))
+        if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("6")) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment_()).commit();
+        }
         else if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("5") ||
                 FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("3") ||
                 FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("1") ||

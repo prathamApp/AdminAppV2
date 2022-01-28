@@ -19,9 +19,9 @@ import java.lang.Override;
 public class AssignFragment_ViewBinding implements Unbinder {
   private AssignFragment target;
 
-  private View view7f0a022e;
+  private View view7f0a0236;
 
-  private View view7f0a022f;
+  private View view7f0a0237;
 
   @UiThread
   public AssignFragment_ViewBinding(final AssignFragment target, View source) {
@@ -35,7 +35,7 @@ public class AssignFragment_ViewBinding implements Unbinder {
     target.qr_serialNo = Utils.findRequiredViewAsType(source, R.id.qr_serialNo, "field 'qr_serialNo'", EditText.class);
     target.successMessage = Utils.findRequiredViewAsType(source, R.id.successMessage, "field 'successMessage'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.qr_btn_reset, "method 'resetCamera'");
-    view7f0a022e = view;
+    view7f0a0236 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,7 +43,7 @@ public class AssignFragment_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.qr_btn_save, "method 'saveTabTrack'");
-    view7f0a022f = view;
+    view7f0a0237 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -66,9 +66,9 @@ public class AssignFragment_ViewBinding implements Unbinder {
     target.qr_serialNo = null;
     target.successMessage = null;
 
-    view7f0a022e.setOnClickListener(null);
-    view7f0a022e = null;
-    view7f0a022f.setOnClickListener(null);
-    view7f0a022f = null;
+    view7f0a0236.setOnClickListener(null);
+    view7f0a0236 = null;
+    view7f0a0237.setOnClickListener(null);
+    view7f0a0237 = null;
   }
 }

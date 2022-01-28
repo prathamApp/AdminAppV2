@@ -221,7 +221,7 @@
     <string name="preview">प्रीव्यू</string>
     <string name="savechanges">परिवर्तन जतन करे</string>
     <string name="formdatapreview">फॉर्म डाटा प्रीव्यू</string>
-    <string name="pulling">डेटा पुल हो रहा हैं&#8230;&#8230;&#8230;</string>
+    <string name="pulling">डेटा पुल हो रहा हैं </string>
     <string name="pullingCoaches">कोच पुल किये जा रहे हैं !!!</string>
     <string name="pullingCourses">कोर्स पुल किये जा रहे हैं !!!</string>
     <string name="pullingCoursesCmpl">कोर्स कम्पलीशन पुल किये जा रहे हैं !!!</string>
@@ -324,43 +324,44 @@
 
     <string-array name="india_states">
         <item>State</item>
-        <item>Andhra Pradesh(AP)</item>
-        <item>Arunachal Pradesh(AR)</item>
-        <item>Assam(AS)</item>
-        <item>Bihar(BR)</item>
-        <item>Chhattisgarh(CG)</item>
-        <item>Goa(GO)</item>
-        <item>Gujarat(GJ)</item>
-        <item>Haryana(HR)</item>
-        <item>Himachal Pradesh(HP)</item>
-        <item>Jammu and kashmir(JK)</item>
-        <item>Jharkhand(JH)</item>
-        <item>Karnataka(KN)</item>
-        <item>Kerala(KL)</item>
-        <item>Madhya Pradesh(MP)</item>
-        <item>Maharashtra(MH)</item>
-        <item>Manipur(MN)</item>
-        <item>Meghalaya(MG)</item>
-        <item>Mizoram(MZ)</item>
-        <item>Nagaland(NG)</item>
-        <item>Orissa(OD)</item>
-        <item>Punjab(PB)</item>
-        <item>Rajasthan(RJ)</item>
-        <item>Sikkim(SK)</item>
-        <item>Tamil Nadu(TN)</item>
-        <item>Telangana(TS)</item>
-        <item>Tripura(TR)</item>
-        <item>Uttarakhand(UK)</item>
-        <item>Uttar Pradesh(UP)</item>
-        <item>West Bengal(WB)</item>
-        <item>Andaman and Nicobar Islands(AN)</item>
-        <item>Chandigarh(CH)</item>
-        <item>Dadra and Nagar Haveli(DN)</item>
-        <item>Daman and Diu(DD)</item>
-        <item>Delhi(DL)</item>
-        <item>Lakshadweep(LD)</item>
-        <item>Pondicherry(PY)</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chhattisgarh</item>
+        <item>Goa</item>
+        <item>Gujarat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttarakhand</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+        <item>Andaman and Nicobar Islands</item>
+        <item>Chandigarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Lakshadweep</item>
+        <item>Pondicherry</item>
     </string-array>
+
 
     <string-array name="india_states_shortcode">
         <item>State</item>

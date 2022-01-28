@@ -18,13 +18,13 @@ import java.lang.Override;
 public class CustomDialog_ViewBinding implements Unbinder {
   private CustomDialog target;
 
-  private View view7f0a009e;
+  private View view7f0a00a1;
 
-  private View view7f0a00d7;
+  private View view7f0a00da;
 
-  private View view7f0a0094;
+  private View view7f0a0097;
 
-  private View view7f0a03b8;
+  private View view7f0a03c4;
 
   @UiThread
   public CustomDialog_ViewBinding(CustomDialog target) {
@@ -38,7 +38,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.btn_pushData, "field 'btn_pushData' and method 'uploadChanges'");
     target.btn_pushData = Utils.castView(view, R.id.btn_pushData, "field 'btn_pushData'", Button.class);
-    view7f0a009e = view;
+    view7f0a00a1 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -47,7 +47,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.clear_changes, "field 'clear_changes' and method 'clearChanges'");
     target.clear_changes = Utils.castView(view, R.id.clear_changes, "field 'clear_changes'", TextView.class);
-    view7f0a00d7 = view;
+    view7f0a00da = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_close_village, "field 'btn_close' and method 'closeDialog'");
     target.btn_close = Utils.castView(view, R.id.btn_close_village, "field 'btn_close'", ImageButton.class);
-    view7f0a0094 = view;
+    view7f0a0097 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,7 +65,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.txt_cancel, "field 'txt_cancel' and method 'skip'");
     target.txt_cancel = Utils.castView(view, R.id.txt_cancel, "field 'txt_cancel'", TextView.class);
-    view7f0a03b8 = view;
+    view7f0a03c4 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -92,13 +92,13 @@ public class CustomDialog_ViewBinding implements Unbinder {
     target.txt_message = null;
     target.recyclerView_unUploaded = null;
 
-    view7f0a009e.setOnClickListener(null);
-    view7f0a009e = null;
-    view7f0a00d7.setOnClickListener(null);
-    view7f0a00d7 = null;
-    view7f0a0094.setOnClickListener(null);
-    view7f0a0094 = null;
-    view7f0a03b8.setOnClickListener(null);
-    view7f0a03b8 = null;
+    view7f0a00a1.setOnClickListener(null);
+    view7f0a00a1 = null;
+    view7f0a00da.setOnClickListener(null);
+    view7f0a00da = null;
+    view7f0a0097.setOnClickListener(null);
+    view7f0a0097 = null;
+    view7f0a03c4.setOnClickListener(null);
+    view7f0a03c4 = null;
   }
 }

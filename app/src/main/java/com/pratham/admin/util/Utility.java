@@ -23,6 +23,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -61,7 +62,7 @@ import static com.pratham.admin.util.APIs.requestTabletAPI;
 public class Utility {
 
     private final DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
-    private final DateFormat dateFormatnew = new SimpleDateFormat("yy_MM_dd_HH_mm_ss", Locale.ENGLISH);
+    private final DateFormat dateFormatnew = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
     private final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
     private final DateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
     public static String targetPath = "";
@@ -86,7 +87,7 @@ public class Utility {
     }
 
     //custom loading dialog with lottie
-    public static void showLoadingDialog(Context context) {
+    public static void showLoadingDialog(Context context, String message) {
         try {
             if (dialogNew == null) {
                 dialogNew = new Dialog(context);
@@ -96,8 +97,10 @@ public class Utility {
                 dialogNew.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialogNew.setCancelable(true);
                 dialogNew.setCanceledOnTouchOutside(false);
-                dialogNew.setContentView(R.layout.dialog_loading);
+                dialogNew.setContentView(R.layout.dialog_loading_api);
             }
+            TextView tv_dialog_title = dialogNew.findViewById(R.id.tv_dialog_title);
+            tv_dialog_title.setText(message);
             dialogNew.show();
         } catch (Exception e) {
             e.printStackTrace();

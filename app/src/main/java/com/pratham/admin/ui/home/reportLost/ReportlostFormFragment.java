@@ -255,12 +255,12 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-                Utility.showLoadingDialog(getActivity());
+                Utility.showLoadingDialog(getActivity(), "Sending Lost Request...");
                 try {
                     Model_ReportLost model_reportLost = new Model_ReportLost(FastSave.getInstance().getString("CRLid", ""),
                             tabletSerialId,
                             tabletDeviceId,
-                            new Utility().GetCurrentDateTime(false),
+                            new Utility().GetCurrentDateNew(),
                             et_contactNumber.getText().toString(),
                             tv_lastSeenDate.getText().toString(),
                             tabletBrand,
@@ -282,6 +282,7 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
                     Log.e("json : ", json);
 
                     NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, reportLostAPI, "UPLOADING ... ", json, "ReportLostTablet");
+                    btn_reportLost.setEnabled(false);
 
                 } catch (Exception e) {
                     Utility.dismissLoadingDialog();
@@ -411,7 +412,7 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
                 Toast.makeText(getActivity(), R.string.request_failed, Toast.LENGTH_SHORT).show();
             }
         } else if (header.equalsIgnoreCase("image_push")) {
-            Log.e("response : ", response);
+            Log.e("image response : ", response);
             Utility.dismissLoadingDialog();
             Toast.makeText(getActivity(), R.string.report_lost, Toast.LENGTH_SHORT).show();
             requireActivity().getSupportFragmentManager().popBackStack();
@@ -425,7 +426,7 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
             Log.e("error", String.valueOf(anError.getErrorCode()));
             Log.e("error", anError.getErrorBody());
         } else if (header.equalsIgnoreCase("image_push")) {
-            Log.e("response : ", anError.getMessage());
+            Log.e("image error response : ", anError.getMessage());
         }
     }
 

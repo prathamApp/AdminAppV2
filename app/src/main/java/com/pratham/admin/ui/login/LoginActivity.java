@@ -160,7 +160,7 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
                         // Log and toast
                         //  String msg = getString(R.string.msg_token_fmt, token);
                         Log.d("FIREBASE", token);
-                        Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
         PackageInfo pinfo = null;

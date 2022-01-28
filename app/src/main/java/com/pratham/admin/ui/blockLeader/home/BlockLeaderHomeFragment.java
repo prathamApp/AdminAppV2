@@ -7,11 +7,15 @@ import android.content.DialogInterface;
 
 import androidx.fragment.app.Fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -525,14 +529,20 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
         dismissShownDialog();
     }
 
-
     private void showDialoginApiCalling(String program, String type) {
+
         if (dialog == null) {
-            dialog = new ProgressDialog(getActivity());
+            dialog = new Dialog(getActivity());
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCancelable(true);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setContentView(R.layout.dialog_loading_api);
         }
-        dialog.setTitle(getString(R.string.pulling) + program + " " + type);
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        TextView tv_dialog_title = dialog.findViewById(R.id.tv_dialog_title);
+        tv_dialog_title.setText(getString(R.string.pulling) + program + " " + type);
         dialog.show();
     }
 

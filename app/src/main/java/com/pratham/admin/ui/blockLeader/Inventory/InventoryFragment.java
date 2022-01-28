@@ -1,5 +1,6 @@
 package com.pratham.admin.ui.blockLeader.Inventory;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +66,7 @@ import java.util.Objects;
 import static com.pratham.admin.util.APIs.assignTabletAPI;
 import static com.pratham.admin.util.APIs.reportLostAPI;
 
+@SuppressLint("NonConstantResourceId")
 @EFragment(R.layout.fragment_inventory)
 public class InventoryFragment extends Fragment implements NetworkCallListener, InventoryTabItemClick {
 
@@ -81,6 +84,9 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     @ViewById(R.id.btn_assignTab)
     Button btn_assgnTab;
+
+    @ViewById(R.id.iv_backButton)
+    ImageView iv_backButton;
 
     boolean internetIsAvailable = false;
     List<DeviseList> deviceList;
@@ -111,10 +117,14 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(assigneePersonId!=null && assigneePersonName!=null)
+        if(assigneePersonId!=null && assigneePersonName!=null) {
             btn_assgnTab.setVisibility(View.VISIBLE);
-        else
+            iv_backButton.setVisibility(View.VISIBLE);
+        }
+        else {
             btn_assgnTab.setVisibility(View.GONE);
+            iv_backButton.setVisibility(View.GONE);
+        }
 
         myDeviceList();
         //spinner adapters
@@ -305,28 +315,37 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     @Click(R.id.btn_assignTab)
     public void assignTablet() {
-        addMetaDataToJson();
+        if(assignTabList.size()<=0) {
+            Toast.makeText(getActivity(), "Select Atleast One Tablet.", Toast.LENGTH_SHORT).show();
+        } else {
+            addMetaDataToJson();
+            try {
+                Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
+                        FastSave.getInstance().getString("CRLid", "no_crl"),
+                        FastSave.getInstance().getString("CRLname", "no_crl"),
+                        assigneePersonId,
+                        assigneePersonName,
+                        new Utility().GetCurrentDateNew(),
+                        assignTabList,
+                        metaDataJSON);
 
-        try {
-            Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
-                    FastSave.getInstance().getString("CRLid", "no_crl"),
-                    FastSave.getInstance().getString("CRLname", "no_crl"),
-                    assigneePersonId,
-                    assigneePersonName,
-                    new Utility().GetCurrentDateNew(),
-                    assignTabList,
-                    metaDataJSON);
+                String json = gson.toJson(model_assignTab);
+                Log.e("json : ", json);
 
-            String json = gson.toJson(model_assignTab);
-            Log.e("json : ", json);
-
-            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
-                NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+                if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                    NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+                }
+            } catch (Exception e) {
+                Utility.dismissLoadingDialog();
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            Utility.dismissLoadingDialog();
-            e.printStackTrace();
+
         }
+    }
+
+    @Click(R.id.iv_backButton)
+    public void backButton(){
+        requireActivity().getSupportFragmentManager().popBackStack();
     }
 
     private void addMetaDataToJson() {
