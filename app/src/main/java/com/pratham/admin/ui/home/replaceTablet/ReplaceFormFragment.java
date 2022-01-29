@@ -232,7 +232,7 @@ public class ReplaceFormFragment extends Fragment implements NetworkCallListener
                         unableToOn.equalsIgnoreCase("No")) {
                     Toast.makeText(getActivity(), "Select Appropriate Damage.", Toast.LENGTH_SHORT).show();
                 } else {
-                    Utility.showDialog(getActivity());
+                    Utility.showLoadingDialog(getActivity(), "Sending Replace Request...");
                     try {
                         Model_ReplaceTab model_replaceTab = new Model_ReplaceTab(FastSave.getInstance().getString("CRLid",""),
                                 tabletSerialId,
@@ -255,8 +255,10 @@ public class ReplaceFormFragment extends Fragment implements NetworkCallListener
                         Log.e("json : ", json);
 
                 NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, replaceTabletTAPI, "UPLOADING ... ", json, "ReplaceTablet");
+                btn_replace_tab.setEnabled(false);
 //            NetworkCalls.getNetworkCallsInstance(getActivity()).postRequestAsJSONObject(this, reportLostAPI, "UPLOADING ... ", object, "ReportLostTablet");
                     } catch (Exception e) {
+                        Utility.dismissLoadingDialog();
                         e.printStackTrace();
                     }
                 }
@@ -311,20 +313,20 @@ public class ReplaceFormFragment extends Fragment implements NetworkCallListener
             apiResponse = gson.fromJson(response, json);
 
             if (apiResponse.getErrorDesc().equalsIgnoreCase("ReplaceData Added Successfully")) {
-                Utility.dismissDialog();
+                Utility.dismissLoadingDialog();
                 Toast.makeText(getActivity(), R.string.replace_request_sent_success, Toast.LENGTH_SHORT).show();
                 requireActivity().getSupportFragmentManager().popBackStack();
             } else if (apiResponse.getErrorDesc().equalsIgnoreCase("CRL_ID Not Found")) {
-                Utility.dismissDialog();
+                Utility.dismissLoadingDialog();
                 Toast.makeText(getActivity(), R.string.crl_not_found, Toast.LENGTH_SHORT).show();
             } else if (apiResponse.getErrorDesc().equalsIgnoreCase("AssigneeID Not Found")) {
-                Utility.dismissDialog();
+                Utility.dismissLoadingDialog();
                 Toast.makeText(getActivity(), R.string.assignee_not_found, Toast.LENGTH_SHORT).show();
             } else if (apiResponse.getErrorDesc().equalsIgnoreCase("SerialID Not Found")) {
-                Utility.dismissDialog();
+                Utility.dismissLoadingDialog();
                 Toast.makeText(getActivity(), R.string.serialid_not_found, Toast.LENGTH_SHORT).show();
             } else {
-                Utility.dismissDialog();
+                Utility.dismissLoadingDialog();
                 Toast.makeText(getActivity(), R.string.request_failed, Toast.LENGTH_SHORT).show();
             }
         }

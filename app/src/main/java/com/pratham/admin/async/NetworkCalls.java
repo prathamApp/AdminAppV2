@@ -105,7 +105,7 @@ public class NetworkCalls {
 
     //for new requests with context to show loading dialog
     public void getRequestNew(final NetworkCallListener networkCallListener, String url, String msg, final String header, Context context) {
-        Utility.showLoadingDialog(context);
+        Utility.showLoadingDialog(context,msg);
         AndroidNetworking.get(url).setPriority(Priority.MEDIUM).build().getAsJSONArray(new JSONArrayRequestListener() {
             @Override
             public void onResponse(JSONArray response) {
@@ -123,7 +123,7 @@ public class NetworkCalls {
 
     //for new requests with context to show loading dialog
     public void getRequestJsonObject(final NetworkCallListener networkCallListener, String url, String msg, final String header, Context context) {
-        Utility.showLoadingDialog(context);
+        Utility.showLoadingDialog(context, msg);
         AndroidNetworking.get(url).setPriority(Priority.MEDIUM).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject response) {
@@ -181,19 +181,21 @@ public class NetworkCalls {
                     @Override
                     public void onProgress(long bytesUploaded, long totalBytes) {
                         // do anything with progress
-                        Log.e("progress : ",String.valueOf(bytesUploaded));
+                        Log.e("progress : ",String.valueOf(bytesUploaded)+" / "+String.valueOf(totalBytes));
                     }
                 })
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         // do anything with response
+                        Log.e("image resp : ",response.toString());
                         networkCallListener.onResponse(response.toString(), header);
                     }
 
                     @Override
                     public void onError(ANError error) {
                         // handle error
+                        Log.e("image resp err : ",error.getMessage());
                         networkCallListener.onError(error, header);
                     }
                 });

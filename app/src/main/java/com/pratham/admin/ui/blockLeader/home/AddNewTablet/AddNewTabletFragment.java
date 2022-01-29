@@ -106,11 +106,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     ArrayList<String> spnrDonorList = new ArrayList<>();
     ArrayList<String> spnrVendorList = new ArrayList<>();
     ArrayList<String> spnrYopList = new ArrayList<>();
-    ArrayList<String> spnrProgramList = new ArrayList<>();
-    ArrayList<ProgramsModal> programsList;
-
-    public static String selectedProgramID = null;
-    public static String selectedProgramName = null;
 
     Model_NewTablet modelNewTablet;
 
@@ -126,12 +121,11 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         spnrDonorList = requireArguments().getStringArrayList("Donor_List");
         spnrVendorList = requireArguments().getStringArrayList("Vendor_List");
         spnrYopList = requireArguments().getStringArrayList("YOP_List");
-        //programsList = requireArguments().getParcelableArrayList("Program_List");
 
         showDonors(spnrDonorList);
         showVendors(spnrVendorList);
         showYearOfPurchase(spnrYopList);
-        //showPrograms(programsList);
+
         initCamera();
     }
 
@@ -140,7 +134,7 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         mScannerView.stopCamera();
         mScannerView.startCamera();
         mScannerView.resumeCameraPreview(AddNewTabletFragment.this);
-/*        spinner_yearOfpurchase.setSelection(0);
+/*      spinner_yearOfpurchase.setSelection(0);
         spinner_donor.setSelection(0);
         //spinner_program.setSelection(0);
         spinner_vendor.setSelection(0);
@@ -168,6 +162,11 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         submitTablets();
     }
 
+    @Click(R.id.iv_backButton)
+    public void backButton(){
+        requireActivity().getSupportFragmentManager().popBackStack();
+    }
+
     public void submitTablets() {
         String donor;
         if (spinner_donor.getSelectedItemPosition() != 0 && spinner_vendor.getSelectedItemPosition() != 0 &&
@@ -186,7 +185,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
                     modelNewTablet.setYop(spinner_yearOfpurchase.getSelectedItem().toString());
                     modelNewTablet.setStatus("Working");
                     modelNewTablet.setProgramId("17");
-                    //modelNewTablet.setProgramName(selectedProgramName);
                     modelNewTablet.setAddedOn(new Utility().GetCurrentDateTime(false));
                     modelNewTablet.setDeviceId("");
                     modelNewTablet.setPrathamId("");
@@ -219,7 +217,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         mScannerView.setResultHandler(AddNewTabletFragment.this);
         barcode_frame.addView((mScannerView));
         mScannerView.startCamera();
-        //    mScannerView.resumeCameraPreview(Activity_QRScan.this);
     }
 
     @Override
@@ -298,9 +295,6 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     }
 
     public void clearFields(){
-/*                mScannerView.stopCamera();
-        mScannerView.startCamera();
-        mScannerView.resumeCameraPreview(AddNewTabletFragment.this);*/
         spinner_yearOfpurchase.setSelection(0);
         spinner_donor.setSelection(0);
         spinner_vendor.setSelection(0);
@@ -314,24 +308,4 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         textInputLayout_donor.setVisibility(View.GONE);
         rl_spinnerParent.setVisibility(View.GONE);
     }
-
-    /*private void showPrograms(List<ProgramsModal> programsModalList) {
-        for (ProgramsModal mp : programsList) {
-            spnrProgramList.add(mp.getProgramName());
-        }
-        ArrayAdapter programAdapter = new ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, spnrProgramList);
-        spinner_program.setAdapter(programAdapter);
-
-        spinner_program.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedProgramID = String.valueOf(programsModalList.get(position).getProgramId());
-                selectedProgramName = programsModalList.get(position).getProgramName();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }*/
 }

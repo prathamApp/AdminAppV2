@@ -219,15 +219,14 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
 
     private void storeManagerAPI() {
         if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
-            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.getAllUsers, "Loading...", "loading_users", getActivity());
-            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.programsAPI, "Loading...", "programApi", getActivity());
+            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.programsAPI, "Loading Programs...", "programApi", getActivity());
+            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.getAllUsers, "Loading Tablets...", "loading_users", getActivity());
         }
     }
 
     private void prepareData() {
         crlList = AppDatabase.getDatabaseInstance(getActivity()).getCRLdao().getCRLsByReportingPerson(FastSave.getInstance().getString("CRLid", ""));
         Log.e("CRL List : ", String.valueOf(crlList.size()));
-
     }
 
     @Override
@@ -291,16 +290,20 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
 
     @Click(R.id.btn_allocate)
     public void allocateTab() {
-        Bundle homebundle = new Bundle();
-        homebundle.putString("assigneeId", assigneePersonId);
-        homebundle.putString("assigneeName", assigneePersonName);
-        Utility.showFragment(getActivity(), new InventoryFragment_(), R.id.fragment_container,
-                homebundle, InventoryFragment_.class.getSimpleName());
+        if (assigneePersonId!=null) {
+            Bundle homebundle = new Bundle();
+            homebundle.putString("assigneeId", assigneePersonId);
+            homebundle.putString("assigneeName", assigneePersonName);
+            Utility.showFragment(getActivity(), new InventoryFragment_(), R.id.fragment_container,
+                    homebundle, InventoryFragment_.class.getSimpleName());
+        } else {
+            Toast.makeText(getActivity(), "Select TabHolder First!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Click(R.id.btn_go)
     public void loadTabHolders() {
-        if(isStoreManager) {
+        if (isStoreManager) {
             if (spinner_program.getSelectedItem().toString().equalsIgnoreCase("Program") ||
                     spinner_state.getSelectedItem().toString().equalsIgnoreCase("State") ||
                     spinner_block.getSelectedItem().toString().equalsIgnoreCase("Block") ||
@@ -320,7 +323,7 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
             crlList = AppDatabase.getDatabaseInstance(getActivity()).getCRLdao().getCRLsByBlockAndRole(spinner_block.getSelectedItem().toString(), spinner_tabHolder.getSelectedItem().toString(), FastSave.getInstance().getString("CRLid", ""));
             Log.e("CRL List Filter: ", String.valueOf(crlList.size()));
             tabHoldersAdapter.filterList((ArrayList<CRL>) crlList);
-            if(crlList.size()==0){
+            if (crlList.size() == 0) {
                 tv_noDataFound.setVisibility(View.VISIBLE);
             } else {
                 tv_noDataFound.setVisibility(View.GONE);
@@ -343,7 +346,6 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
             Toast.makeText(requireActivity(), R.string.noInterntCon, Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
     @Override
@@ -384,7 +386,7 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (header.equalsIgnoreCase("roleApi")) {
+        } else if (header.equalsIgnoreCase("roleApi")) {
             try {
                 roleResponse = new JSONArray(response);
                 if (roleResponse.length() > 0) {
@@ -393,7 +395,7 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
                     roleList = gson.fromJson(response.toString(), roleLst);
                     Log.e("role : ", String.valueOf(roleList.size()));
                     showRoles(roleList);
-                    if(!isStoreManager) Utility.dismissLoadingDialog();
+                    if (!isStoreManager) Utility.dismissLoadingDialog();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -415,7 +417,7 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
             try {
                 blockResponse = new JSONArray(response);
                 Log.e("Block Response : ", blockResponse.toString());
-                showBlocks(villageList,blockResponse);
+                showBlocks(villageList, blockResponse);
                 Utility.dismissLoadingDialog();
             } catch (Exception e) {
                 Log.e("API Exception : ", e.getMessage());
@@ -437,7 +439,7 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
         Model_Role model_role = new Model_Role();
         model_role.setRoleid(0);
         model_role.setRolename("TabHolder");
-        roleList.add(0,model_role);
+        roleList.add(0, model_role);
         for (Model_Role mv : roleList) {
             spnr_roleList.add(mv.getRolename());
         }

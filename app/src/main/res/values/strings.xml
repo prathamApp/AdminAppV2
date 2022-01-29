@@ -224,10 +224,10 @@
     <string name="preview">PREVIEW</string>
     <string name="savechanges">SAVE CHANGES</string>
     <string name="formdatapreview">Form Data Preview</string>
-    <string name="pulling">Pulling...</string>
-    <string name="pullingCoaches">Pulling Coaches !!!</string>
-    <string name="pullingCourses">Pulling Courses !!!</string>
-    <string name="pullingCoursesCmpl">Pulling Course Completion !!!</string>
+    <string name="pulling">Pulling&#160;</string>
+    <string name="pullingCoaches">Pulling Coaches.</string>
+    <string name="pullingCourses">Pulling Courses.</string>
+    <string name="pullingCoursesCmpl">Pulling Course Completion.</string>
     <string name="loadApiFail">Load API Failed.</string>
     <string name="pulldata">Pull Data</string>
     <string name="savedata">Save Data</string>
@@ -341,32 +341,32 @@
         <item>Haryana</item>
         <item>Himachal Pradesh</item>
         <item>Jammu and kashmir</item>
-        <item>Jharkhand(JH)</item>
-        <item>Karnataka(KN)</item>
-        <item>Kerala(KL)</item>
-        <item>Madhya Pradesh(MP)</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Madhya Pradesh</item>
         <item>Maharashtra</item>
-        <item>Manipur(MN)</item>
-        <item>Meghalaya(MG)</item>
-        <item>Mizoram(MZ)</item>
-        <item>Nagaland(NG)</item>
-        <item>Orissa(OD)</item>
-        <item>Punjab(PB)</item>
-        <item>Rajasthan(RJ)</item>
-        <item>Sikkim(SK)</item>
-        <item>Tamil Nadu(TN)</item>
-        <item>Telangana(TS)</item>
-        <item>Tripura(TR)</item>
-        <item>Uttarakhand(UK)</item>
-        <item>Uttar Pradesh(UP)</item>
-        <item>West Bengal(WB)</item>
-        <item>Andaman and Nicobar Islands(AN)</item>
-        <item>Chandigarh(CH)</item>
-        <item>Dadra and Nagar Haveli(DN)</item>
-        <item>Daman and Diu(DD)</item>
-        <item>Delhi(DL)</item>
-        <item>Lakshadweep(LD)</item>
-        <item>Pondicherry(PY)</item>
+        <item>Manipur</item>
+        <item>Meghalaya</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orissa</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttarakhand</item>
+        <item>Uttar Pradesh</item>
+        <item>West Bengal</item>
+        <item>Andaman and Nicobar Islands</item>
+        <item>Chandigarh</item>
+        <item>Dadra and Nagar Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Lakshadweep</item>
+        <item>Pondicherry</item>
     </string-array>
 
     <string-array name="india_states_shortcode">

@@ -9,6 +9,7 @@ package com.pratham.admin.ui.blockLeader.Inventory;
 
 import java.util.HashMap;
 import java.util.Map;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,9 @@ import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedListener;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
+@SuppressLint({
+    "NonConstantResourceId"
+})
 public final class InventoryFragment_
     extends com.pratham.admin.ui.blockLeader.Inventory.InventoryFragment
     implements BeanHolder, HasViews, OnViewChangedListener
@@ -60,6 +64,7 @@ public final class InventoryFragment_
         tv_totalTablets = null;
         spinner_tabStatus = null;
         btn_assgnTab = null;
+        iv_backButton = null;
     }
 
     private void init_(Bundle savedInstanceState) {
@@ -93,12 +98,23 @@ public final class InventoryFragment_
         this.tv_totalTablets = hasViews.internalFindViewById(R.id.tv_totalTabCount);
         this.spinner_tabStatus = hasViews.internalFindViewById(R.id.spinner_tabStatus);
         this.btn_assgnTab = hasViews.internalFindViewById(R.id.btn_assignTab);
+        this.iv_backButton = hasViews.internalFindViewById(R.id.iv_backButton);
         if (this.btn_assgnTab!= null) {
             this.btn_assgnTab.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     InventoryFragment_.this.assignTablet();
+                }
+            }
+            );
+        }
+        if (this.iv_backButton!= null) {
+            this.iv_backButton.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    InventoryFragment_.this.backButton();
                 }
             }
             );
