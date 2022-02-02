@@ -131,7 +131,15 @@ public class NotificationHoldersAdapter extends RecyclerView.Adapter<Notificatio
 
 
             ll_tabHolderDetail.setOnClickListener(v ->
-                    tabHolderListItemListener.tabHolderItemClicked(itemView, notificationList.get(getAdapterPosition()), getAdapterPosition())
+                    tabHolderListItemListener.tabHolderDetails(notificationList.get(getAdapterPosition()))
+            );
+
+            tv_Type.setOnClickListener(v ->
+                    tabHolderListItemListener.tabHolderDetails(notificationList.get(getAdapterPosition()))
+            );
+
+            tv_name.setOnClickListener(v ->
+                    tabHolderListItemListener.tabHolderDetails(notificationList.get(getAdapterPosition()))
             );
 
             iv_tabHolderImage.setOnClickListener(v ->
