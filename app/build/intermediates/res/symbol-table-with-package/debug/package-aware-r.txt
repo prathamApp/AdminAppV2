@@ -3179,6 +3179,7 @@ id lbl_prathamId
 id lbl_qrId
 id lbl_requestTablet
 id lbl_serialNo
+id lbl_status
 id lbl_tabModel
 id left
 id leftSide
@@ -3310,6 +3311,7 @@ id normal
 id notFixed
 id notification
 id notification_background
+id notification_layout
 id notification_main_column
 id notification_main_column_container
 id off
@@ -3726,6 +3728,7 @@ id tv_selProg
 id tv_selState
 id tv_selVillage
 id tv_serialNo
+id tv_status
 id tv_tabHolderDetail
 id tv_tabHolderMobNo
 id tv_tabHolderName

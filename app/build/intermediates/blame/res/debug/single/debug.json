@@ -192,12 +192,12 @@
         "source": "C:\\Users\\pratham\\.gradle\\caches\\transforms-2\\files-2.1\\163aab3f76864b7bc91d83a600f6330c\\res\\animator\\design_fab_show_motion_spec.xml"
     },
     {
-        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\layout_row_unuploaded.xml.flat",
-        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\layout\\row_unuploaded.xml"
-    },
-    {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_loading_api.xml.flat",
         "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\layout\\dialog_loading_api.xml"
+    },
+    {
+        "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\layout_row_unuploaded.xml.flat",
+        "source": "D:\\Android Projects\\AdminAppV2\\app\\src\\main\\res\\layout\\row_unuploaded.xml"
     },
     {
         "merged": "D:\\Android Projects\\AdminAppV2\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_simple.xml.flat",

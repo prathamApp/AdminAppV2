@@ -64,11 +64,12 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.My
                     String deviceID = deviseList.get(getAdapterPosition()).getDeviceid();
                     String serNo = deviseList.get(getAdapterPosition()).getSerialno();
                     String tabModel = deviseList.get(getAdapterPosition()).getBrand() + " " + deviseList.get(getLayoutPosition()).getModel();
+                    String tabStatus = deviseList.get(getAdapterPosition()).getStatus();
                     if (prathamID != null && qrID != null) {
                         Log.e(":::", prathamID + " : " + qrID);
-                        devicePrathamIdLisner.setDeviceDetail(prathamID, qrID, deviceID, serNo, tabModel);
+                        devicePrathamIdLisner.setDeviceDetail(prathamID, qrID, deviceID, serNo, tabModel, tabStatus);
                     } else {
-                        devicePrathamIdLisner.setDeviceDetail("-", "-", deviceID, serNo, tabModel);
+                        devicePrathamIdLisner.setDeviceDetail("-", "-", deviceID, serNo, tabModel, tabStatus);
 //                        Toast.makeText(context, "Pratham id or Qr id is null", Toast.LENGTH_SHORT).show();
                     }
                 }

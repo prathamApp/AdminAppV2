@@ -100,7 +100,9 @@ public class ReportLostFragment extends Fragment implements ReplaceTabItemClick,
 
         myDeviceList();
         reportLostList = new ArrayList<>();
-        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working"));
+        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working |" +
+                " <font color=#ffe500>Lost</font> | <font color=#303f9f>Damaged</font>"));
+
 
         searchTab.addTextChangedListener(new TextWatcher() {
             @Override
@@ -255,7 +257,7 @@ public class ReportLostFragment extends Fragment implements ReplaceTabItemClick,
     }
 
     @Override
-    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail) {
+    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail, String tabStatus) {
 
     }
 

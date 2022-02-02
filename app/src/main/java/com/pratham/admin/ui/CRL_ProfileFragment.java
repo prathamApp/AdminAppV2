@@ -168,7 +168,7 @@ public class CRL_ProfileFragment extends Fragment implements NetworkCallListener
     }
 
     @Override
-    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail) {
+    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail, String tabStatus) {
 
     }
 

@@ -33,17 +33,22 @@ import org.greenrobot.eventbus.EventBus;
 
 @SuppressLint("NonConstantResourceId")
 @EActivity(R.layout.activity_home)
+
 public class Home extends BaseActivity {
+
+    BottomNavigationView bottomNav;
 
     @AfterViews
     protected void init() {
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         // as soon as the application opens the first
         // fragment should be shown to the user
         // in this case it is algorithm fragment
         if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("6")) {
+            bottomNav.getMenu().removeItem(R.id.tabholders);
+            bottomNav.getMenu().removeItem(R.id.inventory);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment_()).commit();
         }
         else if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("5") ||
@@ -60,6 +65,7 @@ public class Home extends BaseActivity {
             // the selected fragment
             // by using there id.
             Fragment selectedFragment = null;
+
             switch (item.getItemId()) {
                 case R.id.home:
                     if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("6"))
@@ -155,8 +161,9 @@ public class Home extends BaseActivity {
                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            finishAffinity();
                             dialogInterface.dismiss();
+                            finishAffinity();
+                            System.exit(0);
                         }
                     })
                     .setNegativeButton("NO", new DialogInterface.OnClickListener() {

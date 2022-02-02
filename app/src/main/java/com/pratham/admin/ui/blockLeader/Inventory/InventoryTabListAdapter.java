@@ -42,9 +42,28 @@ public class InventoryTabListAdapter extends RecyclerView.Adapter<InventoryTabLi
 //        if(deviseList.get(position).getPratham_ID()!=null)
         holder.serialID.setText(deviseList.get(position).getSerialno());
 
-        if(deviseList.get(position).getStatus()!=null && deviseList.get(position).getStatus().contains("Pending"))
+        if(deviseList.get(position).getStatus()!=null) {
+            String individaulTabStatus = deviseList.get(position).getStatus().toUpperCase();
+            switch (individaulTabStatus) {
+                case "PENDING":
+                case "ASSIGN_PENDING":
+                    holder.serialID.setTextColor(context.getResources().getColor(R.color.red));
+                    break;
+                case "STOLEN":
+                    holder.serialID.setTextColor(context.getResources().getColor(R.color.yellow));
+                    break;
+                case "DAMAGED":
+                    holder.serialID.setTextColor(context.getResources().getColor(R.color.blue_700));
+                    break;
+                default:
+                    holder.serialID.setTextColor(context.getResources().getColor(R.color.grey_800));
+            }
+        }
+
+
+/*        if(deviseList.get(position).getStatus()!=null && deviseList.get(position).getStatus().contains("Pending"))
             holder.serialID.setTextColor(context.getResources().getColor(R.color.red));
-        else holder.serialID.setTextColor(context.getResources().getColor(R.color.grey_800));
+        else holder.serialID.setTextColor(context.getResources().getColor(R.color.grey_800));*/
 
         if(deviseList.get(position).isSelected())
             holder.iv_tabSelected.setVisibility(View.VISIBLE);
@@ -54,10 +73,27 @@ public class InventoryTabListAdapter extends RecyclerView.Adapter<InventoryTabLi
         holder.cv_tablet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(deviseList.get(position).getStatus()!=null && deviseList.get(position).getStatus().contains("Pending"))
+                if(deviseList.get(position).getStatus()!=null) {
+                    String individaulTabStatus = deviseList.get(position).getStatus().toUpperCase();
+                    switch (individaulTabStatus) {
+                        case "PENDING":
+                        case "ASSIGN_PENDING":
+                            Toast.makeText(context, "Request Already Sent.", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "STOLEN":
+                            Toast.makeText(context, "Tablet is Lost.", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "DAMAGED":
+                            Toast.makeText(context, "Tablet is Damaged.", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            inventoryTabItemClick.onTabItemClicked(position, deviseList.get(position));
+                    }
+                }
+/*                if(deviseList.get(position).getStatus()!=null && deviseList.get(position).getStatus().contains("Pending"))
                     Toast.makeText(context, "Request Already Sent.", Toast.LENGTH_SHORT).show();
                 else
-                inventoryTabItemClick.onTabItemClicked(position, deviseList.get(position));
+                inventoryTabItemClick.onTabItemClicked(position, deviseList.get(position));*/
             }
         });
     }

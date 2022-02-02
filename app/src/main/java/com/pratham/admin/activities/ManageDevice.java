@@ -213,7 +213,7 @@ public class ManageDevice extends BaseActivity implements DevicePrathamIdLisner,
     }
 
     @Override
-    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail) {
+    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail, String tabStatus) {
 
     }
 

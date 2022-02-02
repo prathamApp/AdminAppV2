@@ -469,7 +469,7 @@ public class Status_Action extends BaseActivity implements ZXingScannerView.Resu
     }
 
     @Override
-    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail) {
+    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail, String tabStatus) {
 
     }
 

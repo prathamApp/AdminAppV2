@@ -88,7 +88,7 @@ public class Utility {
 
     //custom loading dialog with lottie
     public static void showLoadingDialog(Context context, String message) {
-        try {
+//        try {
             if (dialogNew == null) {
                 dialogNew = new Dialog(context);
                 dialogNew.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -102,10 +102,10 @@ public class Utility {
             TextView tv_dialog_title = dialogNew.findViewById(R.id.tv_dialog_title);
             tv_dialog_title.setText(message);
             dialogNew.show();
-        } catch (Exception e) {
+  /*      } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+ */   }
 
     public static void dismissLoadingDialog() {
         if (dialogNew != null)

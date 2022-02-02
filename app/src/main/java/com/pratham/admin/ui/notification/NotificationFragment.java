@@ -182,7 +182,7 @@ public class NotificationFragment extends Fragment implements NotificationHolder
  //       notificationHoldersAdapter.notifyDataSetChanged();
 
         {
-            Utility.showLoadingDialog(getActivity(),"");
+            Utility.showLoadingDialog(getActivity(),"Acknowledging Device...");
             addMetaDataToJson();
             Gson gson=new Gson();
 

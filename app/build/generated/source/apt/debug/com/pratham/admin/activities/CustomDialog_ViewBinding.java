@@ -24,7 +24,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
 
   private View view7f0a0097;
 
-  private View view7f0a03c4;
+  private View view7f0a03c7;
 
   @UiThread
   public CustomDialog_ViewBinding(CustomDialog target) {
@@ -65,7 +65,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.txt_cancel, "field 'txt_cancel' and method 'skip'");
     target.txt_cancel = Utils.castView(view, R.id.txt_cancel, "field 'txt_cancel'", TextView.class);
-    view7f0a03c4 = view;
+    view7f0a03c7 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -98,7 +98,7 @@ public class CustomDialog_ViewBinding implements Unbinder {
     view7f0a00da = null;
     view7f0a0097.setOnClickListener(null);
     view7f0a0097 = null;
-    view7f0a03c4.setOnClickListener(null);
-    view7f0a03c4 = null;
+    view7f0a03c7.setOnClickListener(null);
+    view7f0a03c7 = null;
   }
 }

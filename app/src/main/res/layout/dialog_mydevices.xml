@@ -9,7 +9,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_230sdp"
         app:cardBackgroundColor="@color/White"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="0dp">
@@ -106,6 +106,22 @@
                 android:layout_toRightOf="@+id/lbl_qrId"
                 android:layout_below="@id/lbl_tabModel" />
 
+            <TextView
+                android:id="@+id/lbl_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab Status : "
+                android:textStyle="bold"
+                android:layout_below="@+id/lbl_qrId"/>
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9f9c9v"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/lbl_status"
+                android:layout_below="@id/lbl_qrId" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/dialog_btn_exit"
                 android:layout_width="wrap_content"
@@ -116,6 +132,7 @@
                 android:minHeight="@dimen/_35sdp"
                 android:text="@string/Okay"
                 app:cornerRadius="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:textColor="@android:color/white"
                 android:layout_alignParentBottom="true"/>
         </RelativeLayout>
