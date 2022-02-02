@@ -23,6 +23,8 @@ import com.google.gson.reflect.TypeToken;
 import com.kyleduo.blurpopupwindow.library.BlurPopupWindow;
 import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
+import com.pratham.admin.activities.MyDeviceList;
+import com.pratham.admin.activities.NotificationDeviceList;
 import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.database.AppDatabase;
@@ -243,6 +245,11 @@ public class NotificationFragment extends Fragment implements NotificationHolder
 
     @Override
     public void tabHolderDetails(Model_Notification model_Notification) {
+
+        if (model_Notification.getLstackdevice().size() > 0) {
+            NotificationDeviceList myDeviceList = new NotificationDeviceList(getActivity(), model_Notification.getLstackdevice());
+            myDeviceList.show();
+        }
         /*Bundle tabHolderDetail = new Bundle();
         tabHolderDetail.putParcelable("TabHolder_Detail",  model_Notification);
         Utility.showFragment(getActivity(), new CRL_ProfileFragment_(),R.id.fragment_container,
