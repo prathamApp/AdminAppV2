@@ -63,6 +63,7 @@ public class Utility {
 
     private final DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
     private final DateFormat dateFormatnew = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+    private final DateFormat dateFormatImagePush = new SimpleDateFormat("yyyy_MM_dd HH_mm_ss", Locale.ENGLISH);
     private final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
     private final DateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
     public static String targetPath = "";
@@ -88,7 +89,7 @@ public class Utility {
 
     //custom loading dialog with lottie
     public static void showLoadingDialog(Context context, String message) {
-//        try {
+        try {
             if (dialogNew == null) {
                 dialogNew = new Dialog(context);
                 dialogNew.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -102,10 +103,10 @@ public class Utility {
             TextView tv_dialog_title = dialogNew.findViewById(R.id.tv_dialog_title);
             tv_dialog_title.setText(message);
             dialogNew.show();
-  /*      } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
- */   }
+    }
 
     public static void dismissLoadingDialog() {
         if (dialogNew != null)
@@ -181,10 +182,15 @@ public class Utility {
 //        return MyApplication.getAccurateDate();
     }
 
-    //Date Time with different format(seperating all values by underscore)
     public String GetCurrentDateNew() {
         Calendar cal = Calendar.getInstance();
         return dateFormatnew.format(cal.getTime());
+    }
+
+    //Date Time with different format(seperating all values by underscore)
+    public String GetCurrentDateImagePush() {
+        Calendar cal = Calendar.getInstance();
+        return dateFormatImagePush.format(cal.getTime());
     }
 
     public static UUID GetUniqueID() {

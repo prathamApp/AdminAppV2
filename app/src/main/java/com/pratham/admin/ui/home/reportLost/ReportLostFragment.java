@@ -15,10 +15,8 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,27 +25,20 @@ import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.pratham.admin.R;
 import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.DevicePrathamIdLisner;
 import com.pratham.admin.interfaces.NetworkCallListener;
-import com.pratham.admin.interfaces.OnCheckBoxSelectedItem;
-import com.pratham.admin.modalclasses.API_Response;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.EventMessage;
-import com.pratham.admin.modalclasses.Model_ReplaceTab;
 import com.pratham.admin.modalclasses.Model_ReportLost;
-import com.pratham.admin.modalclasses.Student;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceTabItemClick;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceTabListAdapter;
-import com.pratham.admin.ui.home.replaceTablet.ReplaceTabletFragment;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
-import com.pratham.admin.util.PA_Constants;
+import com.pratham.admin.util.AA_Constants;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
@@ -59,14 +50,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.pratham.admin.util.APIs.reportLostAPI;
-import static com.pratham.admin.util.APIs.requestTabletAPI;
 
 @EFragment(R.layout.fragment_report_lost)
 public class ReportLostFragment extends Fragment implements ReplaceTabItemClick, NetworkCallListener, DevicePrathamIdLisner {
@@ -100,8 +87,7 @@ public class ReportLostFragment extends Fragment implements ReplaceTabItemClick,
 
         myDeviceList();
         reportLostList = new ArrayList<>();
-        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working |" +
-                " <font color=#ffe500>Lost</font> | <font color=#303f9f>Damaged</font>"));
+        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working"));
 
 
         searchTab.addTextChangedListener(new TextWatcher() {
@@ -289,9 +275,9 @@ public class ReportLostFragment extends Fragment implements ReplaceTabItemClick,
     @Override
     public void onTabItemClicked(int position, DeviseList deviseList) {
         Bundle homebundle = new Bundle();
-        homebundle.putString(PA_Constants.TABLET_SERIAL_ID, deviseList.getSerialno());
-        homebundle.putString(PA_Constants.TABLET_DEVICE_ID, deviseList.getDeviceid());
-        homebundle.putString(PA_Constants.TABLET_BRAND, deviseList.getBrand());
+        homebundle.putString(AA_Constants.TABLET_SERIAL_ID, deviseList.getSerialno());
+        homebundle.putString(AA_Constants.TABLET_DEVICE_ID, deviseList.getDeviceid());
+        homebundle.putString(AA_Constants.TABLET_BRAND, deviseList.getBrand());
         Utility.showFragment(getActivity(), new ReportlostFormFragment_(), R.id.fragment_container,
                 homebundle, ReportLostFragment_.class.getSimpleName());
     }

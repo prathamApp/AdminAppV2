@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_search"
         android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -113,12 +114,26 @@
             android:visibility="gone"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_tabStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_spinner"
+        android:text="hvvkjvhjvj hhvikvlv kblvbkbk"
+        android:fontFamily="@font/glacialindifferenceregular"
+        android:background="@drawable/rounded_border_1dp"
+        android:layout_centerInParent="true"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:paddingTop="@dimen/_5sdp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tabHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
-        android:layout_below="@+id/ll_spinner"/>
+        android:layout_below="@+id/tv_tabStatus"/>
 
 </RelativeLayout>

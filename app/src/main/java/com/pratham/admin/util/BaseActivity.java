@@ -41,9 +41,9 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
     protected void onCreate(Bundle savedInstanceState) {
         fullScreenMode();
         super.onCreate(savedInstanceState);
-/*        Catcho.Builder(this)
+        Catcho.Builder(this)
                 .activity(CatchoTransparentActivity.class) //on field
-                .build();*/
+                .build();
     }
 
     public void fullScreenMode(){

@@ -1,7 +1,6 @@
 package com.pratham.admin.ui.home.replaceTablet;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,10 +12,8 @@ import android.speech.SpeechRecognizer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -34,7 +31,7 @@ import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.API_Response;
 import com.pratham.admin.modalclasses.Model_ReplaceTab;
-import com.pratham.admin.util.PA_Constants;
+import com.pratham.admin.util.AA_Constants;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
@@ -45,9 +42,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import static com.pratham.admin.util.APIs.replaceTabletTAPI;
 
@@ -104,8 +99,8 @@ public class ReplaceFormFragment extends Fragment implements NetworkCallListener
     public void init() {
 
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.blink);
-        tabletSerialId = requireArguments().getString(PA_Constants.TABLET_SERIAL_ID);
-        tabletDeviceId = requireArguments().getString(PA_Constants.TABLET_DEVICE_ID);
+        tabletSerialId = requireArguments().getString(AA_Constants.TABLET_SERIAL_ID);
+        tabletDeviceId = requireArguments().getString(AA_Constants.TABLET_DEVICE_ID);
         cb_screenDamage.setOnCheckedChangeListener(this);
         cb_bodyDamage.setOnCheckedChangeListener(this);
         cb_microphoneDamage.setOnCheckedChangeListener(this);

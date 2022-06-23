@@ -63,7 +63,7 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
     Context context;
     JSONArray response;
 
-    TextView tv_deviceId, tv_prathamId, tv_qrId, tv_serNo, tv_tabModel, tv_tabStatus;
+    TextView tv_deviceId, tv_tabBrand, tv_serNo, tv_tabModel, tv_tabStatus;
     public BlurPopupWindow detailDialog;
 
     DeviceListAdapter deviceAdapter;
@@ -213,7 +213,7 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
     }
 
     @Override
-    public void setDeviceDetail(String prathamId, String qrId, String deviceId, String serNo, String tabDetail, String status) {
+    public void setDeviceDetail(String tabBrand, String qrId, String deviceId, String serNo, String tabDetail, String status) {
         detailDialog = new BlurPopupWindow.Builder(getActivity())
                 .setContentView(R.layout.dialog_mydevices)
                 .bindClickListener(v -> {
@@ -227,14 +227,12 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
                 .setTintColor(0x30000000)
                 .build();
         tv_deviceId = detailDialog.findViewById(R.id.tv_deviceId);
-        tv_prathamId = detailDialog.findViewById(R.id.tv_prathamId);
-        tv_qrId = detailDialog.findViewById(R.id.tv_qrId);
+        tv_tabBrand = detailDialog.findViewById(R.id.tv_tabBrand);
         tv_serNo = detailDialog.findViewById(R.id.tv_serialNo);
         tv_tabModel = detailDialog.findViewById(R.id.tv_tabModel);
         tv_tabStatus = detailDialog.findViewById(R.id.tv_status);
         tv_deviceId.setText(deviceId);
-        tv_prathamId.setText(prathamId);
-        tv_qrId.setText(qrId);
+        tv_tabBrand.setText(tabBrand);
         tv_serNo.setText(serNo);
         tv_tabModel.setText(tabDetail);
         tv_tabStatus.setText(status);

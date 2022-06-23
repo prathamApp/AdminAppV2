@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/_10sdp"
-    tools:context=".ui.blockLeader.home.BlockLeaderHomeFragment">
+    tools:context=".ui.blockLeader.home.BlockLeaderHomeFragment"
+    android:background="@color/screen_background"
+    android:id="@+id/rl_blScreen">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_vendor"
@@ -160,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:backgroundTint="@color/button_purple"
-                android:fontFamily="@font/glacialindifferenceregular"
+                android:fontFamily="@font/glacialindifferencebold"
                 android:text="GO"
                 android:textAlignment="center"
                 android:textColor="@color/White" />
@@ -170,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/button_purple"
-                android:fontFamily="@font/glacialindifferenceregular"
+                android:fontFamily="@font/glacialindifferencebold"
                 android:text="Refresh"
                 android:textAlignment="center"
                 android:textColor="@color/White" />
@@ -353,7 +355,7 @@
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:fontFamily="@font/glacialindifferencebold"
                     android:gravity="center"
-                    android:text="DESPUTE"
+                    android:text="DISPUTED"
                     android:textColor="@color/pink_700"
                     android:textSize="@dimen/_10sdp" />
 

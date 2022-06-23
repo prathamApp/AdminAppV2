@@ -2,7 +2,6 @@ package com.pratham.admin.ui.blockLeader.home;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -44,11 +42,8 @@ import com.pratham.admin.modalclasses.ProgramsModal;
 import com.pratham.admin.modalclasses.Model_TabletCount;
 import com.pratham.admin.modalclasses.Village;
 import com.pratham.admin.ui.blockLeader.home.AddNewTablet.AddNewTabletFragment_;
-import com.pratham.admin.ui.home.reportLost.ReportLostFragment_;
-import com.pratham.admin.ui.home.reportLost.ReportlostFormFragment_;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
-import com.pratham.admin.util.PA_Constants;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
@@ -141,6 +136,9 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
 
     @ViewById(R.id.rl_tabCountView)
     RelativeLayout rl_tabCountView;
+
+    @ViewById(R.id.rl_blScreen)
+    RelativeLayout rl_blScreen;
 
     Dialog dialog;
     String[] stateCode;
@@ -244,12 +242,13 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.yearOfPurchaseAPI, "Loading...", "yearofpurchaseApi", getActivity());
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.programsAPI, "Loading...", "programApi", getActivity());
         } else {
-            new AlertDialog.Builder(requireActivity()).setTitle("Warning").setMessage("No internet connection").setPositiveButton("Close", new DialogInterface.OnClickListener() {
+/*            new AlertDialog.Builder(requireActivity()).setTitle("Warning").setMessage("No internet connection").setPositiveButton("Close", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
-            }).create().show();
+            }).create().show();*/
+            Utility.showSnackbar(getActivity(), rl_blScreen, R.string.noInterntCon);
         }
     }
 
@@ -260,12 +259,13 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             String url = APIs.tabletCountAPI + FastSave.getInstance().getString("CRLid", "no_crl");
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestJsonObject(this, url, "Loading...", "loading_tablets", getActivity());
         } else {
-            new AlertDialog.Builder(requireActivity()).setTitle("Warning").setMessage("No internet connection").setPositiveButton("Close", new DialogInterface.OnClickListener() {
+/*            new AlertDialog.Builder(requireActivity()).setTitle("Warning").setMessage("No internet connection").setPositiveButton("Close", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
-            }).create().show();
+            }).create().show();*/
+            Utility.showSnackbar(getActivity(), rl_blScreen, R.string.noInterntCon);
         }
     }
 
@@ -348,12 +348,12 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
     }
 
     @Click(R.id.tv_addNewTablet)
-    public void addNewTablet(){
+    public void addNewTablet() {
         Bundle newTabBundle = new Bundle();
         newTabBundle.putStringArrayList("Donor_List", (ArrayList<String>) spnr_donorList);
         newTabBundle.putStringArrayList("Vendor_List", (ArrayList<String>) spnr_vendorList);
         newTabBundle.putStringArrayList("YOP_List", (ArrayList<String>) spnr_yearOfPurchaseList);
-        newTabBundle.putParcelableArrayList("Program_List",programsList);
+        newTabBundle.putParcelableArrayList("Program_List", programsList);
         Utility.showFragment(getActivity(), new AddNewTabletFragment_(), R.id.fragment_container,
                 newTabBundle, AddNewTabletFragment_.class.getSimpleName());
     }

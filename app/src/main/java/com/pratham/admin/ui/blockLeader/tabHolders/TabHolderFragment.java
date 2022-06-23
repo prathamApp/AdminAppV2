@@ -1,10 +1,7 @@
 package com.pratham.admin.ui.blockLeader.tabHolders;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,7 +10,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -22,15 +18,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidnetworking.error.ANError;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
-import com.isupatches.wisefy.WiseFy;
 import com.kyleduo.blurpopupwindow.library.BlurPopupWindow;
 import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
@@ -39,23 +32,16 @@ import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.database.AppDatabase;
 import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.CRL;
-import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.Model_Role;
 import com.pratham.admin.modalclasses.Model_User;
-import com.pratham.admin.modalclasses.Model_Vendor;
 import com.pratham.admin.modalclasses.ProgramsModal;
 import com.pratham.admin.modalclasses.Village;
-import com.pratham.admin.ui.CRL_ProfileFragment;
 import com.pratham.admin.ui.CRL_ProfileFragment_;
 import com.pratham.admin.ui.blockLeader.Inventory.InventoryFragment_;
-import com.pratham.admin.ui.home.replaceTablet.ReplaceFormFragment_;
-import com.pratham.admin.ui.home.replaceTablet.ReplaceTabletFragment_;
 import com.pratham.admin.util.APIs;
-import com.pratham.admin.util.PA_Constants;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.App;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
@@ -66,7 +52,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import static com.pratham.admin.util.APIs.village;
+import static com.pratham.admin.util.APIs.getIdWiseUser;
 
 @SuppressLint("NonConstantResourceId")
 @EFragment(R.layout.fragment_tab_holder)
@@ -219,14 +205,19 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
 
     private void storeManagerAPI() {
         if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+            String idWiseUser = getIdWiseUser+FastSave.getInstance().getString("CRLid","no_crl");
+            Log.e("API : ", idWiseUser);
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.programsAPI, "Loading Programs...", "programApi", getActivity());
-            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.getAllUsers, "Loading Tablets...", "loading_users", getActivity());
+            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, idWiseUser, "Loading TabHolders...", "loading_users", getActivity());
         }
     }
 
     private void prepareData() {
-        crlList = AppDatabase.getDatabaseInstance(getActivity()).getCRLdao().getCRLsByReportingPerson(FastSave.getInstance().getString("CRLid", ""));
-        Log.e("CRL List : ", String.valueOf(crlList.size()));
+        if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+            String idWiseUser = getIdWiseUser+FastSave.getInstance().getString("CRLid","no_crl");
+            Log.e("API : ", idWiseUser);
+            NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, idWiseUser, "Loading TabHolders...", "loading_users", getActivity());
+        }
     }
 
     @Override
@@ -360,6 +351,13 @@ public class TabHolderFragment extends Fragment implements TabHolderListItemList
                     crlList = gson.fromJson(response.toString(), tabholderList);
                     Log.e("crl : ", String.valueOf(crlList.size()));
                     initializeAdapter();
+                    Utility.dismissLoadingDialog();
+                    rv_tabHolder.setVisibility(View.VISIBLE);
+                    tv_noDataFound.setVisibility(View.GONE);
+                } else {
+                    tv_noDataFound.setVisibility(View.VISIBLE);
+                    rv_tabHolder.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "No TabHolder Found.", Toast.LENGTH_SHORT).show();
                     Utility.dismissLoadingDialog();
                 }
             } catch (Exception e) {

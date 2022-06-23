@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
+import android.os.Build;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,32 +28,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.kyleduo.blurpopupwindow.library.BlurPopupWindow;
 import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
 import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.database.AppDatabase;
-import com.pratham.admin.interfaces.DevicePrathamIdLisner;
 import com.pratham.admin.interfaces.NetworkCallListener;
-import com.pratham.admin.modalclasses.API_Response;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.MetaData;
 import com.pratham.admin.modalclasses.Model_AssignTab;
-import com.pratham.admin.ui.home.assignedToMe.AssignedToMeFragment;
-import com.pratham.admin.ui.home.assignedToMe.DeviceListAdapter;
-import com.pratham.admin.ui.home.replaceTablet.ReplaceTabItemClick;
-import com.pratham.admin.ui.home.replaceTablet.ReplaceTabListAdapter;
 import com.pratham.admin.util.APIs;
-import com.pratham.admin.util.ConnectionReceiver;
-import com.pratham.admin.util.PA_Constants;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,10 +56,8 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static com.pratham.admin.util.APIs.assignTabletAPI;
-import static com.pratham.admin.util.APIs.reportLostAPI;
 
 @SuppressLint("NonConstantResourceId")
 @EFragment(R.layout.fragment_inventory)
@@ -88,6 +81,9 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
     @ViewById(R.id.iv_backButton)
     ImageView iv_backButton;
 
+    @ViewById(R.id.tv_tabStatus)
+    TextView tv_tabStatus;
+
     boolean internetIsAvailable = false;
     List<DeviseList> deviceList;
     List<DeviseList> assignTabList;
@@ -104,6 +100,12 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     Gson gson = new Gson();
 
+    public BlurPopupWindow detailDialog;
+    TextView tv_deviceId, tv_tabBrand, tv_serNo, tv_tabModel, tv_status;
+
+    MaterialAlertDialogBuilder materialAlertDialogBuilder;
+    View customAlertDialog;
+
     public InventoryFragment() {
         // Required empty public constructor
     }
@@ -117,14 +119,18 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(assigneePersonId!=null && assigneePersonName!=null) {
+        if (assigneePersonId != null && assigneePersonName != null) {
             btn_assgnTab.setVisibility(View.VISIBLE);
             iv_backButton.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             btn_assgnTab.setVisibility(View.GONE);
             iv_backButton.setVisibility(View.GONE);
         }
+
+        materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+
+        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working |" +
+                " <font color=#ffe500>Lost</font> | <font color=#303f9f>Damaged</font>"));
 
         myDeviceList();
         //spinner adapters
@@ -191,7 +197,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         //new array list that will hold the filtered data
         ArrayList<DeviseList> filterdNames = new ArrayList<>();
 
-        if(text.equalsIgnoreCase("All")){
+        if (text.equalsIgnoreCase("All")) {
             filterdNames.addAll(deviceList);
         } else {
             //looping through existing elements
@@ -291,61 +297,125 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
 
     @Override
     public void onTabItemClicked(int position, DeviseList deviseList) {
-        for (DeviseList device : deviceList) {
-            if (device.getDeviceid().equalsIgnoreCase(deviseList.getDeviceid())) {
-                if (device.isSelected()) {
-                    device.setSelected(false);
-                    assignTabList.remove(device);
-                } else {
-                    device.setSelected(true);
-                    assignTabList.add(device);
+        if (assigneePersonId != null && assigneePersonName != null) {
+            for (DeviseList device : deviceList) {
+                if (device.getDeviceid().equalsIgnoreCase(deviseList.getDeviceid())) {
+                    if (device.isSelected()) {
+                        device.setSelected(false);
+                        assignTabList.remove(device);
+                    } else {
+                        device.setSelected(true);
+                        assignTabList.add(device);
+                    }
+                    deviseList = device;
+                    break;
                 }
-                deviseList = device;
-                break;
             }
-        }
-        deviceAdapter.notifyItemChanged(position, deviseList);
+            deviceAdapter.notifyItemChanged(position, deviseList);
 
-        Gson gson = new Gson();
-        Type devicesList = new TypeToken<ArrayList<DeviseList>>() {
-        }.getType();
-        selectedTabJson = gson.toJson(assignTabList, devicesList);
-        Log.e("selectedTabJSON : ", selectedTabJson);
+            Gson gson = new Gson();
+            Type devicesList = new TypeToken<ArrayList<DeviseList>>() {
+            }.getType();
+            selectedTabJson = gson.toJson(assignTabList, devicesList);
+            Log.e("selectedTabJSON : ", selectedTabJson);
+        } else {
+            showTabletDetails(deviseList);
+        }
     }
+
+    private void showTabletDetails(DeviseList deviseList) {
+        detailDialog = new BlurPopupWindow.Builder(getActivity())
+                .setContentView(R.layout.dialog_mydevices)
+                .bindClickListener(v -> {
+                    detailDialog.dismiss();
+                }, R.id.dialog_btn_exit)
+                .setGravity(Gravity.CENTER)
+                .setDismissOnTouchBackground(false)
+                .setDismissOnClickBack(false)
+                .setScaleRatio(0.2f)
+                .setBlurRadius(10)
+                .setTintColor(0x30000000)
+                .build();
+        tv_deviceId = detailDialog.findViewById(R.id.tv_deviceId);
+        tv_tabBrand = detailDialog.findViewById(R.id.tv_tabBrand);
+        tv_serNo = detailDialog.findViewById(R.id.tv_serialNo);
+        tv_tabModel = detailDialog.findViewById(R.id.tv_tabModel);
+        tv_status = detailDialog.findViewById(R.id.tv_status);
+        tv_deviceId.setText(deviseList.getDeviceid());
+        tv_tabBrand.setText(deviseList.getBrand());
+        tv_serNo.setText(deviseList.getSerialno());
+        tv_tabModel.setText(deviseList.getModel());
+        tv_status.setText(deviseList.getStatus());
+        detailDialog.show();
+    }
+
 
     @Click(R.id.btn_assignTab)
     public void assignTablet() {
-        if(assignTabList.size()<=0) {
+        if (assignTabList.size() <= 0) {
             Toast.makeText(getActivity(), "Select Atleast One Tablet.", Toast.LENGTH_SHORT).show();
         } else {
-            addMetaDataToJson();
-            try {
-                Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
-                        FastSave.getInstance().getString("CRLid", "no_crl"),
-                        FastSave.getInstance().getString("CRLname", "no_crl"),
-                        assigneePersonId,
-                        assigneePersonName,
-                        new Utility().GetCurrentDateNew(),
-                        assignTabList,
-                        metaDataJSON);
-
-                String json = gson.toJson(model_assignTab);
-                Log.e("json : ", json);
-
-                if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
-                    NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
-                }
-            } catch (Exception e) {
-                Utility.dismissLoadingDialog();
-                e.printStackTrace();
-            }
-
+            String dialogMsg = "Assign <b><font color = #303F9F>" + assignTabList.size() + "</font></b> tablet's to <b><font color = #303F9F>"
+                    + assigneePersonName + "</font></b> ?";
+            customAlertDialog = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_assign_confirm,null,false);
+            showAssignDialog(dialogMsg);
         }
     }
 
+    @UiThread
+    public void showAssignDialog(String msg) {
+        TextView tv_msg = customAlertDialog.findViewById(R.id.tv_dialog_msg);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            tv_msg.setText(Html.fromHtml(msg, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            tv_msg.setText(Html.fromHtml(msg));
+        }
+        materialAlertDialogBuilder
+                .setView(customAlertDialog)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        assignTablets();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+
+    }
+
     @Click(R.id.iv_backButton)
-    public void backButton(){
+    public void backButton() {
         requireActivity().getSupportFragmentManager().popBackStack();
+    }
+
+    private void assignTablets() {
+        addMetaDataToJson();
+        try {
+            Model_AssignTab model_assignTab = new Model_AssignTab(Utility.GetUniqueID().toString(),
+                    FastSave.getInstance().getString("CRLid", "no_crl"),
+                    FastSave.getInstance().getString("CRLname", "no_crl"),
+                    assigneePersonId,
+                    assigneePersonName,
+                    new Utility().GetCurrentDateNew(),
+                    assignTabList,
+                    metaDataJSON);
+
+            String json = gson.toJson(model_assignTab);
+            Log.e("json : ", json);
+
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                NetworkCalls.getNetworkCallsInstance(getActivity()).postRequest(this, assignTabletAPI, "UPLOADING ... ", json, "AssignTablet");
+            }
+        } catch (Exception e) {
+            Utility.dismissLoadingDialog();
+            e.printStackTrace();
+        }
     }
 
     private void addMetaDataToJson() {

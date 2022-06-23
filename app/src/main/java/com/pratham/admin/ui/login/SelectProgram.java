@@ -345,6 +345,7 @@ public class SelectProgram extends BaseActivity implements ConnectionReceiverLis
 
     public void loadAPI(final String url, final String type, final String programname) {
         showDialoginApiCalling(programname, type);
+        Log.e("API : ", url);
         NetworkCalls.getNetworkCallsInstance(this).getRequestWithProgram(this, url, "loadAPI", type, programname);
     }
 

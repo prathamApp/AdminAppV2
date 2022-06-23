@@ -42,8 +42,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase DATABASEINSTANCE;
 
-    public static final String DB_NAME = "prathamDb";
-    public static final int DB_VERSION = 9;
+    public static final String DB_NAME = "adminAppV2Db";
+    public static final int DB_VERSION = 1;
 
     public abstract ECEAsmtDao getECEAsmtDao();
 
@@ -94,14 +94,14 @@ public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase getDatabaseInstance(Context context) {
         if (DATABASEINSTANCE == null)
             DATABASEINSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
-                    .addMigrations(MIGRATION_7_8)
-                    .addMigrations(MIGRATION_8_9)
+                    //.addMigrations(MIGRATION_7_8)
+                    //.addMigrations(MIGRATION_8_9)
                     .allowMainThreadQueries()
                     .build();
         return DATABASEINSTANCE;
     }
 
-    static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+/*    static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             // Alter Queries for new columns as we don't want to lose existing data
@@ -179,7 +179,7 @@ public abstract class AppDatabase extends RoomDatabase {
             Log.d("VROM", "Migration_8_9");
 
         }
-    };
+    };*/
 
     public static void destroyInstance() {
         DATABASEINSTANCE = null;

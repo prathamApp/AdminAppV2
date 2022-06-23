@@ -54,6 +54,7 @@ public class Home extends BaseActivity {
         else if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("5") ||
                 FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("3") ||
                 FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("1") ||
+                FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("14") ||
                 FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("13"))
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BlockLeaderHomeFragment_()).commit();
     }
@@ -74,6 +75,7 @@ public class Home extends BaseActivity {
                     else if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("5") ||
                             FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("3") ||
                             FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("1") ||
+                            FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("14") ||
                             FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("13"))
                         selectedFragment = new BlockLeaderHomeFragment_();
                     // It will help to replace the

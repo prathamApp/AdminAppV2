@@ -58,6 +58,7 @@ import com.pratham.admin.util.BackupDatabase;
 import com.pratham.admin.util.BaseActivity;
 import com.pratham.admin.util.ConnectionReceiver;
 import com.pratham.admin.util.LocaleManager;
+import com.pratham.admin.util.AA_Constants;
 import com.pratham.admin.util.PermissionResult;
 import com.pratham.admin.util.PermissionUtils;
 import com.pratham.admin.util.Utility;
@@ -259,6 +260,11 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         AppDatabase.getDatabaseInstance(context).getMetaDataDao().insertMetadata(metaData);
 
         metaData = new MetaData();
+        metaData.setKeys("apkDate");
+        metaData.setValue(AA_Constants.apkDate);
+        AppDatabase.getDatabaseInstance(context).getMetaDataDao().insertMetadata(metaData);
+
+        metaData = new MetaData();
         metaData.setKeys("DBVersion");
         metaData.setValue("" + AppDatabase.DB_VERSION);
         AppDatabase.getDatabaseInstance(context).getMetaDataDao().insertMetadata(metaData);
@@ -344,8 +350,8 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         password.setText("Pratham@123");
 
 
-//        userName.setText("");
-//        password.setText("");
+        //userName.setText("");
+        //password.setText("");
         userName.requestFocus();
         SharedPreferences preferences = this.getSharedPreferences("prathamInfo", Context.MODE_PRIVATE);
         String program = preferences.getString("program", "null");

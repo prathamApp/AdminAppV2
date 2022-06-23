@@ -9,7 +9,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_230sdp"
+        android:layout_height="@dimen/_210sdp"
         app:cardBackgroundColor="@color/White"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="0dp">
@@ -62,18 +62,18 @@
                 android:layout_below="@id/lbl_deviceId"/>
 
             <TextView
-                android:id="@+id/lbl_prathamId"
+                android:id="@+id/lbl_tabBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pratham Id : "
+                android:text="Tab Brand : "
                 android:textStyle="bold"
                 android:layout_below="@+id/lbl_serialNo"/>
             <TextView
-                android:id="@+id/tv_prathamId"
+                android:id="@+id/tv_tabBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9f9c9v"
-                android:layout_toRightOf="@+id/lbl_prathamId"
+                android:layout_toRightOf="@+id/lbl_tabBrand"
                 android:layout_below="@id/lbl_serialNo"/>
 
             <TextView
@@ -82,29 +82,14 @@
                 android:layout_height="wrap_content"
                 android:text="Tab Model : "
                 android:textStyle="bold"
-                android:layout_below="@id/lbl_prathamId"/>
+                android:layout_below="@id/lbl_tabBrand"/>
             <TextView
                 android:id="@+id/tv_tabModel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9f9c9v"
                 android:layout_toRightOf="@+id/lbl_tabModel"
-                android:layout_below="@id/lbl_prathamId"/>
-
-            <TextView
-                android:id="@+id/lbl_qrId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="QrId : "
-                android:textStyle="bold"
-                android:layout_below="@+id/lbl_tabModel"/>
-            <TextView
-                android:id="@+id/tv_qrId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9f9c9v"
-                android:layout_toRightOf="@+id/lbl_qrId"
-                android:layout_below="@id/lbl_tabModel" />
+                android:layout_below="@id/lbl_tabBrand"/>
 
             <TextView
                 android:id="@+id/lbl_status"
@@ -112,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tab Status : "
                 android:textStyle="bold"
-                android:layout_below="@+id/lbl_qrId"/>
+                android:layout_below="@+id/lbl_tabModel"/>
             <TextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
@@ -120,7 +105,7 @@
                 android:text="9f9c9v"
                 android:textStyle="bold"
                 android:layout_toRightOf="@+id/lbl_status"
-                android:layout_below="@id/lbl_qrId" />
+                android:layout_below="@id/lbl_tabModel" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/dialog_btn_exit"

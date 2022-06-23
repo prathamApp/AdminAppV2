@@ -4,13 +4,10 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
@@ -18,12 +15,9 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
@@ -43,10 +37,9 @@ import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.API_Response;
-import com.pratham.admin.modalclasses.Model_ReplaceTab;
 import com.pratham.admin.modalclasses.Model_ReportLost;
 import com.pratham.admin.util.APIs;
-import com.pratham.admin.util.PA_Constants;
+import com.pratham.admin.util.AA_Constants;
 import com.pratham.admin.util.Utility;
 import com.pratham.prathamdigital.custom.permissions.KotlinPermissions;
 
@@ -56,16 +49,12 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
-import static com.pratham.admin.util.APIs.replaceTabletTAPI;
 import static com.pratham.admin.util.APIs.reportLostAPI;
 
 @SuppressLint("NonConstantResourceId")
@@ -159,9 +148,9 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
         StrictMode.setVmPolicy(builder.build());
 
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.blink);
-        tabletSerialId = requireArguments().getString(PA_Constants.TABLET_SERIAL_ID);
-        tabletDeviceId = requireArguments().getString(PA_Constants.TABLET_DEVICE_ID);
-        tabletBrand = requireArguments().getString(PA_Constants.TABLET_BRAND);
+        tabletSerialId = requireArguments().getString(AA_Constants.TABLET_SERIAL_ID);
+        tabletDeviceId = requireArguments().getString(AA_Constants.TABLET_DEVICE_ID);
+        tabletBrand = requireArguments().getString(AA_Constants.TABLET_BRAND);
 
         tv_serialNo.setText(tabletSerialId);
         tv_brandModel.setText(tabletBrand);
@@ -233,7 +222,7 @@ public class ReportlostFormFragment extends Fragment implements NetworkCallListe
     public Uri setImageUri() {
         // Store image in DCIM
         File file = new File(Environment.getExternalStorageDirectory() + "/DCIM/",
-                new Utility().GetCurrentDateNew() + "_" + tabletSerialId + ".jpg");
+                new Utility().GetCurrentDateImagePush() + "_" + tabletSerialId + ".jpg");
         Uri imgUri = Uri.fromFile(file);
         this.imgPath = file.getAbsolutePath();
         return imgUri;

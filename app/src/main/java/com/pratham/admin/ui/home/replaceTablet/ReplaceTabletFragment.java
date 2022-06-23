@@ -36,7 +36,7 @@ import com.pratham.admin.modalclasses.EventMessage;
 import com.pratham.admin.modalclasses.Model_ReplaceTab;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
-import com.pratham.admin.util.PA_Constants;
+import com.pratham.admin.util.AA_Constants;
 import com.pratham.admin.util.Utility;
 
 import org.androidannotations.annotations.AfterViews;
@@ -90,8 +90,7 @@ public class ReplaceTabletFragment extends Fragment implements NetworkCallListen
         myDeviceList();
         replaceTabList = new ArrayList<>();
         tv_reportingPersonName.setText("Reporting To : " + FastSave.getInstance().getString("reportingPersonName", ""));
-        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working |" +
-                " <font color=#ffe500>Lost</font> | <font color=#303f9f>Damaged</font>"));
+        tv_tabStatus.setText(Html.fromHtml("<b>Tab Status : </b><font color=#ff0000>Pending</font> | Working "));
 
         searchTab.addTextChangedListener(new TextWatcher() {
             @Override
@@ -251,8 +250,8 @@ public class ReplaceTabletFragment extends Fragment implements NetworkCallListen
     @Override
     public void onTabItemClicked(int position, DeviseList deviseList) {
         Bundle homebundle = new Bundle();
-        homebundle.putString(PA_Constants.TABLET_SERIAL_ID, deviseList.getSerialno());
-        homebundle.putString(PA_Constants.TABLET_DEVICE_ID, deviseList.getDeviceid());
+        homebundle.putString(AA_Constants.TABLET_SERIAL_ID, deviseList.getSerialno());
+        homebundle.putString(AA_Constants.TABLET_DEVICE_ID, deviseList.getDeviceid());
         Utility.showFragment(getActivity(), new ReplaceFormFragment_(), R.id.fragment_container,
                 homebundle, ReplaceTabletFragment_.class.getSimpleName());
     }
