@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:layout_marginStart="@dimen/_20sdp"
+    android:layout_marginEnd="@dimen/_20sdp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Duplicate Tablet"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/tv_duplicate_srno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ssgsgsgsg"
+        android:textColor="@color/red_400"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <TextView
+        android:id="@+id/tv_dialog_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tablets with above SerialNo. are already present in database."
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="italic"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/tv_newTabMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/green_700"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:visibility="gone"/>
+
+</LinearLayout>

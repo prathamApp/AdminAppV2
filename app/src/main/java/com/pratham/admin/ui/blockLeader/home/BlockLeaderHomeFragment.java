@@ -5,12 +5,16 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +31,7 @@ import com.androidnetworking.error.ANError;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.kyleduo.blurpopupwindow.library.BlurPopupWindow;
 import com.pratham.admin.ApplicationController;
 import com.pratham.admin.R;
 import com.pratham.admin.async.NetworkCalls;
@@ -36,12 +41,15 @@ import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.interfaces.NetworkCallListnerSelectProgram;
 import com.pratham.admin.modalclasses.Model_DamagedTabletCount;
 import com.pratham.admin.modalclasses.Model_Donor;
+import com.pratham.admin.modalclasses.Model_TabletCountProgramwise;
 import com.pratham.admin.modalclasses.Model_Vendor;
 import com.pratham.admin.modalclasses.Model_YearOfPurchase;
 import com.pratham.admin.modalclasses.ProgramsModal;
 import com.pratham.admin.modalclasses.Model_TabletCount;
 import com.pratham.admin.modalclasses.Village;
 import com.pratham.admin.ui.blockLeader.home.AddNewTablet.AddNewTabletFragment_;
+import com.pratham.admin.ui.home.assignedToMe.AssignedToMeFragment;
+import com.pratham.admin.ui.home.assignedToMe.DeviceListAdapter;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
 import com.pratham.admin.util.Utility;
@@ -104,11 +112,14 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
     @ViewById(R.id.tv_working_tab)
     TextView tv_workingTabCount;
 
+    @ViewById(R.id.tv_dead_tab)
+    TextView tv_deadTabCount;
+
     @ViewById(R.id.switch_vendor)
     SwitchMaterial switchMaterial;
 
-    @ViewById(R.id.rl_tabStatusTwo)
-    RelativeLayout rl_tabStatusTwo;
+    @ViewById(R.id.ll_tabStatusTwo)
+    LinearLayout ll_tabStatusTwo;
 
     @ViewById(R.id.rl_tabStatus)
     RelativeLayout rl_tabStatus;
@@ -175,10 +186,18 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
     List<Model_YearOfPurchase> yearOfPurchasesList;
     List<String> spnr_yearOfPurchaseList = new ArrayList<>();
 
+    JSONArray tabCountProgWise;
+    List<Model_TabletCountProgramwise> tabCountProgWiseList;
+
     String totalDamagedCount = "", totalTabletCount = "";
 
     boolean isStoreManager = false;
 
+    String donorName, vendorName, yop;
+
+    TabCountProgramWiseListAdapter tabCountProgramWiseListAdapter;
+    public BlurPopupWindow dlg_showTabletDetails;
+    RecyclerView rv_showTabDetails;
 
     public BlockLeaderHomeFragment() {
         // Required empty public constructor
@@ -186,6 +205,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
 
     @AfterViews
     public void init() {
+        loadTabletCount();
 
         if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("13")) {
             isStoreManager = true;
@@ -207,12 +227,11 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
         spinner_state.setAdapter(adapter);
 //        loadprogams();
         getVillageStatewise(); //calling to get directly blocks
-        loadTabletCount();
 
         switchMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    rl_tabStatusTwo.setVisibility(View.VISIBLE);
+                    ll_tabStatusTwo.setVisibility(View.VISIBLE);
                     rl_tabStatus.setVisibility(View.GONE);
                     rl_spinnerParentTwo.setVisibility(View.VISIBLE);
                     rl_spinnerParent.setVisibility(View.GONE);
@@ -220,9 +239,10 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
                     ll_goBtnVendor.setVisibility(View.VISIBLE);
                     tv_addNewTablet.setVisibility(View.VISIBLE);
                     loadVendorTabletCount();
+                    getTabletCountProgramWise();
 //                    tv_totalNoOfTabs.setText(Html.fromHtml("Total number of Tablets : <b>" + totalDamagedCount + "</b>"));
                 } else {
-                    rl_tabStatusTwo.setVisibility(View.GONE);
+                    ll_tabStatusTwo.setVisibility(View.GONE);
                     rl_tabStatus.setVisibility(View.VISIBLE);
                     rl_spinnerParentTwo.setVisibility(View.GONE);
                     rl_spinnerParent.setVisibility(View.VISIBLE);
@@ -233,6 +253,59 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
                 }
             }
         });
+    }
+
+    @Click(R.id.ll_lost_tab)
+    public void showLostTabletDetails(){
+        showTabletDetails("lost");
+    }
+    @Click(R.id.ll_damage_tab)
+    public void showDamageTabletDetails(){
+        showTabletDetails("damage");
+    }
+    @Click(R.id.ll_working_tab)
+    public void showWorkingTabletDetails(){
+        showTabletDetails("working");
+    }
+    @Click(R.id.ll_dead_tab)
+    public void showDeadTabletDetails(){
+        showTabletDetails("dead");
+    }
+
+    public void showTabletDetails(String tabType){
+        Log.e("dsgsg","argbdvBV");
+        dlg_showTabletDetails = new BlurPopupWindow.Builder(getActivity())
+                .setContentView(R.layout.dialog_tabletcount_programwise)
+/*                .bindClickListener(v -> {
+                    dlg_showTabletDetails.dismiss();
+                }, R.id.dialog_btn_exit)*/
+                .setGravity(Gravity.CENTER)
+                .setDismissOnTouchBackground(false)
+                .setDismissOnClickBack(true)
+                .setScaleRatio(0.2f)
+                .setBlurRadius(10)
+                .setTintColor(0x30000000)
+                .build();
+
+        rv_showTabDetails = dlg_showTabletDetails.findViewById(R.id.rv_tabCount);
+        try {
+            tabCountProgramWiseListAdapter = new TabCountProgramWiseListAdapter(getActivity(), tabCountProgWiseList, tabType);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            rv_showTabDetails.setLayoutManager(layoutManager);
+            rv_showTabDetails.setAdapter(tabCountProgramWiseListAdapter);
+            tabCountProgramWiseListAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        dlg_showTabletDetails.show();
+
+    }
+
+    private void getTabletCountProgramWise() {
+        if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestNew(this, APIs.tabCountProgWiseAPI, "Loading...", "tabCountProgWiseApi", getActivity());
+        }
     }
 
     private void storeManagerAPICall() {
@@ -313,6 +386,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
 
     @Click(R.id.btn_goVendor)
     public void loadCountVendorWise() {
+/*
         if (spinner_donor.getSelectedItem().toString().equalsIgnoreCase("Donor") ||
                 spinner_vendor.getSelectedItem().toString().equalsIgnoreCase("Vendor") ||
                 spinner_yearOfpurchase.getSelectedItem().toString().equalsIgnoreCase("YearOfPurchase") ||
@@ -328,6 +402,39 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
                 NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestJsonObject(this, url, "Loading...", "loading_damaged_tablets", getActivity());
             }
         }
+*/
+        if (spinner_donor.getSelectedItem().toString().equalsIgnoreCase("Donor") &&
+                spinner_vendor.getSelectedItem().toString().equalsIgnoreCase("Vendor") &&
+                spinner_yearOfpurchase.getSelectedItem().toString().equalsIgnoreCase("Year") &&
+                spinner_programm.getSelectedItem().toString().equalsIgnoreCase("Program"))
+            Toast.makeText(getActivity(), "Select at least one field!", Toast.LENGTH_SHORT).show();
+        else {
+            getSpinnerValues();
+            String url = APIs.tabletCountByDonorVendor + donorName +
+                    APIs.SERVER_VENDORNAME + vendorName +
+                    APIs.SERVER_YOP + yop +
+                    APIs.SERVER_PROGRAMID + selectedProgrammID;
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                Log.e("Filter url : ", url);
+                NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestJsonObject(this, url, "Loading...", "loading_damaged_tablets", getActivity());
+            } else {
+                Utility.showSnackbar(getActivity(), rl_blScreen, getString(R.string.chkInternet));
+            }
+
+        }
+    }
+
+    private void getSpinnerValues() {
+        if (spinner_donor.getSelectedItem().toString().equalsIgnoreCase("Donor")) donorName="0";
+        else donorName = spinner_donor.getSelectedItem().toString();
+
+        if (spinner_vendor.getSelectedItem().toString().equalsIgnoreCase("Vendor")) vendorName="0";
+        else vendorName = spinner_vendor.getSelectedItem().toString();
+
+        if (spinner_yearOfpurchase.getSelectedItem().toString().equalsIgnoreCase("Year")) yop="0";
+        else yop = spinner_yearOfpurchase.getSelectedItem().toString();
+
+        if (spinner_programm.getSelectedItem().toString().equalsIgnoreCase("Program")) selectedProgrammID="0";
     }
 
     @Click(R.id.btn_refresh)
@@ -427,6 +534,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
                     FastSave.getInstance().getString("programId", "") +
                     APIs.SERVER_STATE +
                     FastSave.getInstance().getString("stateCode", "");
+            Log.e("URL : ", url);
             loadAPI(url, village, FastSave.getInstance().getString("programName", ""));
 /*            } else {
                 //Toast.makeText(this, "Please Select State", Toast.LENGTH_SHORT).show();
@@ -451,6 +559,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
                 String url;
                 stateCode = getResources().getStringArray(R.array.india_states_shortcode);
                 url = APIs.pullVillagesServerURL + spID + APIs.SERVER_STATE + stateCode[selectedState];
+                Log.e("URL : ", url);
                 loadAPI(url, village, spName);
             } else {
                 //Toast.makeText(this, "Please Select State", Toast.LENGTH_SHORT).show();
@@ -525,7 +634,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
 
             }
         });
-        dismissShownDialog();
+        //dismissShownDialog();
     }
 
     private void showDialoginApiCalling(String program, String type) {
@@ -566,7 +675,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             errorDetected = true;
             if (type.equals("village")) {
                 spinner_state.setSelection(0);
-                dismissShownDialog();
+                //dismissShownDialog();
             }
             /*  dismissShownDialog();*/
             //parseJSON("[]", type, program);
@@ -606,18 +715,23 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
         Gson gson = new Gson();
         if (header.equalsIgnoreCase("loading_tablets")) {
             Model_TabletCount tabletCount = gson.fromJson(response, Model_TabletCount.class);
+            Log.e("url : ",tabletCount.getTotalDisputed());
             tv_desputedCount.setText(tabletCount.getTotalDisputed());
             tv_assignedCount.setText(tabletCount.getTotalAssigned());
             tv_unassignedCount.setText(tabletCount.getTotalUnassigned());
             totalTabletCount = tabletCount.getTotalCount();
             tv_totalNoOfTabs.setText(Html.fromHtml("Total number of Tablets : <b>" + tabletCount.getTotalCount() + "</b>"));
+            dismissShownDialog();
         } else if (header.equalsIgnoreCase("loading_damaged_tablets")) {
             Model_DamagedTabletCount damagedTabletCount = gson.fromJson(response, Model_DamagedTabletCount.class);
             tv_lostTabCount.setText(damagedTabletCount.getTotalLost());
             tv_damagedTabCount.setText(damagedTabletCount.getTotalDamaged());
             tv_workingTabCount.setText(damagedTabletCount.getTotalWorking());
+            tv_deadTabCount.setText(damagedTabletCount.getTotalDead());
             totalDamagedCount = damagedTabletCount.getTotalCount();
             tv_totalNoOfTabs.setText(Html.fromHtml("Total number of Tablets : <b>" + totalDamagedCount + "</b>"));
+            //Log.e("Tot Other : ", damagedTabletCount.getTotalOther());
+            //Log.e("Tot Dead : ", damagedTabletCount.getTotalDead());
         } else if (header.equalsIgnoreCase("vendorApi")) {
             try {
                 vendorResponse = new JSONArray(response);
@@ -670,6 +784,18 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (header.equalsIgnoreCase("tabCountProgWiseApi")) {
+            try {
+                Log.e("TabCountProgWise : ", response);
+                tabCountProgWise = new JSONArray(response);
+                if (tabCountProgWise.length() > 0) {
+                    Type respList = new TypeToken<ArrayList<Model_TabletCountProgramwise>>() {
+                    }.getType();
+                    tabCountProgWiseList = gson.fromJson(response.toString(), respList);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -680,7 +806,8 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             tv_assignedCount.setText("0");
             tv_unassignedCount.setText("0");
             tv_totalNoOfTabs.setText(Html.fromHtml("Total number of Tablets : <b>0</b>"));
-            Toast.makeText(requireActivity(), R.string.chkInternet, Toast.LENGTH_SHORT).show();
+            Log.e("Load Tablets error : ", String.valueOf(anError.getErrorCode()));
+            Toast.makeText(requireActivity(), R.string.somethingwrong, Toast.LENGTH_SHORT).show();
         }
     }
 

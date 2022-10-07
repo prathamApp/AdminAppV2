@@ -28,6 +28,13 @@
         android:fontFamily="@font/glacialindifferencebold"
         android:textAlignment="center" />
 
+    <ImageView
+        android:id="@+id/iv_historyButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_history_grey_24"
+        android:layout_alignParentEnd="true"/>
+
     <EditText
         android:id="@+id/et_search"
         android:layout_width="match_parent"

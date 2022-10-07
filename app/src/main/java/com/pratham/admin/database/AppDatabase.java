@@ -22,6 +22,7 @@ import com.pratham.admin.modalclasses.GroupVisit;
 import com.pratham.admin.modalclasses.Groups;
 import com.pratham.admin.modalclasses.MetaData;
 import com.pratham.admin.modalclasses.Modal_Log;
+import com.pratham.admin.modalclasses.Model_User;
 import com.pratham.admin.modalclasses.Student;
 import com.pratham.admin.modalclasses.TabTrack;
 import com.pratham.admin.modalclasses.TabletManageDevice;
@@ -37,7 +38,7 @@ import com.pratham.admin.modalclasses.Youth;
         Completion.class, Groups.class, Student.class, GroupSession.class,
         GroupVisit.class, Village.class, MetaData.class, TempStudent.class,
         TabTrack.class, TabletManageDevice.class, Modal_Log.class, TabletStatus.class,
-        Aser.class, Youth.class}, version = AppDatabase.DB_VERSION, exportSchema = false)
+        Aser.class, Youth.class, Model_User.class}, version = AppDatabase.DB_VERSION, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase DATABASEINSTANCE;
@@ -90,6 +91,8 @@ public abstract class AppDatabase extends RoomDatabase {
     //public abstract NotificationDao getNotificationDao();
 
     public abstract YouthDao getYouthDao();
+
+    public abstract UserDao getUserDao();
 
     public static AppDatabase getDatabaseInstance(Context context) {
         if (DATABASEINSTANCE == null)

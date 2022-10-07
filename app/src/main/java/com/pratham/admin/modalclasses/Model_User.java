@@ -1,8 +1,19 @@
 package com.pratham.admin.modalclasses;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class Model_User {
+
+    @NonNull
+    @PrimaryKey
+    @SerializedName("userid")
+    private String userid;
+
     @SerializedName("roleid")
     private Integer roleid;
 
@@ -38,9 +49,6 @@ public class Model_User {
 
     @SerializedName("Email")
     private String email;
-
-    @SerializedName("userid")
-    private String userid;
 
     @SerializedName("ReportingPersonId")
     private String reportingPersonId;

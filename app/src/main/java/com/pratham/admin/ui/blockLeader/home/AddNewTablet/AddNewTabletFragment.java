@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.error.ANError;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,6 +36,7 @@ import com.pratham.admin.R;
 import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.NetworkCallListener;
+import com.pratham.admin.modalclasses.API_Response;
 import com.pratham.admin.modalclasses.Model_BrandModel;
 import com.pratham.admin.modalclasses.Model_NewTablet;
 import com.pratham.admin.modalclasses.Model_Vendor;
@@ -42,11 +47,13 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.Touch;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.json.JSONArray;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
@@ -137,6 +144,10 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     JSONArray brandModelResponse;
     List<Model_BrandModel> brandModelsList = new ArrayList<>();
 
+    View customAlertDialog;
+    MaterialAlertDialogBuilder materialAlertDialogBuilder;
+
+
     public AddNewTabletFragment() {
         // Required empty public constructor
     }
@@ -156,6 +167,8 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         initCamera();
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
         animationin = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+
+        materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
     }
 
     private void brandModelApiCall() {
@@ -473,8 +486,18 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     public void onResponse(String response, String header) {
         Gson gson = new Gson();
         if (header.equalsIgnoreCase("AddNewTablets")) {
-            Toast.makeText(getActivity(), "Tablet added successfully...", Toast.LENGTH_SHORT).show();
-            clearFields();
+            API_Response apiResponse;
+            Type json = new TypeToken<API_Response>() {
+            }.getType();
+            apiResponse = gson.fromJson(response, json);
+            Log.e("NewTabResp : ",response);
+            if(apiResponse.getTransId().equalsIgnoreCase(""))
+            {
+                Toast.makeText(getActivity(), "Tablet added successfully...", Toast.LENGTH_SHORT).show();
+                clearFields();
+            }
+            else showDuplicateTabDialog(apiResponse.getTransId());
+
             btn_sendTablets.setVisibility(View.GONE);
             btn_addToInventory.setVisibility(View.VISIBLE);
         } else if (header.equalsIgnoreCase("brandModelApi")) {
@@ -505,6 +528,54 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
             Log.e("New Tab ErrorDetail : ", Objects.requireNonNull(anError.getErrorDetail()));
             Toast.makeText(getActivity(), "Brand and Model not Found!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @UiThread
+    public void showDuplicateTabDialog(String msg) {
+        customAlertDialog = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_duplicate_srno,null,false);
+        String[] tabSrNoArray = msg.split(",");
+        Log.e("Array Length : ", String.valueOf(tabSrNoArray.length));
+        Log.e("Array : ", Arrays.toString(tabSrNoArray));
+
+        int newTabCount = scannedTabList.size()-tabSrNoArray.length;
+        Log.e(" arra pushed : ", String.valueOf(newTabCount));
+
+        TextView tv_duplicate_srno = customAlertDialog.findViewById(R.id.tv_duplicate_srno);
+        TextView tv_newTabMsg = customAlertDialog.findViewById(R.id.tv_newTabMsg);
+        tv_duplicate_srno.setText(msg);
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //tv_msg.setText(Html.fromHtml(msg, Html.FROM_HTML_MODE_COMPACT));
+            tv_duplicate_srno.setText(msg);
+        } else {
+            tv_msg.setText(Html.fromHtml(msg));
+        }*/
+        if(newTabCount>0){
+            String tabCount = String.valueOf(newTabCount);
+            tv_newTabMsg.setText(tabCount+" new tablet's added successfully.");
+            tv_newTabMsg.setVisibility(View.VISIBLE);
+        } else {
+            tv_newTabMsg.setVisibility(View.GONE);
+        }
+
+        materialAlertDialogBuilder
+                .setView(customAlertDialog)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        clearFields();
+                    }
+                })
+/*
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+*/
+                .show();
+
     }
 
     public void clearFields() {

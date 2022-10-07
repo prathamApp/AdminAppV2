@@ -16,8 +16,10 @@ public class APIs {
     public static final String SERVER_STATENAME = "&statename=";
     public static final String SERVER_BLOCKNAME = "&blockname=";
     public static final String SERVER_DONORNAME = "&donorname=";
+    public static final String SERVER_VENDORNAME = "&vendor=";
     public static final String SERVER_YOP = "&yearofpurchase=";
     public static final String SERVER_ROLE = "&roleid=";
+    public static final String SERVER_PASSWORD = "&password=";
 
     public static final String pullVillagesServerURL = "http://www.hlearning.openiscool.org/api/village/get?programId=";
     public static final String pullGroupsServerURL = "http://www.devtab.openiscool.org/api/Group?programid=";
@@ -214,10 +216,12 @@ public class APIs {
     public static final String tabletCountByProgramState = "http://swap.prathamcms.org/api/vendor/GetVendorCount?userid=";
 
     //API used to fetch tablet count by passing donor, vendor, yop and program(Lost, Damaged and Working)
-    public static final String tabletCountByDonorVendor = "http://swap.prathamcms.org/api/vendor/GetVendorDonorProgYearCount?userid=";
+    //public static final String tabletCountByDonorVendor = "http://swap.prathamcms.org/api/vendor/GetVendorDonorProgYearCount?userid=";
+    public static final String tabletCountByDonorVendor = "http://swap.prathamcms.org/api/StoreSummary/GetCountFilter?donor=";
 
     //API used to fetch total tablet count(Lost, Damaged and Working)
-    public static final String totalDamagedTabletCount = "http://swap.prathamcms.org/api/StoreCount/GetStoreCount";
+    //public static final String totalDamagedTabletCount = "http://swap.prathamcms.org/api/StoreCount/GetStoreCount";
+    public static final String totalDamagedTabletCount = "http://swap.prathamcms.org/api/StoreSummary/GetCount";//new API by Ganesh Sir
 
     //API to fetch all users(CRL, BL, DL, Employee, etc)
     public static final String getAllUsers = "http://swap.prathamcms.org/api/StoreManager/GetUserList";
@@ -239,14 +243,14 @@ public class APIs {
     // Device List API
     public static final String DeviceList = "http://swap.prathamcms.org/api/tablist?userid=";
 
-    //API to push new scanned tablets to server
+    //API to push new scanned tablets to server(Add new Tab API)
     public static final String addNewTabAPI = "http://swap.prathamcms.org/API/ScanTablet/pushScanDevice";
 
 
     // Device List API
     public static final String getAcknowledgeList = "http://swap.prathamcms.org/api/Acknowledge/GetAcknowledgeDevice?userid=";
 
-    // Device List API
+    // Acknowledge Device API
     public static final String AcknowledgeDevice = "http://swap.prathamcms.org/API/Acknowledge/AcknowledgeDevice";
 
     //API for getting brand and model
@@ -254,4 +258,10 @@ public class APIs {
 
     //API to fetch user by passing id
     public static final String getIdWiseUser = "http://www.swap.prathamcms.org/api/UserList?userid=";
+
+    //API for Login
+    public static final String loginAPI = "http://swap.prathamcms.org/api/userlist/get?username=";
+
+    //API for Getting tablet count Program Wise
+    public static final String tabCountProgWiseAPI = "http://swap.prathamcms.org/api/StoreSummary/GetProgramWiseCount?click=0";
 }

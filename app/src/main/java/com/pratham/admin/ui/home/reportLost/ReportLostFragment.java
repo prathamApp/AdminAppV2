@@ -34,8 +34,12 @@ import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.EventMessage;
 import com.pratham.admin.modalclasses.Model_ReportLost;
+import com.pratham.admin.ui.home.replaceTablet.ReplaceFormFragment_;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceTabItemClick;
 import com.pratham.admin.ui.home.replaceTablet.ReplaceTabListAdapter;
+import com.pratham.admin.ui.home.replaceTablet.ReplaceTabletFragment_;
+import com.pratham.admin.ui.home.tabletHistory.Fragment_TabletHistory;
+import com.pratham.admin.ui.home.tabletHistory.Fragment_TabletHistory_;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
 import com.pratham.admin.util.AA_Constants;
@@ -144,6 +148,14 @@ public class ReportLostFragment extends Fragment implements ReplaceTabItemClick,
             }
         });
         popup.show();
+    }
+
+    @Click(R.id.iv_historyButton)
+    public void showHistory(){
+        Bundle bundle = new Bundle();
+        bundle.putString("LABEL", "Lost Tablets");
+        Utility.showFragment(getActivity(), new Fragment_TabletHistory_(), R.id.fragment_container,
+                bundle, ReportlostFormFragment_.class.getSimpleName());
     }
 
 

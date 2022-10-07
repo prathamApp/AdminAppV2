@@ -2,25 +2,39 @@ package com.pratham.admin.modalclasses;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Model_DamagedTabletCount {
-
+public class Model_TabletCountProgramwise {
+    @SerializedName("ProgramId")
+    private String programId;
+    @SerializedName("ProgramName")
+    private String programName;
     @SerializedName("TotalCount")
     private String totalCount;
-
-    @SerializedName("TotalWorking")
-    private String totalWorking;
-
-    @SerializedName("TotalDamaged")
-    private String totalDamaged;
-
     @SerializedName("TotalLost")
     private String totalLost;
-
+    @SerializedName("TotalWorking")
+    private String totalWorking;
+    @SerializedName("TotalDamaged")
+    private String totalDamaged;
     @SerializedName("TotalDead")
     private String totalDead;
-
     @SerializedName("TotalOther")
     private String totalOther;
+
+    public String getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(String programId) {
+        this.programId = programId;
+    }
+
+    public String getProgramName() {
+        return programName;
+    }
+
+    public void setProgramName(String programName) {
+        this.programName = programName;
+    }
 
     public String getTotalCount() {
         return totalCount;
@@ -28,6 +42,14 @@ public class Model_DamagedTabletCount {
 
     public void setTotalCount(String totalCount) {
         this.totalCount = totalCount;
+    }
+
+    public String getTotalLost() {
+        return totalLost;
+    }
+
+    public void setTotalLost(String totalLost) {
+        this.totalLost = totalLost;
     }
 
     public String getTotalWorking() {
@@ -46,14 +68,6 @@ public class Model_DamagedTabletCount {
         this.totalDamaged = totalDamaged;
     }
 
-    public String getTotalLost() {
-        return totalLost;
-    }
-
-    public void setTotalLost(String totalLost) {
-        this.totalLost = totalLost;
-    }
-
     public String getTotalDead() {
         return totalDead;
     }
@@ -69,4 +83,5 @@ public class Model_DamagedTabletCount {
     public void setTotalOther(String totalOther) {
         this.totalOther = totalOther;
     }
+
 }

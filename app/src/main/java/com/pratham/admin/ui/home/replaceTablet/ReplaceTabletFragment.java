@@ -34,6 +34,8 @@ import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.EventMessage;
 import com.pratham.admin.modalclasses.Model_ReplaceTab;
+import com.pratham.admin.ui.home.reportLost.ReportlostFormFragment_;
+import com.pratham.admin.ui.home.tabletHistory.Fragment_TabletHistory_;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
 import com.pratham.admin.util.AA_Constants;
@@ -145,6 +147,14 @@ public class ReplaceTabletFragment extends Fragment implements NetworkCallListen
             }
         });
         popup.show();
+    }
+
+    @Click(R.id.iv_historyButton)
+    public void showHistory(){
+        Bundle bundle = new Bundle();
+        bundle.putString("LABEL", "Replace Tablets");
+        Utility.showFragment(getActivity(), new Fragment_TabletHistory_(), R.id.fragment_container,
+                bundle, ReportlostFormFragment_.class.getSimpleName());
     }
 
     public void myDeviceList() {

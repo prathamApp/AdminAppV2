@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_blScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/_10sdp"
-    tools:context=".ui.blockLeader.home.BlockLeaderHomeFragment"
     android:background="@color/screen_background"
-    android:id="@+id/rl_blScreen">
+    tools:context=".ui.blockLeader.home.BlockLeaderHomeFragment">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_vendor"
@@ -233,96 +233,144 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_lbl_noOfTab">
 
-            <RelativeLayout
-                android:id="@+id/rl_tabStatusTwo"
+            <LinearLayout
+                android:id="@+id/ll_tabStatusTwo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_88sdp"
                 android:layout_marginTop="@dimen/_25sdp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone"
-                android:weightSum="3">
+                android:weightSum="4">
 
-                <TextView
-                    android:id="@+id/tv_lost_tab"
-                    android:layout_width="@dimen/_68sdp"
-                    android:layout_height="@dimen/_68sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:background="@drawable/rounded_for_desputed_tab"
-                    android:fontFamily="@font/glacialindifferenceitalic"
-                    android:gravity="center"
-                    android:padding="@dimen/_10sdp"
-                    android:text="0"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/ll_lost_tab"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/tv_lost_tab_label"
-                    android:layout_width="@dimen/_68sdp"
-                    android:layout_height="@dimen/_68sdp"
-                    android:layout_below="@+id/tv_lost_tab"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:fontFamily="@font/glacialindifferencebold"
-                    android:gravity="center"
-                    android:text="LOST"
-                    android:textColor="@color/pink_700"
-                    android:textSize="@dimen/_10sdp" />
+                    <TextView
+                        android:id="@+id/tv_lost_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65sdp"
+                        android:background="@drawable/rounded_tv_for_unassigned_tab"
+                        android:fontFamily="@font/glacialindifferenceitalic"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_damaged_tab"
-                    android:layout_width="@dimen/_68sdp"
-                    android:layout_height="@dimen/_68sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_toEndOf="@id/tv_lost_tab"
-                    android:background="@drawable/rounded_tv_for_damaged_tab"
-                    android:fontFamily="@font/glacialindifferenceitalic"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_lost_tab_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/glacialindifferencebold"
+                        android:gravity="center"
+                        android:text="LOST"
+                        android:textColor="@color/blue_700"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_damaged_tab_label"
-                    android:layout_width="@dimen/_68sdp"
-                    android:layout_height="@dimen/_68sdp"
-                    android:layout_below="@id/tv_damaged_tab"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_toEndOf="@id/tv_lost_tab"
-                    android:fontFamily="@font/glacialindifferencebold"
-                    android:gravity="center"
-                    android:text="DAMAGED"
-                    android:textColor="@color/blue_700"
-                    android:textSize="@dimen/_10sdp" />
+                <LinearLayout
+                    android:id="@+id/ll_damage_tab"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/tv_working_tab"
-                    android:layout_width="@dimen/_68sdp"
-                    android:layout_height="@dimen/_68sdp"
-                    android:layout_toEndOf="@id/tv_damaged_tab"
-                    android:background="@drawable/rounded_tv_for_assigned_tab"
-                    android:fontFamily="@font/glacialindifferenceitalic"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_damaged_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65sdp"
+                        android:background="@drawable/rounded_tv_for_damaged_tab"
+                        android:fontFamily="@font/glacialindifferenceitalic"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_working_tab_label"
-                    android:layout_width="@dimen/_68sdp"
-                    android:layout_height="@dimen/_68sdp"
-                    android:layout_below="@id/tv_working_tab"
-                    android:layout_toEndOf="@id/tv_damaged_tab"
-                    android:fontFamily="@font/glacialindifferencebold"
-                    android:gravity="center"
-                    android:text="WORKING"
-                    android:textColor="@color/green_700"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_damaged_tab_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/glacialindifferencebold"
+                        android:gravity="center"
+                        android:text="DAMAGED"
+                        android:textColor="@color/orange_700"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
 
-            </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/ll_working_tab"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/tv_working_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65sdp"
+                        android:background="@drawable/rounded_tv_for_assigned_tab"
+                        android:fontFamily="@font/glacialindifferenceitalic"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_working_tab_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/glacialindifferencebold"
+                        android:gravity="center"
+                        android:text="WORKING"
+                        android:textColor="@color/green_700"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_dead_tab"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_dead_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65sdp"
+                        android:background="@drawable/rounded_for_desputed_tab"
+                        android:fontFamily="@font/glacialindifferenceitalic"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_dead_tab_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_dead_tab"
+                        android:layout_toEndOf="@id/tv_working_tab"
+                        android:fontFamily="@font/glacialindifferencebold"
+                        android:gravity="center"
+                        android:text="DEAD"
+                        android:textColor="@color/pink_700"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_tabStatus"
@@ -331,6 +379,7 @@
                 android:layout_marginTop="@dimen/_25sdp"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 android:weightSum="3">
 
                 <TextView
@@ -433,15 +482,15 @@
         android:id="@+id/tv_addNewTablet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border"
-        android:text="Add New Tablet"
-        android:fontFamily="@font/glacialindifferencebold"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/rl_tabCountView"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/rounded_border"
         android:drawableStart="@drawable/ic_barcode_scanner_24"
         android:drawablePadding="@dimen/_10sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:gravity="center"
         android:padding="@dimen/_10sdp"
-        android:visibility="gone"/>
+        android:text="Add New Tablet"
+        android:visibility="gone" />
 </RelativeLayout>

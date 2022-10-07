@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -51,6 +52,8 @@ import com.pratham.admin.modalclasses.GroupVisit;
 import com.pratham.admin.modalclasses.Groups;
 import com.pratham.admin.modalclasses.MetaData;
 import com.pratham.admin.modalclasses.Modal_Log;
+import com.pratham.admin.modalclasses.Model_TabletCount;
+import com.pratham.admin.modalclasses.Model_User;
 import com.pratham.admin.modalclasses.Student;
 import com.pratham.admin.ui.home.Home_;
 import com.pratham.admin.util.APIs;
@@ -70,6 +73,8 @@ import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -110,14 +115,7 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
     RelativeLayout rl_loginScreen;
 
     String lastOfflineSavedDate;
-    String crlName;
-    String crlID;
-    String reportingPersonId;
-    String reportingPersonName;
-    String roleId;
-    String programId;
-    String programName;
-    String stateCode;
+    String loggerName, userID, reportingPersonId, reportingPersonName, roleId, programId, programName, stateCode;
     boolean internetIsAvailable = false;
     private PermissionResult permissionResult;
     private String permissionsAsk[];
@@ -144,7 +142,7 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         }
 
         // check connection & then upgrade latest version if available
-        ApplicationController.getInstance().setConnectionListener(this);
+/*        ApplicationController.getInstance().setConnectionListener(this);
         checkConnection();
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -191,10 +189,10 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
             e.printStackTrace();
             Toast.makeText(ApplicationController.getInstance(), "On Exception data cleared", Toast.LENGTH_SHORT).show();
             clearData();
-        }
+        }*/
     }
 
-
+    //Add meta date to db
     public void addMetaData() {
         MetaData metaData;
 
@@ -346,19 +344,19 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 /*        userName.setText("sanchar");//test vendor
         password.setText("sanchar@123");*/
 
-        userName.setText("dl_store6628");//test storemanager
-        password.setText("Pratham@123");
+/*        userName.setText("dl_store6628");//test storemanager
+        password.setText("Pratham@123");*/
 
 
         //userName.setText("");
         //password.setText("");
-        userName.requestFocus();
+/*        userName.requestFocus();
         SharedPreferences preferences = this.getSharedPreferences("prathamInfo", Context.MODE_PRIVATE);
         String program = preferences.getString("program", "null");
         String state = preferences.getString("state", "null");
         String village = preferences.getString("village", "null");
-        lastOfflineSavedDate = preferences.getString("offlineSaveTime", "null");
-        if ((!program.equals("null")) && (!state.equals("null")) && (!village.equals("null"))) {
+        lastOfflineSavedDate = preferences.getString("offlineSaveTime", "null");*/
+/*        if ((!program.equals("null")) && (!state.equals("null")) && (!village.equals("null"))) {
             programInfoLayout.setVisibility(View.VISIBLE);
             masterSync.setVisibility(View.GONE);
             selProg.setText(program);
@@ -367,9 +365,10 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         } else {
             programInfoLayout.setVisibility(View.GONE);
             masterSync.setVisibility(View.VISIBLE);
-        }
+        }*/
     }
 
+/*
     private void checkConnection() {
 
         try {
@@ -394,12 +393,12 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
             BackupDatabase.backup(ApplicationController.getInstance());
         }
     }
+*/
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
         if (!isConnected) {
             internetIsAvailable = false;
-//            Toast.makeText(this, R.string.noInterntCon, Toast.LENGTH_SHORT).show();
             Utility.showSnackbar(context, rl_loginScreen, R.string.noInterntCon);
 
         } else {
@@ -439,17 +438,6 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         alertDialogBuilder.show();
     }
 
-    @Override
-    public void onResponse(String response, String header) {
-        /*if (isUpdateClicked)
-            updateApp();*/
-    }
-
-    @Override
-    public void onError(ANError anError, String header) {
-        //Toast.makeText(this, R.string.datapushfailed, Toast.LENGTH_SHORT).show();
-    }
-
     private String customParse(List<MetaData> metaDataList) {
         String json = "{";
 
@@ -478,7 +466,6 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         final List<ECEAsmt> ECEAsmtObj;
         final List<Modal_Log> LogObj;
         List<MetaData> metaDataList;
-        checkConnection();
 
         aObj = AppDatabase.getDatabaseInstance(this).getAttendanceDao().getNewAttendances(0);
         coachesObj = AppDatabase.getDatabaseInstance(this).getCoachDao().getNewCoaches(0);
@@ -494,7 +481,7 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
         // Push To Server
         try {
-            if (internetIsAvailable) {
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
 
                 // Preview
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginActivity.this, android.R.style.Theme_Material_Light_Dialog);
@@ -627,11 +614,9 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
     @Click(R.id.btn_login)
     public void loginCheck(View view) {
-        String CRLuserName = userName.getText().toString();
-        String CRLpassword = password.getText().toString();
-        boolean userPass = false;
+        //boolean userPass = false;
 
-        List<CRL> Crl = AppDatabase.getDatabaseInstance(this).getCRLdao().getAllCRLs();
+/*        List<CRL> Crl = AppDatabase.getDatabaseInstance(this).getCRLdao().getAllCRLs();
         for (int i = 0; i < Crl.size(); i++) {
             if ((Crl.get(i).getUserName().equals(CRLuserName)) && (Crl.get(i).getPassword().equals(CRLpassword))) {
 
@@ -653,7 +638,7 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
 
                 AppDatabase.destroyInstance();
-                crlName = Crl.get(i).getFirstName() + " " + Crl.get(i).getLastName(); //+ " (" + Crl.get(i).getCRLId() + ")";
+                userName = Crl.get(i).getFullName() + " " + Crl.get(i).getLastName(); //+ " (" + Crl.get(i).getCRLId() + ")";
                 this.crlID = Crl.get(i).getCRLId();
                 reportingPersonId = Crl.get(i).getReportingPersonId();
                 reportingPersonName = Crl.get(i).getReportingPersonName();
@@ -682,14 +667,66 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
                 }
             });
             alertDialog.show();
-        }
-
-        // Make a db backup if Storage permission granted
-        if (isPermissionGranted(LoginActivity.this, PermissionUtils.Manifest_WRITE_EXTERNAL_STORAGE)) {
-            // Initiate Backup DB
-            BackupDatabase.backup(LoginActivity.this);
+        }*/
+        if(userName.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+            Utility.showSnackbar(this, rl_loginScreen, R.string.enter_unORpass);
+        } else {
+            String query = null;
+            try {
+                query = URLEncoder.encode(password.getText().toString(), "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            //String url = "http://stackoverflow.com/search?q=" + query;
+            String url = APIs.loginAPI + userName.getText().toString() + APIs.SERVER_PASSWORD + query;
+            //String url = APIs.loginAPI + userName.getText().toString() + APIs.SERVER_PASSWORD + password.getText().toString();
+            Log.e("login url : ", url);
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
+                NetworkCalls.getNetworkCallsInstance(this).getRequestJsonObject(this, url, "Loading...", "loginApi", this);
+            } else {
+                Utility.showSnackbar(this, rl_loginScreen, R.string.noInterntCon);
+            }
         }
     }
+
+    @Override
+    public void onResponse(String response, String header) {
+        /*if (isUpdateClicked)
+            updateApp();*/
+        Gson gson = new Gson();
+        if (header.equalsIgnoreCase("loginApi")) {
+            Model_User user = gson.fromJson(response, Model_User.class);
+            //AppDatabase.getDatabaseInstance(context).getUserDao().insertUser(user);
+            // Make a db backup if Storage permission granted
+            /*if (isPermissionGranted(LoginActivity.this, PermissionUtils.Manifest_WRITE_EXTERNAL_STORAGE)) {
+                // Initiate Backup DB
+                BackupDatabase.backup(LoginActivity.this);
+            }*/
+
+            loggerName = user.getFullname();
+            userID = user.getUserid();
+            reportingPersonId = user.getReportingPersonId();
+            reportingPersonName = user.getReportingPersonName();
+            roleId = user.getRoleid().toString();
+            programId = user.getProgid().toString();
+            programName = user.getProgname();
+            stateCode = user.getStatename();
+            openNextActivity();
+            Log.e("Login : ", response);
+        }
+    }
+
+    @Override
+    public void onError(ANError anError, String header) {
+        if (header.equalsIgnoreCase("loginApi")) {
+            Log.e("Login Error: ", String.valueOf(anError.getErrorCode()));
+            Utility.showSnackbar(this, rl_loginScreen, getString(R.string.invalid_unorpass));
+            userName.setText("");
+            password.setText("");
+            userName.requestFocus();
+        }
+    }
+
 
     @Click(R.id.masterSync)
     public void pullProgramDetails() {
@@ -704,11 +741,9 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
     private void pushDataOnLogin() {
         List<MetaData> metaDataList;
-        checkConnection();
-
         // Push To Server
         try {
-            if (internetIsAvailable) {
+            if (ApplicationController.wiseF.isDeviceConnectedToMobileOrWifiNetwork()) {
 
                 // Prepare Data
                 String metaData = addMetaDataToJson();
@@ -807,9 +842,6 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-        programInfoLayout.setVisibility(View.GONE);
-        masterSync.setVisibility(View.VISIBLE);
     }
 
     @Click(R.id.tv_english)
@@ -830,17 +862,17 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
     public void openNextActivity() {
         Intent intent = new Intent(LoginActivity.this, Home_.class);
-        FastSave.getInstance().saveString("CRLid", crlID);
-        FastSave.getInstance().saveString("CRLname", crlName);
+        FastSave.getInstance().saveString("CRLid", userID);
+        FastSave.getInstance().saveString("CRLname", loggerName);
         FastSave.getInstance().saveString("reportingPersonId", reportingPersonId);
         FastSave.getInstance().saveString("reportingPersonName", reportingPersonName);
         FastSave.getInstance().saveString("roleId", roleId);
         FastSave.getInstance().saveString("programId", programId);
         FastSave.getInstance().saveString("programName", programName);
         FastSave.getInstance().saveString("stateCode", stateCode);
-        intent.putExtra("CRLid", crlID);
-        intent.putExtra("CRLname", crlName);
-        intent.putExtra("CRLnameSwapStd", crlName + "(" + crlID + ")");
+        intent.putExtra("CRLid", userID);
+        intent.putExtra("CRLname", loggerName);
+        intent.putExtra("CRLnameSwapStd", userName + "(" + userID + ")");
         intent.putExtra("localeName", hindiLang);
         intent.putExtra("reportingPersonId", reportingPersonId);
         intent.putExtra("reportingPersonName", reportingPersonName);

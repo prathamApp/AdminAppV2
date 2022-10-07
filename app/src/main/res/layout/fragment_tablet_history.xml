@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.tabletHistory.Fragment_TabletHistory"
+    android:background="@color/screen_background"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/iv_backButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back_48"/>
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/ll_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tablet History"
+        android:textColor="#111111"
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/glacialindifferencebold"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/iv_historyButton"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/ic_history_grey_24"
+        android:layout_alignParentEnd="true"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tabList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_label"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp" />
+
+
+</RelativeLayout>

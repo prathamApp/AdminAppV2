@@ -262,7 +262,7 @@
 
     <!--App Failure Dialog-->
     <string name="unabletopush">Unable to Push Data !</string>
-    <string name="somethingwrong">Something went Wrong !\nPlease Check your network !</string>
+    <string name="somethingwrong">Something went Wrong!</string>
 
 
     <!--Toasts-->
@@ -270,7 +270,7 @@
     <string name="noInterntCon">No Internet Connection</string>
     <string name="backOnline">Back Online!</string>
     <string name="pushSuccess">pushed SuccessFully</string>
-    <string name="chkInternet">check internet connection</string>
+    <string name="chkInternet">Check internet connection</string>
     <string name="formSubmittedtoDB">Form Submitted to DB !!!</string>
     <string name="fillAllFields">Please fill all the fields !!!</string>
     <string name="selectAllFields">Please Select All Fields !!!</string>
@@ -300,6 +300,7 @@
     <string name="sorrynodatafound">Sorry. No Data Found !!!</string>
     <string name="recordsavedtodb">Record saved to Database !</string>
     <string name="recordupdatetodb">Record updated successfully !</string>
+    <string name="enter_unORpass">Please enter Username or Password.</string>
 
 
     <!--Alert Dialog-->
@@ -669,6 +670,8 @@
     <string name="report_lost">Reported Successfully...</string>
     <string name="no_data_found">No Data Found!</string>
     <string name="default_notification_channel_id" translatable="false">AdminAppV2</string>
+    <string name="invalid_unorpass">Invalid Username or Password.</string>
+
     <string-array name="tab_status">
         <item>Tab Status</item>
         <item>Disputed</item>

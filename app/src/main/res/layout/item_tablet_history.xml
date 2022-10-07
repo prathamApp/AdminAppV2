@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+
+    <TextView
+        android:id="@+id/tv_tabSerialNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LDGL8974N9H0NA"
+        android:textStyle="bold"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_tabBrandModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LDGL8974N9H0NA"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LDGL8974N9H0NA"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/green_700"/>
+
+</LinearLayout>

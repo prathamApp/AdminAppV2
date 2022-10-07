@@ -74,7 +74,7 @@
             android:layout_marginBottom="@dimen/_8sdp"
             android:background="@color/deeppurple_100"
             android:orientation="horizontal"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_progrm"
@@ -136,7 +136,6 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/programInfo"
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_30sdp">
 
@@ -266,5 +265,15 @@
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:src="@drawable/icon_language" />
+
+    <TextView
+        android:id="@+id/tv_versionNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="Version 1.0 | 30-09-2022"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
 
 </RelativeLayout><!--android:digits="0123456789abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$_-~:=,.;'!"-->

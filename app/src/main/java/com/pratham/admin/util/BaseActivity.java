@@ -41,9 +41,9 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
     protected void onCreate(Bundle savedInstanceState) {
         fullScreenMode();
         super.onCreate(savedInstanceState);
-        Catcho.Builder(this)
+/*        Catcho.Builder(this)
                 .activity(CatchoTransparentActivity.class) //on field
-                .build();
+                .build();*/
     }
 
     public void fullScreenMode(){
@@ -87,6 +87,7 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
     protected void onPause() {
         BackupDatabase.backup(this);
         super.onPause();
+        Utility.dismissLoadingDialog();
     }
 
     @Override
@@ -108,6 +109,7 @@ public class BaseActivity extends AppCompatActivity implements ConnectionReceive
         super.onStop();
         EventBus.getDefault().unregister(this);
         unregisterReceiver(connectivityReceiver);
+        Utility.dismissLoadingDialog();
     }
 
     @Override

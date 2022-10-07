@@ -432,7 +432,7 @@ public class Utility {
                 .setAction("OKAY", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String msg = String.valueOf(message);
+                        String msg = message;
                         if(msg.equalsIgnoreCase(String.valueOf(R.string.replace_request_sent_success))){
                             EventMessage startUpdate = new EventMessage();
                             startUpdate.setMessage(String.valueOf(R.string.replace_request_sent_success));
