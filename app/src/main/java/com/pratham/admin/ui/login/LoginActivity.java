@@ -114,6 +114,9 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
     @ViewById(R.id.loginScreen)
     RelativeLayout rl_loginScreen;
 
+    @ViewById(R.id.tv_versionNo)
+    TextView tv_versionNo;
+
     String lastOfflineSavedDate;
     String loggerName, userID, reportingPersonId, reportingPersonName, roleId, programId, programName, stateCode;
     boolean internetIsAvailable = false;
@@ -128,9 +131,11 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
     String hindiLang = "hi";
     String englishLang = "en";
 
+    @SuppressLint("SetTextI18n")
     @AfterViews
     public void init() {
         context = LoginActivity.this;
+        tv_versionNo.setText(AA_Constants.VERSION_NO+" | "+AA_Constants.APKDATE);
         addMetaData();
 //        Toast.makeText(this, "New Version", Toast.LENGTH_SHORT).show();
         if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)) {
@@ -259,7 +264,7 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
 
         metaData = new MetaData();
         metaData.setKeys("apkDate");
-        metaData.setValue(AA_Constants.apkDate);
+        metaData.setValue(AA_Constants.APKDATE);
         AppDatabase.getDatabaseInstance(context).getMetaDataDao().insertMetadata(metaData);
 
         metaData = new MetaData();
@@ -668,7 +673,8 @@ public class LoginActivity extends BaseActivity implements ConnectionReceiverLis
             });
             alertDialog.show();
         }*/
-        if(userName.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+        //New code for online login
+        if (userName.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
             Utility.showSnackbar(this, rl_loginScreen, R.string.enter_unORpass);
         } else {
             String query = null;

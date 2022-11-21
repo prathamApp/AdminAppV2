@@ -3,6 +3,9 @@ package com.pratham.admin.ui.blockLeader.home.AddNewTablet;
 import android.annotation.SuppressLint;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -37,9 +40,12 @@ import com.pratham.admin.async.NetworkCalls;
 import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.API_Response;
+import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.Model_BrandModel;
 import com.pratham.admin.modalclasses.Model_NewTablet;
 import com.pratham.admin.modalclasses.Model_Vendor;
+import com.pratham.admin.ui.blockLeader.Inventory.InventoryFragment;
+import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabListAdapter;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.Utility;
 
@@ -97,8 +103,8 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     @ViewById(R.id.tv_serialNo)
     TextView tv_serialNo;
 
-    @ViewById(R.id.lv_newTabs)
-    ListView lv_newTabs;
+    @ViewById(R.id.rv_newTabs)
+    RecyclerView rv_newTabs;
 
     @ViewById(R.id.rl_spinnerParent)
     RelativeLayout rl_spinnerParent;
@@ -147,6 +153,7 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     View customAlertDialog;
     MaterialAlertDialogBuilder materialAlertDialogBuilder;
 
+    AddNewTabListAdapter addNewTabListAdapter;
 
     public AddNewTabletFragment() {
         // Required empty public constructor
@@ -340,12 +347,25 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         } else {
             scannedTabList.add(result);
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        initializeAdapter();
+/*        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 scannedTabList);
 
-        lv_newTabs.setAdapter(arrayAdapter);
+        lv_newTabs.setAdapter(arrayAdapter);*/
+    }
+
+    public void initializeAdapter() {
+        try {
+            addNewTabListAdapter = new AddNewTabListAdapter(getActivity(), scannedTabList);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            rv_newTabs.setLayoutManager(layoutManager);
+            rv_newTabs.setAdapter(addNewTabListAdapter);
+            addNewTabListAdapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void showYearOfPurchase(List<String> yearOfPurchasesList) {

@@ -37,7 +37,7 @@
         android:id="@+id/tv_totalTabCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(Total Tabets : 100)"
+        android:text="(Total Tabets : 00)"
         android:fontFamily="@font/glacialindifferenceregular"
         android:layout_marginStart="@dimen/_10sdp"/>
     </LinearLayout>

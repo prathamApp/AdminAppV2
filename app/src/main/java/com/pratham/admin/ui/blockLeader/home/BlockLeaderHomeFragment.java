@@ -205,6 +205,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
 
     @AfterViews
     public void init() {
+        showDialoginApiCalling("Loading Tablet Count...","");
         loadTabletCount();
 
         if (FastSave.getInstance().getString("roleId", "").equalsIgnoreCase("13")) {
@@ -238,7 +239,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
                     ll_goBtn.setVisibility(View.GONE);
                     ll_goBtnVendor.setVisibility(View.VISIBLE);
                     tv_addNewTablet.setVisibility(View.VISIBLE);
-                    loadVendorTabletCount();
+                    loadVendorTabletCount();//used fetch count from server(lost, damages, working ande dead)
                     getTabletCountProgramWise();
 //                    tv_totalNoOfTabs.setText(Html.fromHtml("Total number of Tablets : <b>" + totalDamagedCount + "</b>"));
                 } else {
@@ -347,6 +348,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             NetworkCalls.getNetworkCallsInstance(requireActivity()).getRequestJsonObject(this, APIs.totalDamagedTabletCount, "Loading...", "loading_damaged_tablets", getActivity());
     }
 
+    //Button for getting disputer, unassigned and assigned tablt count
     @Click(R.id.btn_go)
     public void loadCountBlockWise() {
 
@@ -384,6 +386,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
         }
     }
 
+    //Button for getting lost, damaged, working and dead tablet count
     @Click(R.id.btn_goVendor)
     public void loadCountVendorWise() {
 /*
@@ -575,7 +578,7 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
     }
 
     public void loadAPI(final String url, final String type, final String programname) {
-        showDialoginApiCalling(programname, type);
+        //showDialoginApiCalling(programname, type);
         NetworkCalls.getNetworkCallsInstance(getActivity()).getRequestWithProgram(this, url, "loadAPI", type, programname);
     }
 
@@ -645,12 +648,13 @@ public class BlockLeaderHomeFragment extends Fragment implements NetworkCallList
             dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                     WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.setCancelable(true);
+            dialog.setCancelable(false);
             dialog.setCanceledOnTouchOutside(false);
             dialog.setContentView(R.layout.dialog_loading_api);
         }
         TextView tv_dialog_title = dialog.findViewById(R.id.tv_dialog_title);
-        tv_dialog_title.setText(getString(R.string.pulling) + program + " " + type);
+//        tv_dialog_title.setText(getString(R.string.pulling) + program + " " + type);
+        tv_dialog_title.setText(program);
         dialog.show();
     }
 

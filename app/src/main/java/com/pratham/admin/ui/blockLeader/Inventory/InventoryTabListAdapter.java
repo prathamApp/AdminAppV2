@@ -46,6 +46,8 @@ public class InventoryTabListAdapter extends RecyclerView.Adapter<InventoryTabLi
             String individaulTabStatus = deviseList.get(position).getStatus().toUpperCase();
             switch (individaulTabStatus) {
                 case "PENDING":
+                case "REPLACE_PENDING":
+                case "LOST_PENDING":
                 case "ASSIGN_PENDING":
                     holder.serialID.setTextColor(context.getResources().getColor(R.color.red));
                     break;
@@ -77,6 +79,8 @@ public class InventoryTabListAdapter extends RecyclerView.Adapter<InventoryTabLi
                     String individaulTabStatus = deviseList.get(position).getStatus().toUpperCase();
                     switch (individaulTabStatus) {
                         case "PENDING":
+                        case "REPLACE_PENDING":
+                        case "LOST_PENDING":
                         case "ASSIGN_PENDING":
                             Toast.makeText(context, "Request Already Sent.", Toast.LENGTH_SHORT).show();
                             break;
