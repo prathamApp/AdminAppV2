@@ -101,7 +101,7 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
     Gson gson = new Gson();
 
     public BlurPopupWindow detailDialog;
-    TextView tv_deviceId, tv_tabBrand, tv_serNo, tv_tabModel, tv_status;
+    TextView tv_deviceId, tv_tabBrand, tv_serNo, tv_tabModel, tv_status, tv_ponumber, tv_donor, tv_yop, tv_prog;
 
     MaterialAlertDialogBuilder materialAlertDialogBuilder;
     View customAlertDialog;
@@ -341,11 +341,19 @@ public class InventoryFragment extends Fragment implements NetworkCallListener, 
         tv_serNo = detailDialog.findViewById(R.id.tv_serialNo);
         tv_tabModel = detailDialog.findViewById(R.id.tv_tabModel);
         tv_status = detailDialog.findViewById(R.id.tv_status);
+        tv_ponumber = detailDialog.findViewById(R.id.tv_ponumber);
+        tv_donor = detailDialog.findViewById(R.id.tv_donorname);
+        tv_yop = detailDialog.findViewById(R.id.tv_yop);
+        tv_prog = detailDialog.findViewById(R.id.tv_prog);
         tv_deviceId.setText(deviseList.getDeviceid());
         tv_tabBrand.setText(deviseList.getBrand());
         tv_serNo.setText(deviseList.getSerialno());
         tv_tabModel.setText(deviseList.getModel());
         tv_status.setText(deviseList.getStatus());
+        tv_ponumber.setText(deviseList.getPonumber());
+        tv_donor.setText(deviseList.getDonorname());
+        tv_yop.setText(deviseList.getYearofpurchase());
+        tv_prog.setText(deviseList.getProgname());
         detailDialog.show();
     }
 

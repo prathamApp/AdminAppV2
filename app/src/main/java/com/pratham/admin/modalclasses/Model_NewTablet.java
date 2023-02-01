@@ -17,6 +17,8 @@ public class Model_NewTablet {
     String programName;
     String programId;
     String addedOn;// current date time
+    String poprogramid;
+    String ponumber;
 
     public Model_NewTablet() {
     }
@@ -140,4 +142,12 @@ public class Model_NewTablet {
     public void setAddedOn(String addedOn) {
         this.addedOn = addedOn;
     }
+
+    public String getPoprogramid() { return poprogramid; }
+
+    public void setPoprogramid(String poprogramid) { this.poprogramid = poprogramid; }
+
+    public String getPonumber() { return ponumber; }
+
+    public void setPonumber(String ponumber) { this.ponumber = ponumber; }
 }

@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import com.pratham.admin.R;
 import com.pratham.admin.interfaces.DevicePrathamIdLisner;
 import com.pratham.admin.modalclasses.DeviseList;
+import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabItemClick;
 import com.pratham.admin.ui.home.assignedToMe.DeviceListAdapter;
 
 import org.json.JSONArray;
@@ -45,7 +46,7 @@ public class MyDeviceList extends Dialog {
             setTitle("Select Device From The List");
         }
         recyclerView = findViewById(R.id.recycler_view);
-        DeviceListAdapter deviceAdapter = new DeviceListAdapter(context, deviceList, (DevicePrathamIdLisner) MyDeviceList.this);
+        DeviceListAdapter deviceAdapter = new DeviceListAdapter(context, deviceList, (InventoryTabItemClick) MyDeviceList.this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(deviceAdapter);

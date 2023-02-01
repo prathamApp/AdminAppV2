@@ -44,6 +44,7 @@ import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.modalclasses.Model_BrandModel;
 import com.pratham.admin.modalclasses.Model_NewTablet;
 import com.pratham.admin.modalclasses.Model_Vendor;
+import com.pratham.admin.modalclasses.ProgramsModal;
 import com.pratham.admin.ui.blockLeader.Inventory.InventoryFragment;
 import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabListAdapter;
 import com.pratham.admin.util.APIs;
@@ -127,6 +128,12 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
     @ViewById(R.id.et_enterSerialNum)
     EditText et_enterSerialNum;
 
+    @ViewById(R.id.spinner_program)
+    Spinner spinner_program;
+
+    @ViewById(R.id.et_ponumber)
+    EditText et_ponumber;
+
     public ZXingScannerView mScannerView;
 
     List<Model_NewTablet> newTabletList = new ArrayList<>();
@@ -155,6 +162,13 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
 
     AddNewTabListAdapter addNewTabListAdapter;
 
+    //Spinner Programs
+    private ArrayList<ProgramsModal> spnrProgramsList = new ArrayList<>();
+    List<String> prgrms = new ArrayList<>();
+    public static String selectedProgramID = null;
+    public static String selectedProgramName = null;
+
+
     public AddNewTabletFragment() {
         // Required empty public constructor
     }
@@ -165,11 +179,13 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         spnrDonorList = requireArguments().getStringArrayList("Donor_List");
         spnrVendorList = requireArguments().getStringArrayList("Vendor_List");
         spnrYopList = requireArguments().getStringArrayList("YOP_List");
+        spnrProgramsList = requireArguments().getParcelableArrayList("Program_List");
 
         brandModelApiCall();
         showDonors(spnrDonorList);
         showVendors(spnrVendorList);
         showYearOfPurchase(spnrYopList);
+        showPrograms(spnrProgramsList);
 
         initCamera();
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
@@ -273,7 +289,9 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
                 && spinner_vendor.getSelectedItemPosition() != 0
                 && spinner_yearOfpurchase.getSelectedItemPosition() != 0
                 && spinner_brand.getSelectedItemPosition() != 0
-                && spinner_model.getSelectedItemPosition() != 0) {
+                && spinner_program.getSelectedItemPosition() != 0
+                && spinner_model.getSelectedItemPosition() != 0
+                && !et_ponumber.getText().toString().isEmpty()) {
 
             if (otherDonor) donor = et_donor.getText().toString();
             else donor = spinner_donor.getSelectedItem().toString();
@@ -300,6 +318,8 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
                 modelNewTablet.setPrathamId("");
                 modelNewTablet.setQrId("");
                 modelNewTablet.setWiFiMacAddress("");
+                modelNewTablet.setPonumber(et_ponumber.getText().toString());
+                modelNewTablet.setPoprogramid(selectedProgramID);
                 newTabletList.add(modelNewTablet);
             }
             if (newTabletList.size() > 0) {
@@ -315,7 +335,7 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
                 Toast.makeText(getActivity(), "Scan Tablet First.", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(getActivity(), "Select All Dropdown Value.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "All fields are mandatory.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -501,6 +521,25 @@ public class AddNewTabletFragment extends Fragment implements ZXingScannerView.R
         });
     }
 
+    private void showPrograms(List<ProgramsModal> programsModalList) {
+        for (ProgramsModal mp : programsModalList) {
+            prgrms.add(mp.getProgramName());
+        }
+        ArrayAdapter programAdapter = new ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_dropdown_item, prgrms);
+        spinner_program.setAdapter(programAdapter);
+
+        spinner_program.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedProgramID = String.valueOf(programsModalList.get(position).getProgramId());
+                selectedProgramName = programsModalList.get(position).getProgramName();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
 
     @Override
     public void onResponse(String response, String header) {

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pratham.admin.R;
 import com.pratham.admin.interfaces.DevicePrathamIdLisner;
 import com.pratham.admin.modalclasses.DeviseList;
+import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabItemClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +22,12 @@ import java.util.List;
 public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.MyViewHolder> {
     List<DeviseList> deviseList;
     Context context;
-    private final DevicePrathamIdLisner devicePrathamIdLisner;
+    private final InventoryTabItemClick inventoryTabItemClick;
 
-    public DeviceListAdapter(Context context, List deviseList, DevicePrathamIdLisner devicePrathamIdLisner) {
+    public DeviceListAdapter(Context context, List deviseList, InventoryTabItemClick inventoryTabItemClick) {
         this.deviseList = deviseList;
         this.context = context;
-        this.devicePrathamIdLisner = devicePrathamIdLisner;
+        this.inventoryTabItemClick = inventoryTabItemClick;
     }
 
     @NonNull
@@ -40,6 +41,8 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         //  if(deviseList.get(position).getPratham_ID()!=null)
         holder.serialID.setText(deviseList.get(position).getSerialno());
+
+        holder.serialID.setOnClickListener(view -> inventoryTabItemClick.onTabItemClicked(position, deviseList.get(position)));
     }
 
     @Override
@@ -55,7 +58,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.My
             super(itemView);
             serialID = itemView.findViewById(R.id.tabSerialID);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+/*            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 //                    Log.e("###### : ", deviseList.get(getAdapterPosition()).getPratham_ID());
@@ -66,7 +69,7 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.My
                     String tabModel = deviseList.get(getAdapterPosition()).getBrand() + " " + deviseList.get(getLayoutPosition()).getModel();
                     String tabStatus = deviseList.get(getAdapterPosition()).getStatus();
                     devicePrathamIdLisner.setDeviceDetail(prathamID, qrID, deviceID, serNo, tabModel, tabStatus);
-/*
+*//*
                     if (prathamID != null && qrID != null) {
                         Log.e(":::", prathamID + " : " + qrID);
                         devicePrathamIdLisner.setDeviceDetail(prathamID, qrID, deviceID, serNo, tabModel, tabStatus);
@@ -74,9 +77,9 @@ public class DeviceListAdapter extends RecyclerView.Adapter<DeviceListAdapter.My
                         devicePrathamIdLisner.setDeviceDetail("-", "-", deviceID, serNo, tabModel, tabStatus);
 //                        Toast.makeText(context, "Pratham id or Qr id is null", Toast.LENGTH_SHORT).show();
                     }
-*/
+*//*
                 }
-            });
+            });*/
         }
     }
 

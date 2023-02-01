@@ -30,6 +30,7 @@ import com.pratham.admin.custom.shared_preference.FastSave;
 import com.pratham.admin.interfaces.DevicePrathamIdLisner;
 import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.DeviseList;
+import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabItemClick;
 import com.pratham.admin.util.APIs;
 import com.pratham.admin.util.ConnectionReceiver;
 import com.pratham.admin.util.Utility;
@@ -47,7 +48,7 @@ import java.util.List;
 
 @SuppressLint("NonConstantResourceId")
 @EFragment(R.layout.fragment_assigned_to_me)
-public class AssignedToMeFragment extends Fragment implements NetworkCallListener, DevicePrathamIdLisner {
+public class AssignedToMeFragment extends Fragment implements NetworkCallListener, InventoryTabItemClick {
 
     @ViewById(R.id.et_search)
     EditText searchTab;
@@ -63,7 +64,7 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
     Context context;
     JSONArray response;
 
-    TextView tv_deviceId, tv_tabBrand, tv_serNo, tv_tabModel, tv_tabStatus;
+    TextView tv_deviceId, tv_tabBrand, tv_serNo, tv_tabModel, tv_tabStatus, tv_ponumber, tv_donor, tv_yop, tv_prog;
     public BlurPopupWindow detailDialog;
 
     DeviceListAdapter deviceAdapter;
@@ -209,11 +210,7 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
     }
 
     @Override
-    public void getPrathamId(String prathamId, String QrId) {
-    }
-
-    @Override
-    public void setDeviceDetail(String tabBrand, String qrId, String deviceId, String serNo, String tabDetail, String status) {
+    public void onTabItemClicked(int position, DeviseList deviceDetail) {
         detailDialog = new BlurPopupWindow.Builder(getActivity())
                 .setContentView(R.layout.dialog_mydevices)
                 .bindClickListener(v -> {
@@ -231,11 +228,19 @@ public class AssignedToMeFragment extends Fragment implements NetworkCallListene
         tv_serNo = detailDialog.findViewById(R.id.tv_serialNo);
         tv_tabModel = detailDialog.findViewById(R.id.tv_tabModel);
         tv_tabStatus = detailDialog.findViewById(R.id.tv_status);
-        tv_deviceId.setText(deviceId);
-        tv_tabBrand.setText(tabBrand);
-        tv_serNo.setText(serNo);
-        tv_tabModel.setText(tabDetail);
-        tv_tabStatus.setText(status);
+        tv_ponumber = detailDialog.findViewById(R.id.tv_ponumber);
+        tv_donor = detailDialog.findViewById(R.id.tv_donorname);
+        tv_yop = detailDialog.findViewById(R.id.tv_yop);
+        tv_prog = detailDialog.findViewById(R.id.tv_prog);
+        tv_deviceId.setText(deviceDetail.getDeviceid());
+        tv_tabBrand.setText(deviceDetail.getBrand());
+        tv_serNo.setText(deviceDetail.getSerialno());
+        tv_tabModel.setText(deviceDetail.getModel());
+        tv_tabStatus.setText(deviceDetail.getStatus());
+        tv_ponumber.setText(deviceDetail.getPonumber());
+        tv_donor.setText(deviceDetail.getDonorname());
+        tv_yop.setText(deviceDetail.getYearofpurchase());
+        tv_prog.setText(deviceDetail.getProgname());
         detailDialog.show();
     }
 }

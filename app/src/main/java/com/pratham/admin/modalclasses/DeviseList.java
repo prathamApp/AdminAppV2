@@ -10,6 +10,11 @@ public class DeviseList {
     String Pratham_ID;
     String QR_ID;
     String WiFiMacAddress;
+    String ponumber;
+    String donorname;
+    String yearofpurchase;
+    String progname;
+
     transient boolean isChecked = false;
 
     transient boolean isSelected = false;
@@ -94,4 +99,19 @@ public class DeviseList {
 
     public void setChecked(boolean checked) { isChecked = checked; }
 
+    public String getPonumber() { return ponumber; }
+
+    public void setPonumber(String ponumber) { this.ponumber = ponumber; }
+
+    public String getDonorname() { return donorname; }
+
+    public void setDonorname(String donorname) { this.donorname = donorname; }
+
+    public String getYearofpurchase() { return yearofpurchase; }
+
+    public void setYearofpurchase(String yearofpurchase) { this.yearofpurchase = yearofpurchase; }
+
+    public String getProgname() { return progname; }
+
+    public void setProgname(String progname) { this.progname = progname; }
 }

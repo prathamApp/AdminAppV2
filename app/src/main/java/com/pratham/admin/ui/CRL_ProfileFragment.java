@@ -27,6 +27,7 @@ import com.pratham.admin.interfaces.NetworkCallListener;
 import com.pratham.admin.modalclasses.CRL;
 import com.pratham.admin.modalclasses.DeviseList;
 import com.pratham.admin.ui.blockLeader.Inventory.InventoryFragment;
+import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabItemClick;
 import com.pratham.admin.ui.blockLeader.Inventory.InventoryTabListAdapter;
 import com.pratham.admin.ui.home.assignedToMe.DeviceListAdapter;
 import com.pratham.admin.util.APIs;
@@ -95,7 +96,7 @@ public class CRL_ProfileFragment extends Fragment implements NetworkCallListener
         this.context = context;
         deviceList = gson.fromJson(response.toString(), devicesList);
         try {
-            deviceAdapter = new DeviceListAdapter(getActivity(), deviceList, CRL_ProfileFragment.this);
+            deviceAdapter = new DeviceListAdapter(getActivity(), deviceList, (InventoryTabItemClick) CRL_ProfileFragment.this);
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false);
             rv_tabList.setLayoutManager(layoutManager);
             rv_tabList.setAdapter(deviceAdapter);

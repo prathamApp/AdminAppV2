@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedQueue
 
+@Suppress("DEPRECATION")
 class PermissionFragment : Fragment() {
     private val permissionQueue = ConcurrentLinkedQueue<PermissionHolder>()
     private var permissionsList: List<String> = ArrayList()
